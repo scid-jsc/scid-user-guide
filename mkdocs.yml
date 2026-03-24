@@ -1,0 +1,66 @@
+site_name: SCID — Hướng dẫn Sử dụng
+site_url: https://document.scid.vn
+site_description: Hướng dẫn sử dụng hệ thống ERP của SCID JSC
+site_author: SCID JSC
+
+theme:
+  name: material
+  language: vi
+  palette:
+    scheme: default
+    primary: indigo
+    accent: blue
+  font:
+    text: Be Vietnam Pro
+    code: JetBrains Mono
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - toc.follow
+  icon:
+    logo: material/file-document-outline
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/scid-jsc
+  generator: false
+
+copyright: "&copy; 2026 SCID JSC. All rights reserved."
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
+      title: Mục lục
+
+plugins:
+  - search:
+      lang: vi
+
+nav:
+  - Trang chủ: index.md
+  - Kế toán:
+    - Vận hành Kế toán: ke-toan/van-hanh.md
+    - Báo cáo TT200: ke-toan/bao-cao-tt200.md
+  - Cho thuê:
+    - Vận hành Cho thuê: cho-thue/van-hanh-lms.md
+
+extra_css:
+  - stylesheets/custom.css
