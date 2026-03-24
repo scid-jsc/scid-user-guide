@@ -1,7 +1,7 @@
-
 # Hướng dẫn Vận hành — Phân hệ Cho thuê (LMS)
 
-> Tài liệu này hướng dẫn nhân viên kinh doanh và quản lý cho thuê thao tác hàng ngày trên hệ thống Odoo. Hướng dẫn kế toán xem [Hướng dẫn Kế toán AMS](../ke-toan/van-hanh.md).
+!!! info
+    Tài liệu này hướng dẫn nhân viên kinh doanh và quản lý cho thuê thao tác hàng ngày trên hệ thống Odoo. Hướng dẫn kế toán xem [Hướng dẫn Kế toán AMS](../ke-toan/van-hanh.md).
 
 ---
 
@@ -40,13 +40,15 @@ Mở: **Liên hệ → Khách hàng → Mới**
 4. Upload hình đại diện (nếu có)
 5. Bấm **Lưu và Đóng**
 
-> Tương tự cho **Đại diện ký hợp đồng** — cần nhập thêm Số ủy quyền, upload Giấy ủy quyền, Ngày hiệu lực (bắt buộc).
+!!! tip "Mẹo"
+    Tương tự cho **Đại diện ký hợp đồng** — cần nhập thêm Số ủy quyền, upload Giấy ủy quyền, Ngày hiệu lực (bắt buộc).
 
 ### 1.4 Chọn Người liên hệ chính
 
 Trong danh sách liên hệ của khách hàng → tick checkbox **Người liên hệ chính** cho 1 người.
 
-> Chỉ được chọn **1 người** làm liên hệ chính tại 1 thời điểm. Nếu tick 2 người → hệ thống báo lỗi khi lưu.
+!!! tip "Mẹo"
+    Chỉ được chọn **1 người** làm liên hệ chính tại 1 thời điểm. Nếu tick 2 người → hệ thống báo lỗi khi lưu.
 
 ---
 
@@ -78,7 +80,8 @@ Từ Deal → bấm **Tạo phiếu duyệt thuê** → hệ thống tự tạo 
    - Free rent, Điều kiện thi công
 5. Bấm **Gửi duyệt** → popup chọn người duyệt → **Xác nhận**
 
-> Trạng thái Deal chuyển thành "Chờ duyệt thuê".
+!!! info
+    Trạng thái Deal chuyển thành "Chờ duyệt thuê".
 
 **Nếu bị từ chối:** Bấm nút tạo LAF mới (copy thông tin) → chỉnh sửa → gửi duyệt lại.
 
@@ -139,7 +142,8 @@ Khi cần thay đổi giá thuê, gia hạn, hoặc bổ sung điều khoản:
 4. Được duyệt → Soạn phụ lục bản cứng → gửi khách ký
 5. Upload bản cứng đã ký → bấm **Xác nhận phụ lục**
 
-> Trạng thái Deal: Đang thuê → Chờ duyệt phụ lục → Đang thuê (sau khi xác nhận)
+!!! info
+    Trạng thái Deal: Đang thuê → Chờ duyệt phụ lục → Đang thuê (sau khi xác nhận)
 
 ---
 

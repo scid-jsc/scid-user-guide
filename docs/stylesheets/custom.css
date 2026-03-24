@@ -1,14 +1,228 @@
+/* === SCID Navy Theme === */
+
 :root {
+  /* Primary Navy */
   --md-primary-fg-color: #1a365d;
   --md-primary-fg-color--light: #2b6cb0;
-  --md-primary-fg-color--dark: #1a365d;
+  --md-primary-fg-color--dark: #0f2440;
   --md-accent-fg-color: #3182ce;
+
+  /* Typography */
+  --md-text-font: "Be Vietnam Pro";
+  --md-code-font: "JetBrains Mono";
 }
 
+/* Header */
 .md-header {
-  background-color: #1a365d;
+  background: linear-gradient(135deg, #1a365d 0%, #2a4a7f 100%);
+  box-shadow: 0 2px 8px rgba(26, 54, 93, 0.15);
 }
 
 .md-tabs {
-  background-color: #1a365d;
+  background: #0f2440;
+}
+
+/* Sidebar */
+.md-sidebar--primary .md-nav__title {
+  font-weight: 700;
+  color: #1a365d;
+}
+
+.md-nav__link--active {
+  font-weight: 600 !important;
+}
+
+/* Content area */
+.md-content {
+  max-width: 52rem;
+}
+
+/* Headings */
+.md-typeset h1 {
+  color: #1a365d;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.md-typeset h2 {
+  color: #1a365d;
+  font-weight: 600;
+  border-bottom: 2px solid #ebf4ff;
+  padding-bottom: 0.4rem;
+  margin-top: 2.4rem;
+}
+
+.md-typeset h3 {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+/* Tables */
+.md-typeset table:not([class]) {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  display: table;
+  font-size: 0.85rem;
+}
+
+.md-typeset table:not([class]) thead {
+  background: linear-gradient(180deg, #f7fafc 0%, #edf2f7 100%);
+}
+
+.md-typeset table:not([class]) th {
+  color: #1a365d;
+  font-weight: 600;
+  padding: 0.8rem 1rem;
+  border-bottom: 2px solid #cbd5e0;
+  white-space: nowrap;
+}
+
+.md-typeset table:not([class]) td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid #f0f4f8;
+  color: #4a5568;
+}
+
+.md-typeset table:not([class]) tr:hover td {
+  background: #f7fafc;
+}
+
+.md-typeset table:not([class]) tr:last-child td {
+  border-bottom: none;
+}
+
+/* Admonitions */
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  border-left-width: 4px;
+  font-size: 0.9rem;
+}
+
+.md-typeset .admonition-title,
+.md-typeset summary {
+  font-weight: 600;
+}
+
+/* Info admonition — blue */
+.md-typeset .admonition.info,
+.md-typeset details.info {
+  border-color: #3182ce;
+}
+
+/* Warning admonition */
+.md-typeset .admonition.warning,
+.md-typeset details.warning {
+  border-color: #dd6b20;
+}
+
+/* Tip admonition */
+.md-typeset .admonition.tip,
+.md-typeset details.tip {
+  border-color: #38a169;
+}
+
+/* Blockquotes → styled as callout */
+.md-typeset blockquote {
+  background: #ebf8ff;
+  border-left: 4px solid #3182ce;
+  border-radius: 0 8px 8px 0;
+  padding: 0.8rem 1.2rem;
+  color: #2a4365;
+  font-size: 0.9rem;
+}
+
+.md-typeset blockquote p {
+  margin: 0;
+}
+
+/* Ordered list steps — cleaner */
+.md-typeset ol {
+  padding-left: 1.2rem;
+}
+
+.md-typeset ol > li {
+  margin-bottom: 0.4rem;
+}
+
+.md-typeset ol > li::marker {
+  color: #1a365d;
+  font-weight: 700;
+}
+
+/* Bold text in steps */
+.md-typeset strong {
+  color: #1a365d;
+}
+
+/* Code inline */
+.md-typeset code {
+  background: #edf2f7;
+  color: #c53030;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+/* Navigation path (breadcrumbs) */
+.md-path {
+  font-size: 0.8rem;
+  color: #a0aec0;
+}
+
+/* Footer */
+.md-footer {
+  background: #0f2440;
+}
+
+.md-copyright {
+  color: rgba(255,255,255,0.6);
+}
+
+/* Search */
+.md-search__input {
+  border-radius: 8px;
+}
+
+/* Keyboard keys */
+.md-typeset kbd {
+  background: #edf2f7;
+  border: 1px solid #cbd5e0;
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.8rem;
+  box-shadow: 0 1px 0 #cbd5e0;
+}
+
+/* Horizontal rule */
+.md-typeset hr {
+  border-color: #edf2f7;
+}
+
+/* Links */
+.md-typeset a {
+  color: #2b6cb0;
+}
+
+.md-typeset a:hover {
+  color: #1a365d;
+}
+
+/* Task list checkboxes */
+.md-typeset .task-list-indicator::before {
+  background-color: #3182ce;
+}
+
+/* Tabs */
+.md-typeset .tabbed-labels > label {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* Card-like sections on homepage */
+.md-typeset .grid {
+  grid-gap: 1rem;
 }

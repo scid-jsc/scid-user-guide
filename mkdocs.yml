@@ -6,25 +6,40 @@ site_author: SCID JSC
 theme:
   name: material
   language: vi
+  custom_dir: overrides
   palette:
     scheme: default
-    primary: indigo
-    accent: blue
+    primary: custom
+    accent: custom
   font:
     text: Be Vietnam Pro
     code: JetBrains Mono
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
     - navigation.top
     - navigation.footer
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.path
     - search.suggest
     - search.highlight
+    - search.share
     - content.tabs.link
+    - content.code.copy
+    - content.code.annotate
     - toc.follow
   icon:
     logo: material/file-document-outline
+    admonition:
+      note: material/pencil-circle
+      tip: material/lightbulb-on
+      warning: material/alert
+      danger: material/alert-octagon
+      info: material/information
+      example: material/test-tube
 
 extra:
   social:
@@ -32,7 +47,7 @@ extra:
       link: https://github.com/scid-jsc
   generator: false
 
-copyright: "&copy; 2026 SCID JSC. All rights reserved."
+copyright: "&copy; 2026 SCID JSC"
 
 markdown_extensions:
   - admonition
@@ -40,9 +55,19 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
   - tables
   - attr_list
   - md_in_html
+  - def_list
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg

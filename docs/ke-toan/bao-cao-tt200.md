@@ -1,7 +1,7 @@
-
 # Hướng dẫn Xuất Báo cáo Kế toán theo Thông tư 200
 
-> Tài liệu này hướng dẫn cách xem và xuất **11 loại báo cáo kế toán** trên Odoo 16 theo Thông tư 200/2014/TT-BTC. Tất cả báo cáo đều xuất được **Excel** và **PDF**.
+!!! info
+    Tài liệu này hướng dẫn cách xem và xuất **11 loại báo cáo kế toán** trên Odoo 16 theo Thông tư 200/2014/TT-BTC. Tất cả báo cáo đều xuất được **Excel** và **PDF**.
 
 ---
 
@@ -47,9 +47,12 @@
 
 **Nội dung báo cáo:** Ngày ghi sổ, Chứng từ, Diễn giải, TK đối ứng, Nợ, Có, Số dư.
 
-> **Lưu ý quan trọng:**
-> - Nếu cột TK đối ứng bị trống → vào hóa đơn tương ứng → bấm nút **"Tạo liên kết đối ứng"**
-> - Không nên hạch toán bút toán có **nhiều dòng Nợ đồng thời nhiều dòng Có** — hệ thống không tự xác định được TK đối ứng trong trường hợp này
+!!! warning "Lưu ý quan trọng"
+    **Lưu ý quan trọng:**
+!!! tip "Mẹo"
+    - Nếu cột TK đối ứng bị trống → vào hóa đơn tương ứng → bấm nút **"Tạo liên kết đối ứng"**
+!!! warning "Lưu ý quan trọng"
+    - Không nên hạch toán bút toán có **nhiều dòng Nợ đồng thời nhiều dòng Có** — hệ thống không tự xác định được TK đối ứng trong trường hợp này
 
 ---
 
@@ -120,7 +123,8 @@ Thao tác giống Sổ quỹ tiền mặt, nhưng chỉ hiển thị sổ nhật
 - **Mục 1:** Hàng hóa dịch vụ dùng **riêng** cho sản xuất kinh doanh chịu thuế GTGT
 - **Mục 2:** Hàng hóa dịch vụ dùng **chung** cho cả chịu thuế và không chịu thuế
 
-> Để phân loại chính xác, sản phẩm cần được đánh dấu "Là HHDV dùng chung" trong phần cấu hình sản phẩm. Liên hệ quản trị viên nếu cần điều chỉnh.
+!!! tip "Mẹo"
+    Để phân loại chính xác, sản phẩm cần được đánh dấu "Là HHDV dùng chung" trong phần cấu hình sản phẩm. Liên hệ quản trị viên nếu cần điều chỉnh.
 
 ---
 
@@ -156,7 +160,8 @@ Thao tác giống Sổ quỹ tiền mặt, nhưng chỉ hiển thị sổ nhật
 - Bấm **Chốt sổ** để khóa kết quả (trạng thái: Dự thảo → Đã chốt)
 - Bấm **In → Báo cáo cân đối kế toán (Excel/PDF)** để xuất file
 
-> Nếu có chỉ tiêu chưa tính đúng (do phụ thuộc chỉ tiêu khác), bấm **Tính toán** thêm lần nữa.
+!!! tip "Mẹo"
+    Nếu có chỉ tiêu chưa tính đúng (do phụ thuộc chỉ tiêu khác), bấm **Tính toán** thêm lần nữa.
 
 ---
 
@@ -181,7 +186,8 @@ Thao tác giống Sổ quỹ tiền mặt, nhưng chỉ hiển thị sổ nhật
 3. Bấm **Tính toán**
 4. Xuất Excel hoặc PDF
 
-> Báo cáo này có tính năng đặc biệt: phân biệt bút toán **có liên kết hóa đơn** và **không liên kết hóa đơn** — cùng tài khoản nhưng vào chỉ tiêu khác nhau. Nếu số liệu không đúng, liên hệ quản trị viên kiểm tra cấu hình "Liên kết với hóa đơn" trên từng chỉ tiêu.
+!!! tip "Mẹo"
+    Báo cáo này có tính năng đặc biệt: phân biệt bút toán **có liên kết hóa đơn** và **không liên kết hóa đơn** — cùng tài khoản nhưng vào chỉ tiêu khác nhau. Nếu số liệu không đúng, liên hệ quản trị viên kiểm tra cấu hình "Liên kết với hóa đơn" trên từng chỉ tiêu.
 
 ---
 
