@@ -396,7 +396,7 @@ Thao tác giống Sổ quỹ tiền mặt, nhưng chỉ hiển thị sổ nhật
 
 ![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image94.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image95.png)
+![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image95.jpg)
 
 ![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image96.png)
 
