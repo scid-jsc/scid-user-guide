@@ -51,67 +51,67 @@ Trong danh sách liên hệ của khách hàng → tick checkbox **Người liê
     Chỉ được chọn **1 người** làm liên hệ chính tại 1 thời điểm. Nếu tick 2 người → hệ thống báo lỗi khi lưu.
 
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image1.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image1.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image2.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image2.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image3.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image3.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image4.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image4.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image5.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image5.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image6.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image6.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image7.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image7.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image8.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image8.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image9.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image9.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image10.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image10.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image11.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image11.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image12.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image12.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image13.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image13.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image14.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image14.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image15.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image15.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image16.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image16.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image17.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image17.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image18.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image18.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image19.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image19.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image20.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image20.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image21.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image21.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image22.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image22.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image23.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image23.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image24.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image24.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image25.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image25.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image26.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image26.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image27.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image27.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image28.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image28.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image29.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image29.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image30.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image30.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD01_-_Phân_hệ_liên_hệ_image31.png)
+![Screenshot](assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image31.png)
 
 ---
 
@@ -373,15 +373,10 @@ Giống NLA nhưng **bỏ qua bước OL** (Thư chào thuê):
 
 ![Screenshot](assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image188.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image189.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image190.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image191.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image192.png)
 
-![Screenshot](assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image193.png)
 
 ---
 
