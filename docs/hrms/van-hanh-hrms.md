@@ -102,25 +102,13 @@ Mở hợp đồng đang chạy → bấm **Tạo Phụ lục (Create Promotion 
 
 1. Điền số phụ lục, thông tin quyết định
 
-   ![Screenshot](assets/SCID_HRMS_image40.png)
-
-   ![Screenshot](assets/SCID_HRMS_image41.png)
+   ![Screenshot](assets/SCID_HRMS_image46.png)
 
 2. Bấm **Xác nhận** → hệ thống tạo form phụ lục
 
-   ![Screenshot](assets/SCID_HRMS_image42.png)
-
-   ![Screenshot](assets/SCID_HRMS_image43.png)
-
-   ![Screenshot](assets/SCID_HRMS_image44.png)
-
-3. Điền Thông tin Quyết định, Thông tin Phụ lục, Thông tin chuyển công tác (nếu có)
-
-   ![Screenshot](assets/SCID_HRMS_image45.png)
-
-   ![Screenshot](assets/SCID_HRMS_image46.png)
-
    ![Screenshot](assets/SCID_HRMS_image47.png)
+
+3. Kiểm tra thông tin phụ lục vừa tạo trong tab **Phụ lục**
 
    ![Screenshot](assets/SCID_HRMS_image48.png)
 
@@ -128,17 +116,33 @@ Mở hợp đồng đang chạy → bấm **Tạo Phụ lục (Create Promotion 
 
 ### 2.3 Nhân viên kiêm nhiệm (Chức danh phụ)
 
+Mở: **Nhân viên**
+
+![Screenshot](assets/SCID_HRMS_image37.png)
+
 Mở hồ sơ nhân viên chính → bấm **Tạo chức danh phụ**
+
+![Screenshot](assets/SCID_HRMS_image38.png)
 
 - Hệ thống sinh ra nhân viên kiêm nhiệm liên kết với nhân viên chính
 
-   ![Screenshot](assets/SCID_HRMS_image37.png)
+   ![Screenshot](assets/SCID_HRMS_image39.png)
+
+- Vào tab **Thông tin cá nhân** để bổ sung thông tin kiêm nhiệm
+
+   ![Screenshot](assets/SCID_HRMS_image40.png)
 
 - Mở sub-employee → bấm **Tạo phụ lục** để tạo hợp đồng kiêm nhiệm
 
-   ![Screenshot](assets/SCID_HRMS_image38.png)
+   ![Screenshot](assets/SCID_HRMS_image41.png)
 
-   ![Screenshot](assets/SCID_HRMS_image39.png)
+   ![Screenshot](assets/SCID_HRMS_image42.png)
+
+   ![Screenshot](assets/SCID_HRMS_image43.png)
+
+   ![Screenshot](assets/SCID_HRMS_image44.png)
+
+   ![Screenshot](assets/SCID_HRMS_image45.png)
 
 ---
 
@@ -186,12 +190,6 @@ Mở hợp đồng nhân viên → tab **Thông tin lương** → phần **Phụ
 
 ![Screenshot](assets/SCID_HRMS_image33.png)
 
-![Screenshot](assets/SCID_HRMS_image34.png)
-
-![Screenshot](assets/SCID_HRMS_image35.png)
-
-![Screenshot](assets/SCID_HRMS_image36.png)
-
 ---
 
 ## Phần 4 — Bảng lương
@@ -199,6 +197,8 @@ Mở hợp đồng nhân viên → tab **Thông tin lương** → phần **Phụ
 ### 4.1 Tạo phiếu lương
 
 Mở: **Bảng lương → Phiếu lương → Cần thanh toán → Mới**
+
+![Screenshot](assets/SCID_HRMS_image34.png)
 
 1. Nhập tên nhân viên và **Giai đoạn phiếu lương**
 
@@ -219,6 +219,10 @@ Mở: **Bảng lương → Phiếu lương → Cần thanh toán → Mới**
 4. Xem chi tiết:
    - Tab **Ngày làm việc & Khoản mục** — thông tin công và phụ cấp
    - Tab **Tính toán lương** — bảng lương chi tiết
+
+   ![Screenshot](assets/SCID_HRMS_image35.png)
+
+   ![Screenshot](assets/SCID_HRMS_image36.png)
 
    ![Screenshot](assets/SCID_HRMS_image55.png)
 
@@ -429,6 +433,8 @@ Mở: **Chấm công → Danh sách**
 
 Mở: **Nhân viên → Cấu hình → Khung lương → Mới**
 
+![Screenshot](assets/SCID_HRMS_image128.png)
+
 1. Điền tên khung lương, chức vụ áp dụng
 
    ![Screenshot](assets/SCID_HRMS_image129.png)
@@ -439,26 +445,30 @@ Mở: **Nhân viên → Cấu hình → Khung lương → Mới**
 
    ![Screenshot](assets/SCID_HRMS_image131.png)
 
-   ![Screenshot](assets/SCID_HRMS_image132.png)
-
 3. Cập nhật Bậc lương trên hợp đồng lao động hiện tại (thủ công)
+
+   ![Screenshot](assets/SCID_HRMS_image132.png)
 
    ![Screenshot](assets/SCID_HRMS_image133.png)
 
-   ![Screenshot](assets/SCID_HRMS_image134.png)
-
 ### 7.2 Xét thâm niên
 
-Mở: **Nhân viên → Danh sách xét thâm niên → Xét thâm niên**
+Mở: **Nhân viên**
+
+![Screenshot](assets/SCID_HRMS_image134.png)
+
+Vào **Nhân viên → Danh sách xét thâm niên → Xét thâm niên**
+
+![Screenshot](assets/SCID_HRMS_image135.png)
 
 Chọn mốc xét:
 
 - **Đợt 1** — đến ngày 31/12 năm trước
 - **Đợt 2** — đến ngày 30/06 năm hiện tại
 
-   ![Screenshot](assets/SCID_HRMS_image135.png)
-
    ![Screenshot](assets/SCID_HRMS_image136.png)
+
+   ![Screenshot](assets/SCID_HRMS_image137.png)
 
 Hệ thống tự tính:
 
@@ -470,19 +480,19 @@ Hệ thống tự tính:
 
 Sau khi kiểm tra: bấm **Xác nhận đã chi** để đánh dấu trạng thái chi trả.
 
-   ![Screenshot](assets/SCID_HRMS_image137.png)
-
    ![Screenshot](assets/SCID_HRMS_image138.png)
 
    ![Screenshot](assets/SCID_HRMS_image139.png)
 
    ![Screenshot](assets/SCID_HRMS_image140.png)
 
-   ![Screenshot](assets/SCID_HRMS_image141.png)
-
 ### 7.3 Phép thâm niên
 
-- Vào **Nghỉ phép → Cấu hình → Loại nghỉ phép** → chọn **Nghỉ phép thâm niên**
+Mở: **Nghỉ phép → Cấu hình → Loại nghỉ phép**
+
+![Screenshot](assets/SCID_HRMS_image141.png)
+
+- Chọn **Nghỉ phép thâm niên**
 
    ![Screenshot](assets/SCID_HRMS_image142.png)
 
@@ -496,8 +506,6 @@ Sau khi kiểm tra: bấm **Xác nhận đã chi** để đánh dấu trạng th
    ![Screenshot](assets/SCID_HRMS_image145.png)
 
    ![Screenshot](assets/SCID_HRMS_image146.png)
-
-   ![Screenshot](assets/SCID_HRMS_image147.png)
 
 ---
 
@@ -520,6 +528,8 @@ Mở: **Nhân viên → Cấu hình → Danh hiệu thi đua → Mới**
 ### 8.2 Tạo hồ sơ Khen thưởng
 
 Mở: **Nhân viên → Thi đua khen thưởng → Mới**
+
+![Screenshot](assets/SCID_HRMS_image113.png)
 
 1. Chọn **Danh hiệu**, nhập Số quyết định, Ngày hiệu lực
 
@@ -549,6 +559,8 @@ Mở: **Nhân viên → Thi đua khen thưởng → Mới**
 
 Mở: **Nhân viên → Quản lý sáng kiến → Mới**
 
+![Screenshot](assets/SCID_HRMS_image121.png)
+
 1. Điền: Tên sáng kiến, Loại (Giải pháp/Sáng kiến/Cải tiến), Cấp công nhận, Lĩnh vực
 
    ![Screenshot](assets/SCID_HRMS_image122.png)
@@ -569,11 +581,13 @@ Mở: **Nhân viên → Quản lý sáng kiến → Mới**
 
    ![Screenshot](assets/SCID_HRMS_image127.png)
 
-   ![Screenshot](assets/SCID_HRMS_image128.png)
-
 ---
 
 ## Phần 9 — Hồ sơ Nghỉ việc
+
+Mở: **Nhân viên**
+
+![Screenshot](assets/SCID_HRMS_image147.png)
 
 Mở hồ sơ nhân viên → bấm **Offboarding**
 
