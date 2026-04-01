@@ -88,6 +88,10 @@ nav:
     - Vận hành E-Office: e-office/van-hanh-eo.md
   - Nhân sự:
     - Vận hành HRMS: hrms/van-hanh-hrms.md
+  - Hướng dẫn Setup:
+    - Cài đặt Hệ thống: setup/cai-dat-he-thong.md
+    - Môi trường Dev: setup/moi-truong.md
+    - Đóng góp Tài liệu: setup/dong-gop.md
 
 extra_css:
   - stylesheets/custom.css
