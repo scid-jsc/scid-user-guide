@@ -21,6 +21,14 @@ Mở: **Việc cần làm**
 !!! tip "Mẹo"
     Bạn có thể thêm giai đoạn mới theo nhu cầu bằng cách bấm **+ Thêm giai đoạn** trên kanban.
 
+![Screenshot](assets/SCID_EO_image1.png)
+![Screenshot](assets/SCID_EO_image2.png)
+![Screenshot](assets/SCID_EO_image3.png)
+![Screenshot](assets/SCID_EO_image4.png)
+![Screenshot](assets/SCID_EO_image5.png)
+![Screenshot](assets/SCID_EO_image6.png)
+![Screenshot](assets/SCID_EO_image7.png)
+
 ---
 
 ### A2. Phê duyệt yêu cầu
@@ -33,6 +41,9 @@ Mở: **Phê duyệt → Cấu hình → Loại phê duyệt → Mới**
 2. Bổ sung thông tin và danh sách người cần phê duyệt
 3. Bấm **Lưu**
 
+![Screenshot](assets/SCID_EO_image8.png)
+![Screenshot](assets/SCID_EO_image9.png)
+
 #### Tạo yêu cầu phê duyệt (ví dụ: Book xe công tác)
 
 Mở: **Phê duyệt → SCID P03 - Đề nghị cấp xe Ô tô đi công tác → Yêu cầu mới**
@@ -40,6 +51,13 @@ Mở: **Phê duyệt → SCID P03 - Đề nghị cấp xe Ô tô đi công tác 
 1. Điền đầy đủ thông tin yêu cầu → bấm **Lưu**
 2. Bấm **Gửi** để hệ thống gửi thông báo đến người cần phê duyệt
 3. Theo dõi trạng thái tại: **Phê duyệt → Phê duyệt của tôi**
+
+![Screenshot](assets/SCID_EO_image10.png)
+![Screenshot](assets/SCID_EO_image11.png)
+![Screenshot](assets/SCID_EO_image12.png)
+![Screenshot](assets/SCID_EO_image13.png)
+![Screenshot](assets/SCID_EO_image14.png)
+![Screenshot](assets/SCID_EO_image15.png)
 
 #### Xử lý phê duyệt (dành cho người duyệt)
 
@@ -60,6 +78,11 @@ Mở: **Phê duyệt → SCID P01 - Duyệt Hồ Sơ Thanh Toán → Yêu cầu 
 2. Bấm **Gửi** → theo dõi tại **Phê duyệt của tôi**
 3. Sau khi SCID P01 được duyệt → tiếp tục thực hiện **SCID P02 - Trình Ký Ủy Nhiệm Chi**
 
+![Screenshot](assets/SCID_EO_image25.png)
+![Screenshot](assets/SCID_EO_image26.png)
+![Screenshot](assets/SCID_EO_image27.png)
+![Screenshot](assets/SCID_EO_image28.png)
+
 ---
 
 ### A4. Tạo lịch họp
@@ -70,6 +93,9 @@ Mở: **Lịch**
 2. Nhập nội dung sự kiện → bấm **Lưu & Đóng**
 3. Để chỉnh sửa chi tiết: bấm vào sự kiện → bấm **Chỉnh sửa**
    - Bổ sung: Người tham dự, Chuẩn bị nội dung, Thành phần tham gia, Mô tả
+
+![Screenshot](assets/SCID_EO_image16.png)
+![Screenshot](assets/SCID_EO_image17.png)
 
 ---
 
@@ -87,6 +113,14 @@ Mở: **Phòng họp → Mới**
 3. Nhân viên truy cập link → xem lịch và đặt trực tiếp (**Add a Booking**)
 4. Phòng đang được sử dụng sẽ hiển thị trạng thái **Booked**
 
+![Screenshot](assets/SCID_EO_image18.png)
+![Screenshot](assets/SCID_EO_image19.png)
+![Screenshot](assets/SCID_EO_image20.png)
+![Screenshot](assets/SCID_EO_image21.png)
+![Screenshot](assets/SCID_EO_image22.png)
+![Screenshot](assets/SCID_EO_image23.png)
+![Screenshot](assets/SCID_EO_image24.png)
+
 ---
 
 ## Phần B — Quản lý Văn phòng phẩm (VPP)
@@ -101,6 +135,11 @@ Mở: **Bán hàng → Mới**
 !!! info
     Xem báo cáo mua/bán VPP qua menu **Báo cáo** trong ứng dụng Bán hàng hoặc Mua hàng.
 
+![Screenshot](assets/SCID_EO_image29.png)
+![Screenshot](assets/SCID_EO_image30.png)
+![Screenshot](assets/SCID_EO_image31.png)
+![Screenshot](assets/SCID_EO_image32.png)
+
 ---
 
 ## Phần C — Lịch làm việc & Công tác
@@ -110,6 +149,13 @@ Mở: **Lịch**
 1. Xem lịch cá nhân hoặc chọn xem lịch của người dùng khác / tất cả mọi người
 2. Bấm vào vùng thời gian → nhập nội dung → bấm **Lưu & Đóng**
 3. Chỉnh sửa sự kiện: bấm vào sự kiện → **Chỉnh sửa** → bổ sung người tham dự, ghi chú
+
+![Screenshot](assets/SCID_EO_image33.png)
+![Screenshot](assets/SCID_EO_image34.png)
+![Screenshot](assets/SCID_EO_image35.png)
+![Screenshot](assets/SCID_EO_image36.png)
+![Screenshot](assets/SCID_EO_image37.png)
+![Screenshot](assets/SCID_EO_image38.png)
 
 ---
 
@@ -130,6 +176,9 @@ Mở: **Hỗ trợ → Tạo phiếu hỗ trợ mới**
 | Ban hành | Đang thực hiện chỉ đạo |
 
 Sau khi có chỉ đạo → Văn Thư giao việc (Activities) cho các phòng ban theo chỉ đạo.
+
+![Screenshot](assets/SCID_EO_image39.png)
+![Screenshot](assets/SCID_EO_image40.png)
 
 ---
 
