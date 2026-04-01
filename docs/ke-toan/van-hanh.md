@@ -47,6 +47,20 @@ Mở: **Cho thuê → Hoạt động khác → Báo cáo điện, nước, gas**
 
 1. Tick chọn nhiều báo cáo → Bấm **Thực hiện → Xác nhận báo cáo**
 
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image17.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image18.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image19.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image20.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image21.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image22.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image23.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image24.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image25.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image26.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image27.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image28.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image29.png)
+
 ---
 
 ### A2. Báo cáo Doanh thu Khách thuê
@@ -56,6 +70,18 @@ Mở: **Cho thuê → Hoạt động khác → Báo cáo doanh thu khách thuê*
 Thao tác giống hệt Báo cáo Điện/Nước/Gas. Khác ở phần Chi tiết:
 - Nhập **Ngày bắt đầu, Ngày kết thúc, Doanh thu** (số tiền)
 - Hệ thống tự cộng **Tổng doanh thu**
+
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image30.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image31.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image32.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image33.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image34.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image35.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image36.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image37.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image38.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image39.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image40.png)
 
 ---
 
@@ -87,6 +113,12 @@ Mở: **Lên hóa đơn → Khách hàng → Hóa đơn → Mới**
    - Chọn **Loại phí** → Nhãn tự động điền
    - Nhập Từ ngày, Đến ngày, Số lượng, Giá, Thuế
 4. Bấm **Lưu** → hóa đơn sẽ tự động tạo trên AMS
+
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image41.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image42.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image43.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image44.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image45.png)
 
 ---
 
@@ -128,6 +160,29 @@ Nhập Khách hàng, Sản phẩm, Số lượng, Giá → Bấm **Xác nhận**
 
 Mở hóa đơn → Bấm biểu tượng **In** → Chọn **"Bảng in"** → file PDF sẽ tải về máy.
 
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image92.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image93.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image94.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image95.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image96.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image97.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image98.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image99.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image100.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image101.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image102.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image103.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image104.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image105.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image106.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image107.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image108.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image109.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image110.jpg)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image111.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image112.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image113.png)
+
 ---
 
 ### C2. Hóa đơn mua hàng (Công nợ phải trả)
@@ -140,6 +195,15 @@ Mở: **Kế toán → Nhà cung cấp → Hóa đơn → Mới**
 4. Kiểm tra tab **Chi tiết bút toán** → Bấm **Xác nhận**
 
 **Giảm công nợ mua hàng:** Mở hóa đơn gốc → Bấm **Thêm giấy báo có** → Nhập lý do → **Đảo ngược**.
+
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image114.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image115.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image116.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image117.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image118.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image119.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image120.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image121.png)
 
 ---
 
@@ -186,6 +250,27 @@ Mở: **Kế toán → Bảng thông tin → [Chọn sổ ngân hàng]**
 3. Bấm **Lưu và đóng**
 4. Bấm **Xác nhận** → **Thiết lập đã kiểm tra** → Trạng thái chuyển thành "Matched"
 
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image122.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image123.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image124.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image125.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image126.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image127.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image128.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image129.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image130.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image131.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image132.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image133.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image134.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image135.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image136.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image137.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image138.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image139.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image140.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image141.png)
+
 ---
 
 ### C4. Bút toán phát sinh
@@ -211,6 +296,16 @@ Bạn chỉ cần kiểm tra sổ nhật ký và tài khoản, điều chỉnh n
 2. Tick chọn **"Bút toán giảm trực tiếp"**
 3. Bây giờ bạn có thể nhập **số âm** ở cột Nợ hoặc Có
 
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image142.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image143.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image144.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image145.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image146.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image147.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image148.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image149.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image150.png)
+
 ---
 
 ### C5. Quản lý Ngân sách
@@ -222,6 +317,24 @@ Mở: **Kế toán → Kế toán → Ngân sách → Mới**
 3. Bấm **Xác nhận**
 
 Hệ thống sẽ so sánh giá trị thực tế với kế hoạch để theo dõi tiến độ chi tiêu.
+
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image151.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image152.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image153.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image154.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image155.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image156.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image157.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image158.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image159.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image160.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image161.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image162.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image163.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image164.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image165.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image166.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image167.png)
 
 ---
 
@@ -268,6 +381,64 @@ Nếu muốn đưa hóa đơn về Dự thảo:
 **Gửi 1 hóa đơn:** Mở hóa đơn → Bấm **Gửi**
 
 **Gửi nhiều hóa đơn:** Ở danh sách, tick chọn nhiều HĐ → Bấm **Thực hiện → Gửi HĐĐT**
+
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image213.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image214.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image215.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image216.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image217.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image218.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image219.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image220.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image221.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image222.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image223.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image225.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image226.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image227.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image228.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image229.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image230.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image231.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image232.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image233.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image234.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image235.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image236.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image237.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image238.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image239.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image240.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image241.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image242.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image243.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image244.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image245.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image246.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image247.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image248.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image249.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image250.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image251.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image252.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image253.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image254.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image255.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image256.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image257.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image258.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image259.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image260.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image261.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image262.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image263.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image264.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image265.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image266.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image267.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image268.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image269.png)
+![Screenshot](assets/SCID_Mô_tả_giao_diện_và_tính_năng_Kế_toá_image270.png)
 
 ---
 
