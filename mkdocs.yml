@@ -84,6 +84,16 @@ nav:
     - Báo cáo TT200: ke-toan/bao-cao-tt200.md
   - Cho thuê:
     - Vận hành Cho thuê: cho-thue/van-hanh-lms.md
+  - E-Office:
+    - Vận hành E-Office: e-office/van-hanh-eo.md
+    - Theo dõi Hồ sơ Trình ký:
+      - Tổng quan: e-office/hosotk/index.md
+      - 01 — Project, Stages & Properties: e-office/hosotk/01-project-stages.md
+      - 02 — Email Templates: e-office/hosotk/02-email-templates.md
+      - 03 — Automation Rules: e-office/hosotk/03-automation-rules.md
+      - 04 — Phân quyền & Test: e-office/hosotk/04-phan-quyen-test.md
+  - Nhân sự:
+    - Vận hành HRMS: hrms/van-hanh-hrms.md
 
 extra_css:
   - stylesheets/custom.css

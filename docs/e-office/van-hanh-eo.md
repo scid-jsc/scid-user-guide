@@ -1,0 +1,151 @@
+# Hướng dẫn Vận hành — Phân hệ E-Office (EO)
+
+!!! info
+    Tài liệu này hướng dẫn nhân viên thao tác hàng ngày trên phân hệ E-Office: quản lý công việc, phê duyệt, lịch họp, công văn và văn phòng phẩm.
+
+---
+
+## Phần A — Công việc, Phê duyệt & Lịch họp
+
+### A1. Quản lý công việc (Việc cần làm)
+
+Mở: **Việc cần làm**
+
+1. Hệ thống hiển thị danh sách công việc theo từng giai đoạn thời gian
+2. Bấm **Mới** hoặc dấu **+** tại giai đoạn cụ thể để tạo công việc mới
+3. Nhập **Tiêu đề việc cần làm** → bấm **Thêm**
+4. Bấm vào thẻ công việc để bổ sung chi tiết: mô tả, ngày hạn, người phụ trách
+5. Để phân công hoạt động: bấm **Lên lịch một hoạt động** → chọn người thực hiện
+6. Khi hoàn thành: bấm **Mark as done**
+
+!!! tip "Mẹo"
+    Bạn có thể thêm giai đoạn mới theo nhu cầu bằng cách bấm **+ Thêm giai đoạn** trên kanban.
+
+---
+
+### A2. Phê duyệt yêu cầu
+
+#### Thiết lập loại phê duyệt (dành cho Admin)
+
+Mở: **Phê duyệt → Cấu hình → Loại phê duyệt → Mới**
+
+1. Nhập tên loại phê duyệt
+2. Bổ sung thông tin và danh sách người cần phê duyệt
+3. Bấm **Lưu**
+
+#### Tạo yêu cầu phê duyệt (ví dụ: Book xe công tác)
+
+Mở: **Phê duyệt → SCID P03 - Đề nghị cấp xe Ô tô đi công tác → Yêu cầu mới**
+
+1. Điền đầy đủ thông tin yêu cầu → bấm **Lưu**
+2. Bấm **Gửi** để hệ thống gửi thông báo đến người cần phê duyệt
+3. Theo dõi trạng thái tại: **Phê duyệt → Phê duyệt của tôi**
+
+#### Xử lý phê duyệt (dành cho người duyệt)
+
+- **Approve** — Phê duyệt yêu cầu
+- **Refuse** — Từ chối yêu cầu
+- **Log note** — Phản hồi, ghi chú (có thể tag `@` cá nhân cụ thể)
+
+!!! info
+    Khi tất cả người duyệt đã Approve → yêu cầu chuyển sang trạng thái **Đã phê duyệt**.
+
+---
+
+### A3. Phê duyệt thanh toán chi phí
+
+Mở: **Phê duyệt → SCID P01 - Duyệt Hồ Sơ Thanh Toán → Yêu cầu mới**
+
+1. Điền thông tin thanh toán → đính kèm tài liệu liên quan → bấm **Lưu**
+2. Bấm **Gửi** → theo dõi tại **Phê duyệt của tôi**
+3. Sau khi SCID P01 được duyệt → tiếp tục thực hiện **SCID P02 - Trình Ký Ủy Nhiệm Chi**
+
+---
+
+### A4. Tạo lịch họp
+
+Mở: **Lịch**
+
+1. Bấm vào vùng thời gian cần tạo → cửa sổ popup hiện ra
+2. Nhập nội dung sự kiện → bấm **Lưu & Đóng**
+3. Để chỉnh sửa chi tiết: bấm vào sự kiện → bấm **Chỉnh sửa**
+   - Bổ sung: Người tham dự, Chuẩn bị nội dung, Thành phần tham gia, Mô tả
+
+---
+
+### A5. Book phòng họp
+
+Mở: **Phòng họp → Mới**
+
+1. Nhập thông tin: tên cuộc họp, thời gian, phòng cần book
+2. Bấm **Lưu & Đóng**
+
+**Chia sẻ lịch phòng cho toàn công ty:**
+
+1. Vào **Phòng họp → Phòng** → chọn phòng
+2. Copy **Liên kết phòng** → gửi cho nhân viên
+3. Nhân viên truy cập link → xem lịch và đặt trực tiếp (**Add a Booking**)
+4. Phòng đang được sử dụng sẽ hiển thị trạng thái **Booked**
+
+---
+
+## Phần B — Quản lý Văn phòng phẩm (VPP)
+
+Mở: **Bán hàng → Mới**
+
+1. Điền thông tin yêu cầu VPP → bấm **Xác nhận**
+2. Phiếu gửi đến HCQT để xác nhận và gộp đơn
+3. Hệ thống **tự động tạo đơn mua hàng** theo nhà cung cấp đã thiết lập sẵn
+4. Theo dõi tại: **Mua hàng** — danh sách đơn được tổng hợp tự động
+
+!!! info
+    Xem báo cáo mua/bán VPP qua menu **Báo cáo** trong ứng dụng Bán hàng hoặc Mua hàng.
+
+---
+
+## Phần C — Lịch làm việc & Công tác
+
+Mở: **Lịch**
+
+1. Xem lịch cá nhân hoặc chọn xem lịch của người dùng khác / tất cả mọi người
+2. Bấm vào vùng thời gian → nhập nội dung → bấm **Lưu & Đóng**
+3. Chỉnh sửa sự kiện: bấm vào sự kiện → **Chỉnh sửa** → bổ sung người tham dự, ghi chú
+
+---
+
+## Phần D — Quản lý Công văn đến/đi
+
+Mở: **Hỗ trợ → Tạo phiếu hỗ trợ mới**
+
+1. Chọn team phù hợp với loại công văn
+2. Nhập thông tin công văn → bấm **Lưu**
+3. Di chuyển trạng thái theo từng giai đoạn xử lý của công văn
+
+**Công văn đến cần chỉ thị BGĐ:**
+
+| Trạng thái | Ý nghĩa |
+|-----------|---------|
+| Chờ chỉ thị BGĐ | Đã chuyển hỏi ý kiến chỉ đạo |
+| Nhận chỉ thị BGĐ | BGĐ đã gửi trả chỉ thị |
+| Ban hành | Đang thực hiện chỉ đạo |
+
+Sau khi có chỉ đạo → Văn Thư giao việc (Activities) cho các phòng ban theo chỉ đạo.
+
+---
+
+## Mẹo sử dụng
+
+| Mẹo | Cách làm |
+|-----|---------|
+| Tìm kiếm nhanh | Bấm phím **Cách** ở trang chủ Odoo |
+| Quay lại trang trước | Bấm **breadcrumb** phía trên (không dùng nút Back trình duyệt) |
+| Tag người trong ghi chú | Gõ `@` + tên → người được tag sẽ nhận thông báo |
+| Xem yêu cầu của mình | **Phê duyệt → Phê duyệt của tôi → Yêu cầu của tôi** |
+
+---
+
+## Tài liệu liên quan
+
+- [Hướng dẫn Vận hành Kế toán (AMS)](../ke-toan/van-hanh.md) — Hóa đơn, thanh toán, bút toán
+- [Hướng dẫn Vận hành Cho thuê (LMS)](../cho-thue/van-hanh-lms.md) — Hợp đồng, khách thuê
+- [Hướng dẫn Vận hành Nhân sự (HRMS)](../hrms/van-hanh-hrms.md) — Hợp đồng lao động, bảng lương

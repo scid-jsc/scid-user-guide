@@ -27,6 +27,22 @@ Chào mừng bạn đến với trang hướng dẫn sử dụng hệ thống ER
 
     [:octicons-arrow-right-24: Vận hành Cho thuê](cho-thue/van-hanh-lms.md)
 
+-   :material-briefcase-check:{ .lg .middle } **E-Office (EO)**
+
+    ---
+
+    Quản lý công việc, phê duyệt, lịch họp, công văn và văn phòng phẩm.
+
+    [:octicons-arrow-right-24: Vận hành E-Office](e-office/van-hanh-eo.md)
+
+-   :material-account-group:{ .lg .middle } **Nhân sự (HRMS)**
+
+    ---
+
+    Hồ sơ nhân viên, hợp đồng lao động, bảng lương, nghỉ phép, chấm công.
+
+    [:octicons-arrow-right-24: Vận hành HRMS](hrms/van-hanh-hrms.md)
+
 </div>
 
 !!! info "Dành cho nhân viên vận hành"
