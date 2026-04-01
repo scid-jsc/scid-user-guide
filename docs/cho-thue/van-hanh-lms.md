@@ -12,6 +12,7 @@
 Mở: **Liên hệ → Khách hàng → Mới**
 
 **Nếu khách hàng là Công ty:**
+
 1. Chọn loại **Công ty** (ở trên cùng)
 2. Nhập tên công ty
 3. Nhập **Mã số thuế** (hệ thống kiểm tra trùng — nếu đã tồn tại sẽ báo lỗi)
@@ -20,6 +21,7 @@ Mở: **Liên hệ → Khách hàng → Mới**
 6. Bấm **Lưu** — hệ thống tự tạo mã `DN-XXXXX`
 
 **Nếu khách hàng là Cá nhân:**
+
 1. Chọn loại **Cá nhân**
 2. Nhập họ tên
 3. Nhập **Số CCCD/Passport** (hệ thống kiểm tra trùng)
