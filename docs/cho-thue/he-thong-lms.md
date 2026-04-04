@@ -189,6 +189,108 @@ Tất cả dữ liệu nghiệp vụ bị giới hạn theo **mall được gán
 | account.move (hóa đơn) | R | R | CRUD | CRUD |
 | res.partner | R (customer only) | R | CRUD | CRUD |
 
+### Dữ liệu nền (Master Data)
+
+#### Ngành hàng (`business_category`) — 20 ngành đang dùng
+
+Phân loại ngành kinh doanh của tenant, dùng khi tạo Deal/LAF:
+
+| Ngành hàng |
+|-----------|
+| Nhà hàng |
+| Thức uống và tráng miệng |
+| Thời trang |
+| Giày, dép, túi xách |
+| Phụ kiện thời trang (trừ giày, dép, túi xách) |
+| Đồ dùng gia đình, Nội thất |
+| Công nghệ & Điện tử |
+| Mỹ phẩm, nước hoa |
+| Mẹ và bé |
+| Thể thao |
+| Du lịch |
+| Siêu thị |
+| Nhà sách, Cửa hàng tổng hợp |
+| Phong cách sống |
+| Đặc sản địa phương |
+| Sản phẩm Tự doanh |
+| Rạp phim |
+| Khu vui chơi |
+| Giáo dục |
+| Máy rút tiền / Dịch vụ tiện ích |
+
+#### Loại đặt cọc (`leasing_deposit_category`) — 4 loại
+
+| Mã | Tên |
+|----|-----|
+| DC001 | Phí Trả Trước |
+| DC002 | Phí Giữ Chỗ |
+| DC003 | Tiền Đặt Cọc |
+| DC004 | Tiền Đặt Cọc Thi Công |
+
+#### Loại thu nhập / Loại phí (`mall_income`) — 13 loại active
+
+Định nghĩa tất cả các khoản thu trong hợp đồng:
+
+| Mã | Tên | Nhóm | Đơn vị tính |
+|----|-----|------|-------------|
+| LP001 | Tiền Thuê Cơ Bản | basic_rent | /m²/tháng |
+| LP020 | Tiền Thuê Cơ Bản DT Bên Ngoài | basic_rent | vnd/tháng |
+| LP002 | Phí Dịch Vụ | service | /m²/tháng |
+| LP019 | Phí Dịch Vụ DT Bên Ngoài | service | vnd/tháng |
+| LP003 | Phí QC&KM | marketing | /m²/tháng |
+| LP021 | Phí QC&KM DT Bên Ngoài | marketing | vnd/tháng |
+| LP004 | Phí Vệ Sinh | cleaning | /m²/tháng |
+| LP022 | Phí Vệ Sinh DT Bên Ngoài | cleaning | vnd/tháng |
+| LP005 | Tiền Chia Sẻ Doanh Thu | revenue_rent | vnd/tháng |
+| LP024 | Tiền CSDT DT Bên Ngoài | revenue_rent | vnd/tháng |
+| LP006 | Tiền Điện | utility | vnd/kWh |
+| LP007 | Tiền Ga | utility | vnd/kg |
+| LP008 | Tiền Nước | utility | vnd/m³ |
+
+> Phân loại "DT Bên Ngoài" — dành cho vị trí không có diện tích tính theo m², phí tính cố định vnd/tháng
+
+#### Kỳ hóa đơn MEC (`invoicing_mec`) — 22 kỳ
+
+Mỗi tháng tạo 1 kỳ MEC. Toàn bộ hóa đơn trong tháng được gắn với 1 kỳ MEC:
+
+| Trạng thái | Số kỳ | Ghi chú |
+|-----------|-------|---------|
+| `closed` | 21 kỳ | Dec 2023 → Jun 2025 |
+| `active` | 1 kỳ | MEC000022 (Jul 2025) — **kỳ hiện tại** |
+
+Quy ước mỗi kỳ: `invoice_closing_date` = ngày chốt HĐ (thường ngày 31 tháng đó), `invoice_proforma_date` = ngày 25 (tạo proforma trước 6 ngày)
+
+#### Quy chuẩn thi công (`leasing_construction_standards`) — 7 bộ quy chuẩn
+
+Thời gian thi công tối đa theo loại vị trí + loại kinh doanh + diện tích:
+
+| Loại vị trí | Loại KD | Diện tích (m²) | Thời gian thi công |
+|------------|---------|----------------|-------------------|
+| Kiosk (2) | Non-F&B | ≥ 200 | 1.5 tháng |
+| Kiosk (2) | Non-F&B | < 200 | 1 tháng |
+| Kiosk (2) | Non-F&B | ≥ 30 | 2 tuần |
+| Kiosk (2) | Non-F&B | < 30 | 1 tuần |
+| Boutique (1) | F&B | ≥ 100 | 1.5 tháng |
+| Kiosk (2) | F&B | < 100 | 1 tháng |
+| Kiosk (2) | F&B | (tất cả) | 1–2 tuần |
+
+#### Cấu hình phê duyệt (`leasing_approval_template`) — 5 template
+
+Mỗi loại đối tượng (LAF/OL/Contract/Appendix/Termination) có 1 template phê duyệt riêng. Người phê duyệt hiện tại:
+
+| Đối tượng | Người phê duyệt | Thứ tự |
+|-----------|----------------|--------|
+| LAF | my-phh → duy-pt | Tuần tự (seq 0 → 1) |
+| OL | my-phh → duy-pt | Tuần tự |
+| Hợp đồng | my-phh → duy-pt | Tuần tự |
+| Phụ lục | my-phh + duy-pt | Song song (cùng seq 0) |
+| Thanh lý | my-phh + duy-pt | Song song |
+
+> **Tuần tự**: duy-pt chỉ nhận yêu cầu sau khi my-phh đã duyệt  
+> **Song song**: cả hai cùng nhận yêu cầu và đều phải duyệt
+
+---
+
 ### Số liệu DB thực tế (`LMS_Production`)
 
 | Bảng | Tổng bản ghi | Ghi chú |
