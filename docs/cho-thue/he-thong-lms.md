@@ -84,7 +84,40 @@ LMS ◄─── REST API ──── AMS   (AMS gọi vào LMS khi cần cập
 `account.move.trigger_to_generate_invoices_for_contracts()` — quét tất cả hợp đồng đang hiệu lực, tự động tạo hóa đơn định kỳ theo kỳ MEC
 
 ### Email Templates (`scid_leasing_mail_workflow`)
-26 templates thông báo qua từng bước workflow (subject: `[Cho thuê] {mall} - {brand} - ...`):
+
+26 email template tự động thông báo theo từng bước workflow.
+
+#### Cơ chế trigger
+
+Email được gửi qua `_compute_approval_state` (computed field trên `leasing.base`):
+
+```
+approval_state → 'waiting'   → gửi "Yêu cầu phê duyệt" đến nhóm scid_leasing_team
+approval_state → 'approved'  → gửi "Đã được duyệt"
+approval_state → 'rejected'  → gửi "Bị từ chối"
+write(signed_attachment)     → gửi "Đã ký / tải tài liệu"
+write(handover_attachment)   → gửi "Bàn giao mặt bằng"  (hợp đồng)
+action_confirm_finish()      → gửi "Đã xác nhận / hiệu lực"
+action_cancel()              → gửi "Đã hủy"
+```
+
+#### Logic người nhận
+
+Mỗi template định nghĩa danh sách **groups** nhận mail. Hệ thống:
+1. Lấy tất cả user thuộc các groups được chỉ định
+2. **Loại bỏ** luôn: `group_lms_administrator` (admin không nhận notification)
+3. **Thêm vào**: `user_id` (salesperson phụ trách), và khi cần: `next_approver_id`
+
+| Template | Người nhận chính |
+|----------|-----------------|
+| Yêu cầu phê duyệt | `scid_leasing_team` + `next_approver_id` |
+| Đã được duyệt / Bị từ chối | `mall_leasing_team` + `user_id` |
+| Đã xác nhận hợp đồng | `mall_manager` + `scid_leasing_team` + `mall_leasing_team` + kế toán (`account.group_account_manager`) |
+| Đã hủy hợp đồng | `mall_manager` + `scid_leasing_team` |
+| Bàn giao mặt bằng | `mall_manager` + `scid_leasing_team` + `mall_leasing_team` + kế toán |
+| Sắp hết hạn hợp đồng | `user_id` của từng hợp đồng (email gộp nhiều HĐ/user) |
+
+#### Danh sách 26 templates
 
 | Đối tượng | Templates |
 |-----------|-----------|
@@ -93,6 +126,68 @@ LMS ◄─── REST API ──── AMS   (AMS gọi vào LMS khi cần cập
 | Hợp đồng | Yêu cầu phê duyệt, Bị từ chối, Đã duyệt, Yêu cầu xác nhận, Đã xác nhận, Bàn giao mặt bằng, Đã hủy, Đã hiệu lực, Sắp hết hạn |
 | Phụ lục | Yêu cầu phê duyệt, Bị từ chối, Đã duyệt, Yêu cầu xác nhận, Đã xác nhận |
 | Thanh lý | Yêu cầu phê duyệt, Bị từ chối, Đã duyệt, Yêu cầu xác nhận, Yêu cầu bàn giao, Đã hoàn thành |
+
+**Format subject**: `[Cho thuê] {tên mall} - {thương hiệu} - {trạng thái}`
+
+#### Cron nhắc nhở (5 job)
+
+| Cron | Tần suất | Hành động |
+|------|----------|-----------|
+| Nhắc phê duyệt LAF | Mỗi 2 ngày | Gửi lại email "Yêu cầu phê duyệt" cho các LAF đang chờ |
+| Nhắc phê duyệt Contract | Mỗi 2 ngày | Tương tự cho Hợp đồng đang chờ |
+| Nhắc phê duyệt Appendix | Mỗi 2 ngày | Tương tự cho Phụ lục đang chờ |
+| Nhắc phê duyệt Termination | Mỗi 2 ngày | Tương tự cho Thanh lý đang chờ |
+| Nhắc hết hạn hợp đồng | Mỗi 1 tháng | Gửi email cảnh báo cho các HĐ hết hạn trong **6 tháng tới** (chỉ gửi 1 lần, flag `is_reminder_sent=True`) |
+
+---
+
+### Phân quyền (`scid_leasing`)
+
+#### Nhóm người dùng (4 cấp)
+
+Kế thừa theo chuỗi — nhóm cao hơn tự động có toàn bộ quyền của nhóm thấp hơn:
+
+```
+group_lms_administrator        ← cao nhất (ERP Manager)
+  └─ group_scid_leasing_team   ← SCID (xem tất cả mall)
+       └─ group_mall_manager   ← Quản lý mall
+            └─ group_mall_leasing_team  ← Nhân viên leasing mall (base)
+```
+
+| Nhóm | Mô tả | Đặc quyền |
+|------|-------|-----------|
+| `group_mall_leasing_team` | Nhân viên leasing tại mall | Chỉ xem dữ liệu mall của mình |
+| `group_mall_manager` | Quản lý mall | Xem + quản lý toàn bộ dữ liệu mall mình |
+| `group_scid_leasing_team` | Đội SCID (HQ) | Xem + quản lý **tất cả** mall, full CRUD |
+| `group_lms_administrator` | Admin hệ thống | Toàn quyền + ERP Manager; **không nhận** email notification |
+
+> `group_lms_administrator` được gán tự động cho `user_root` và `user_admin`
+
+#### Record-level Security (Row-level)
+
+Tất cả dữ liệu nghiệp vụ bị giới hạn theo **mall được gán cho user** (`user.mall_ids`):
+
+| Model | Rule |
+|-------|------|
+| `mall.mall` | Chỉ xem mall trong `user.mall_ids` |
+| `mall.floor`, `mall.location` | Chỉ xem floor/location thuộc mall của user |
+| `leasing.deal`, `leasing.laf`, `leasing.ol` | Chỉ xem deal/laf/ol thuộc mall của user |
+| `leasing.contract`, `leasing.appendix`, `leasing.termination` | Chỉ xem HĐ/phụ lục/thanh lý thuộc mall của user |
+| `res.partner` | Internal user: chỉ đọc partner có `is_customer=True`; `scid_leasing_team`: full CRUD |
+
+> **Ngoại lệ**: `group_scid_leasing_team` có `domain_force=[(1,'=',1)]` — bỏ qua filter mall, xem toàn bộ dữ liệu
+
+#### Ma trận CRUD
+
+| Model | mall_leasing_team | mall_manager | scid_leasing_team | lms_administrator |
+|-------|:-----------------:|:------------:|:-----------------:|:-----------------:|
+| mall.mall | R | R | CRUD | CRUD |
+| mall.floor / location | R | R | CRUD | CRUD |
+| leasing.deal / laf / ol | R | CRUD | CRUD | CRUD |
+| leasing.contract | R | CRUD | CRUD | CRUD |
+| leasing.appendix / termination | R | CRUD | CRUD | CRUD |
+| account.move (hóa đơn) | R | R | CRUD | CRUD |
+| res.partner | R (customer only) | R | CRUD | CRUD |
 
 ### Số liệu DB thực tế (`LMS_Production`)
 
