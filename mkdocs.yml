@@ -80,14 +80,15 @@ plugins:
 nav:
   - Trang chủ: index.md
   - Kế toán:
-    - Vận hành Kế toán: ke-toan/van-hanh.md
-    - Báo cáo TT200: ke-toan/bao-cao-tt200.md
+    - Vận hành Kế toán: ke-toan/huong-dan/van-hanh.md
+    - Báo cáo TT200: ke-toan/huong-dan/bao-cao-tt200.md
   - Cho thuê:
-    - Vận hành Cho thuê: cho-thue/van-hanh-lms.md
+    - Vận hành Cho thuê: cho-thue/huong-dan/van-hanh-lms.md
   - E-Office:
-    - Vận hành E-Office: e-office/van-hanh-eo.md
+    - Vận hành E-Office: e-office/huong-dan/van-hanh-eo.md
+    - Hồ sơ Tiếp khách: e-office/huong-dan/hosotk/index.md
   - Nhân sự:
-    - Vận hành HRMS: hrms/van-hanh-hrms.md
+    - Vận hành HRMS: hrms/huong-dan/van-hanh-hrms.md
 
 extra_css:
   - stylesheets/custom.css
