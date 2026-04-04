@@ -493,13 +493,96 @@ Thỏa thuận (Deal)
 - 501 bản ghi điện/nước/gas, 54 báo cáo doanh thu
 
 ### Báo cáo
-**Báo cáo tình trạng cho thuê** (action 297 — `leasing.report.wizard`):
-- Input: Từ ngày / Đến ngày
-- Output: Excel với 39 vị trí, phân tích chi tiết từng vị trí
 
-**Báo cáo tháng/quý** (action 299 — `leasing.report.month.wizard`):
-- Fields: `report_month`, `report_year`, `report_type` (month/quarter), `position_type` (nla/non_nla)
-- Output: `file_data` (binary Excel)
+Hệ thống có **4 loại báo cáo** chính, tất cả đều dựa trên bảng `location_tracking` (32,062 bản ghi lưu snapshot trạng thái từng vị trí mỗi ngày từ 30/12/2023 đến nay).
+
+---
+
+#### 1. Báo cáo tình trạng cho thuê (action 297)
+
+**Model**: `leasing.report.wizard` → kết quả hiển thị trên `leasing.report.template`
+
+**Cách dùng**: Chọn _Từ ngày_ / _Đến ngày_ → nhấn **Tạo báo cáo** → xem trực tiếp trong Odoo (tree + form)
+
+**Dữ liệu hiển thị** (mỗi dòng = 1 vị trí):
+
+| Nhóm | Cột |
+|------|-----|
+| Vị trí | Tầng, Mã vị trí, Loại (Boutique/Kiosk), Trạng thái |
+| Tenant | Thương hiệu, Ngành hàng, Khách thuê, Mã HĐ, Trạng thái HĐ |
+| Thời hạn | Ngày bắt đầu Deal, Ngày hết hạn, Mô hình thuê |
+| Diện tích | m² |
+| Tài chính | Tiền cọc, Tiền thuê CB, Phí DV, Phí QC&KM, Phí VS, Doanh thu KH, CSDT |
+
+**Cơ chế**: Lấy snapshot ngày gần nhất trong khoảng `[date_from, date_to]` từ `location_tracking` → tổng hợp tiền thuê theo từng kỳ trong khoảng.
+
+> Báo cáo hiện có **39 vị trí** (bao gồm cả trống và đang thuê)
+
+---
+
+#### 2. Báo cáo theo tháng / quý (action 299)
+
+**Model**: `leasing.report.month.wizard`
+
+**Cách dùng**: Chọn Tháng + Năm (hoặc Quý), Phân loại vị trí (NLA/Non-NLA) → **Tải xuống Excel**
+
+**Input fields**:
+
+| Field | Giá trị |
+|-------|---------|
+| Loại báo cáo | `month` (Tháng) / `quarter` (Quý) |
+| Phân loại vị trí | `nla` / `non_nla` |
+| Tháng / Năm | Số tháng + năm |
+
+**Cấu trúc Excel**: Phân tổ theo **Vùng → Mall → Tầng → Ngành hàng**, mỗi dòng có **4 nhóm cột**:
+
+| Nhóm cột | Mô tả |
+|----------|-------|
+| Kỳ hiện tại | DT, DT đã thuê, lấp đầy, vị trí trống, vị trí thỏa thuận, lấp đầy dự kiến, giá thuê TB, 5 loại tiền |
+| Kỳ trước (previous) | Tất cả chỉ số tương tự |
+| Cùng kỳ quý (quarter) | Tất cả chỉ số tương tự |
+| % thay đổi so kỳ trước | Tăng/giảm % từng chỉ số |
+| % thay đổi so cùng kỳ quý | Tăng/giảm % từng chỉ số |
+
+Tổng cộng ~50 cột. Output: file `.xlsx` tải về trình duyệt.
+
+---
+
+#### 3. Báo cáo điện / nước / gas (`invoicing.utility`)
+
+**Menu**: Cho thuê → Hoạt động khác → Báo cáo điện nước gas
+
+**Model**: `invoicing.utility` (501 bản ghi)
+
+Mỗi bản ghi là 1 tờ báo cáo tiêu thụ điện/nước/gas của 1 hợp đồng trong 1 kỳ MEC:
+
+| Field | Mô tả |
+|-------|-------|
+| `contract_id` | Hợp đồng liên quan |
+| `invoicing_mec_id` | Kỳ xuất hóa đơn |
+| `mall_income_id` | Loại tiện ích (Điện/Nước/Gas) |
+| `state` | Trạng thái |
+| `price_total` | Tổng tiền |
+| `signed_attachment_fname` | File đính kèm chữ ký |
+
+---
+
+#### 4. Báo cáo doanh thu khách thuê (`invoicing.tos`)
+
+**Menu**: Cho thuê → Hoạt động khác → Báo cáo doanh thu khách thuê
+
+**Model**: `invoicing.tos` (54 bản ghi)
+
+Dùng cho mô hình thuê **Chia sẻ doanh thu** — khách thuê nộp báo cáo doanh thu hàng tháng:
+
+| Field | Mô tả |
+|-------|-------|
+| `contract_id` | Hợp đồng |
+| `invoicing_mec_id` | Kỳ MEC |
+| `price_total` | Tổng doanh thu kỳ đó |
+| `state` | Trạng thái |
+
+Dữ liệu này được dùng trong Báo cáo tình trạng cho thuê (cột `revenue_customer_amount`).
 
 ---
 
