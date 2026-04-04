@@ -55,29 +55,29 @@
     - Không nên hạch toán bút toán có **nhiều dòng Nợ đồng thời nhiều dòng Có** — hệ thống không tự xác định được TK đối ứng trong trường hợp này
 
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image2.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image2.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image3.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image3.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image4.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image4.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image5.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image5.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image6.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image6.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image7.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image7.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image8.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image8.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image9.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image9.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image10.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image10.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image11.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image11.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image12.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image12.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image13.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image13.png)
 
 ---
 
@@ -91,15 +91,15 @@
 **Nội dung báo cáo:** Ngày ghi sổ, Số hiệu chứng từ, Ngày chứng từ, Diễn giải, Số hiệu TK, Nợ, Có, Số trang trước chuyển sang, Cộng chuyển sang trang sau.
 
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image14.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image14.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image15.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image15.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image16.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image16.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image17.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image17.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image18.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image18.png)
 
 ---
 
@@ -119,25 +119,25 @@
 **Nội dung báo cáo:** Ngày ghi sổ, Chứng từ (số hiệu + ngày), Diễn giải, TK đối ứng, Nợ, Có, Cộng phát sinh tháng, Số dư cuối tháng, Cộng lũy kế từ đầu quý.
 
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image19.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image19.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image20.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image20.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image21.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image21.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image22.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image22.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image23.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image23.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image24.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image24.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image25.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image25.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image26.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image26.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image27.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image27.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image28.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image28.png)
 
 ---
 
@@ -155,19 +155,19 @@
 - **Số dư cuối kỳ** = Số dư đầu kỳ + Tổng Thu − Tổng Chi
 
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image29.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image29.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image30.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image30.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image31.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image31.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image32.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image32.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image33.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image33.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image34.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image34.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image35.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image35.png)
 
 ---
 
@@ -181,27 +181,27 @@
 Thao tác giống Sổ quỹ tiền mặt, nhưng chỉ hiển thị sổ nhật ký loại **Ngân hàng**.
 
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image36.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image36.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image37.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image37.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image38.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image38.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image39.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image39.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image40.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image40.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image41.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image41.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image42.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image42.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image43.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image43.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image44.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image44.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image45.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image45.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image46.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image46.png)
 
 ---
 
@@ -222,21 +222,21 @@ Thao tác giống Sổ quỹ tiền mặt, nhưng chỉ hiển thị sổ nhật
     Để phân loại chính xác, sản phẩm cần được đánh dấu "Là HHDV dùng chung" trong phần cấu hình sản phẩm. Liên hệ quản trị viên nếu cần điều chỉnh.
 
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image47.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image47.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image48.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image48.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image49.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image49.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image50.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image50.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image51.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image51.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image52.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image52.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image53.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image53.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image54.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image54.png)
 
 ---
 
@@ -255,23 +255,23 @@ Thao tác giống Sổ quỹ tiền mặt, nhưng chỉ hiển thị sổ nhật
 - **Mục 5:** Hàng hóa bán ra **không tính thuế** (sản phẩm chịu thuế nhưng không chọn thuế trên hóa đơn)
 
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image55.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image55.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image56.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image56.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image57.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image57.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image58.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image58.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image59.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image59.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image60.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image60.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image61.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image61.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image62.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image62.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image63.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image63.png)
 
 ---
 
@@ -295,31 +295,31 @@ Thao tác giống Sổ quỹ tiền mặt, nhưng chỉ hiển thị sổ nhật
     Nếu có chỉ tiêu chưa tính đúng (do phụ thuộc chỉ tiêu khác), bấm **Tính toán** thêm lần nữa.
 
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image64.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image64.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image65.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image65.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image66.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image66.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image67.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image67.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image68.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image68.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image69.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image69.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image70.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image70.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image71.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image71.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image72.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image72.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image73.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image73.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image74.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image74.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image75.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image75.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image76.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image76.png)
 
 ---
 
@@ -333,19 +333,19 @@ Thao tác giống Sổ quỹ tiền mặt, nhưng chỉ hiển thị sổ nhật
 5. Xuất file: Bấm **In → Báo cáo kết quả HĐKD** hoặc **Xuất file Excel**
 
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image77.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image77.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image78.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image78.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image79.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image79.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image80.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image80.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image81.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image81.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image82.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image82.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image83.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image83.png)
 
 ---
 
@@ -363,23 +363,23 @@ Thao tác giống Sổ quỹ tiền mặt, nhưng chỉ hiển thị sổ nhật
     Báo cáo này có tính năng đặc biệt: phân biệt bút toán **có liên kết hóa đơn** và **không liên kết hóa đơn** — cùng tài khoản nhưng vào chỉ tiêu khác nhau. Nếu số liệu không đúng, liên hệ quản trị viên kiểm tra cấu hình "Liên kết với hóa đơn" trên từng chỉ tiêu.
 
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image84.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image84.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image85.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image85.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image86.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image86.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image87.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image87.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image88.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image88.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image89.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image89.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image90.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image90.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image91.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image91.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image92.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image92.png)
 
 ---
 
@@ -392,25 +392,25 @@ Thao tác giống Sổ quỹ tiền mặt, nhưng chỉ hiển thị sổ nhật
 4. Bấm **S06-DN (XLSX)** hoặc **S06-DN (PDF)**
 
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image93.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image93.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image94.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image94.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image95.jpg)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image95.jpg)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image96.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image96.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image97.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image97.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image98.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image98.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image99.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image99.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image100.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image100.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image101.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image101.png)
 
-![Screenshot](assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image102.png)
+![Screenshot](../assets/tt200/SCID_Hướng_dẫn_báo_cáo_Kế_toán_TT200_image102.png)
 
 ---
 
