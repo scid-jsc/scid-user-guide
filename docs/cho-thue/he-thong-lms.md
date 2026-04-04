@@ -3,10 +3,79 @@
 ## Thông tin hệ thống
 
 - **Tên**: Leasing Management System (LMS) — hệ thống quản lý cho thuê mặt bằng
-- **Nền tảng**: Odoo 17 Community với 2 custom module: `scid_leasing` + `scid_invoicing`
+- **Nền tảng**: Odoo 16 với 5 custom module + 5 OCA module
 - **Domain**: lms.scid.vn
-- **Tích hợp**: AMS (Asset Management System) — đồng bộ tự động qua cron
+- **Server**: Ubuntu 22.04.3 LTS, hostname `lms-1-odoo`, IP nội bộ `10.1.2.5`, 15 GB RAM
+- **Tích hợp**: AMS (Asset Management System) — đồng bộ tự động qua cron mỗi 1 giờ
 - **User**: 12 người (scid-jsc.com + sensemarket.vn + portcities.net/tư vấn triển khai)
+
+---
+
+## Backend / Kiến trúc kỹ thuật
+
+### Cấu hình Odoo (`/etc/odoo-server.conf`)
+- **DB**: `LMS_Production` (PostgreSQL 14)
+- **Port**: 8069 (HTTP), 8072 (gevent/longpolling)
+- **Workers**: 9 worker processes + gevent, max_cron_threads = 2
+- **server_wide_modules**: `base, web, queue_job`
+- **Addons path**: `/opt/odoo/odoo-server/addons`, `/opt/odoo/custom/custom`, `/opt/odoo/custom/oca`
+
+### Custom Modules (`/opt/odoo/custom/custom/`)
+
+| Module | Version | Mô tả |
+|--------|---------|-------|
+| `scid_leasing` | 16.0.2.0.0 | Core module: Mall, Cho thuê (Deal→LAF→OL→Contract→Appendix/Termination) |
+| `scid_invoicing` | 1.0 | Hóa đơn: invoicing.mec, invoicing.tos, invoicing.utility, tạo HĐ hàng loạt |
+| `scid_ams_sync` | 16.0.1.0.0 | REST API + cron đồng bộ LMS↔AMS |
+| `scid_leasing_mail_workflow` | 16.0.1.0.0 | 26 email template thông báo workflow cho thuê |
+| `scid_mail_notification_mixin` | — | Mixin chung cho mail notification |
+
+### OCA Modules (`/opt/odoo/custom/oca/`)
+`queue_job`, `web_chatter_position`, `web_environment_ribbon`, `web_responsive`, `web_widget_open_tab`
+
+### AMS Integration (`scid_ams_sync`)
+
+**REST API endpoints** (auth: `api_key`):
+
+| Endpoint | Method | Mô tả |
+|----------|--------|-------|
+| `/account_move/update_state` | POST JSON | AMS → LMS: cập nhật trạng thái hóa đơn |
+| `/deposit_entry/post` | POST JSON | AMS → LMS: xác nhận ghi nhận tiền cọc |
+| `/deposit_category/...` | POST JSON | Đồng bộ danh mục cọc |
+| `/income_type/...` | POST JSON | Đồng bộ loại thu nhập |
+| `/invoicing_mec/...` | POST JSON | Đồng bộ kỳ hóa đơn MEC |
+
+**Cron jobs** (LMS → AMS, mỗi 1 giờ):
+- Sync Partner → `res.partner.cron_sync_partners()`
+- Sync Account Move → `account.move.cron_sync_account_moves()`
+- Sync Mall → `mall.mall.cron_sync_malls()`
+- Sync Floor → `mall.floor.cron_sync_floors()`
+- Sync Payment → `account.payment.cron_sync_payments()`
+- Sync Contract — hiện **disabled** (`active=False`)
+
+**Cron invoicing** (mỗi 3 giờ):
+- `account.move.trigger_to_generate_invoices_for_contracts()` — tự động tạo hóa đơn hàng loạt
+
+### Email Templates (`scid_leasing_mail_workflow`)
+26 templates thông báo qua từng bước workflow (subject: `[Cho thuê] {mall} - {brand} - ...`):
+
+| Đối tượng | Templates |
+|-----------|-----------|
+| LAF (Phiếu duyệt thuê) | Mới, Yêu cầu phê duyệt, Bị từ chối, Đã được duyệt |
+| OL (Thư chào thuê) | Yêu cầu xác nhận, Đã được xác nhận |
+| Hợp đồng | Yêu cầu phê duyệt, Bị từ chối, Đã duyệt, Yêu cầu xác nhận, Đã xác nhận, Bàn giao mặt bằng, Đã hủy, Đã hiệu lực, Sắp hết hạn |
+| Phụ lục | Yêu cầu phê duyệt, Bị từ chối, Đã duyệt, Yêu cầu xác nhận, Đã xác nhận |
+| Thanh lý | Yêu cầu phê duyệt, Bị từ chối, Đã duyệt, Yêu cầu xác nhận, Yêu cầu bàn giao, Đã hoàn thành |
+
+### Số liệu DB thực tế (`LMS_Production`)
+
+| Bảng | Tổng bản ghi | Ghi chú |
+|------|-------------|---------|
+| `leasing_deal` | 45 | 10 đang thuê, 16 đã thanh lý, 11 hủy... |
+| `leasing_contract` | 93 | Bao gồm lịch sử/phụ lục |
+| `mall_location` | 63 | 36 trống, 20 đang thuê, 2 thỏa thuận |
+| `invoicing_mec` | 20 | Kỳ hóa đơn |
+| `mall_mall` | 1 | SMCB1 |
 
 ---
 
@@ -364,4 +433,4 @@ invoicing.utility → điện/nước/gas per hợp đồng/tháng
 invoicing.tos → doanh thu khách thuê per hợp đồng/tháng
 ```
 
-DONE — đã khám phá toàn bộ 9 module trong hệ thống LMS.
+DONE — đã khám phá toàn bộ 9 module frontend + backend server (custom modules, AMS sync, cron jobs, DB schema).
