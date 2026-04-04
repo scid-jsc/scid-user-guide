@@ -35,26 +35,53 @@
 
 ### AMS Integration (`scid_ams_sync`)
 
-**REST API endpoints** (auth: `api_key`):
+Đồng bộ 2 chiều giữa **LMS** (Odoo) và **AMS** (Asset Management System):
 
-| Endpoint | Method | Mô tả |
-|----------|--------|-------|
-| `/account_move/update_state` | POST JSON | AMS → LMS: cập nhật trạng thái hóa đơn |
-| `/deposit_entry/post` | POST JSON | AMS → LMS: xác nhận ghi nhận tiền cọc |
-| `/deposit_category/...` | POST JSON | Đồng bộ danh mục cọc |
-| `/income_type/...` | POST JSON | Đồng bộ loại thu nhập |
-| `/invoicing_mec/...` | POST JSON | Đồng bộ kỳ hóa đơn MEC |
+```
+LMS ──── cron 1h ────► AMS   (LMS chủ động đẩy dữ liệu sang)
+LMS ◄─── REST API ──── AMS   (AMS gọi vào LMS khi cần cập nhật)
+```
 
-**Cron jobs** (LMS → AMS, mỗi 1 giờ):
-- Sync Partner → `res.partner.cron_sync_partners()`
-- Sync Account Move → `account.move.cron_sync_account_moves()`
-- Sync Mall → `mall.mall.cron_sync_malls()`
-- Sync Floor → `mall.floor.cron_sync_floors()`
-- Sync Payment → `account.payment.cron_sync_payments()`
-- Sync Contract — hiện **disabled** (`active=False`)
+---
 
-**Cron invoicing** (mỗi 3 giờ):
-- `account.move.trigger_to_generate_invoices_for_contracts()` — tự động tạo hóa đơn hàng loạt
+#### AMS gọi vào LMS (REST API — auth: `api_key`)
+
+**Hóa đơn & Tiền cọc**
+
+| Endpoint | Request body | Mô tả |
+|----------|-------------|-------|
+| `POST /account_move/update_state` | `{account_moves: [{lms_id, ams_id, state}]}` | AMS cập nhật trạng thái hóa đơn về LMS. `state` nhận: `draft` / `posted` / `cancel` |
+| `POST /deposit_entry/post` | `{account_moves: [{lms_id, ams_id, amount}]}` | AMS xác nhận bút toán tiền cọc. Nếu `amount` < `suggested_deposit_amount` thì LMS tự tạo thêm bút toán chênh lệch |
+| `POST /deposit_entry/get_deposit_contract` | `{account_moves: [{ams_id}]}` | AMS lấy mã hợp đồng liên kết với bút toán cọc. Response: `{ams_id, deposit_contract_code}` |
+
+**Danh mục tra cứu** (AMS đẩy sang LMS khi có thay đổi master data)
+
+| Endpoint | Request body | Mô tả |
+|----------|-------------|-------|
+| `POST /deposit_category/sync` | `{deposit_categories: [{code, name}]}` | Đồng bộ danh mục cọc → `leasing.deposit.category` |
+| `POST /income_type/sync` | `{income_types: [{code, name, category, uom, invoice_description, credit_note_description, income_tax_id}]}` | Đồng bộ loại thu nhập → `mall.income`. `category`: `revenue_rent/basic_rent/service/marketing/cleaning/utility/other`. `uom`: `area/kwh/vnd/area_vnd/vnd_month/vnd_m3/vnd_kg` |
+| `POST /invoicing_mec/sync` | `{mecs: [{code, invoice_period_monthly, invoice_period_annual, invoice_closing_date, invoice_proforma_date, state}]}` | Đồng bộ kỳ hóa đơn MEC → `invoicing.mec`. `state`: `draft/active/closed/cancelled` |
+
+---
+
+#### LMS đẩy sang AMS (Cron — mỗi 1 giờ)
+
+| Cron | Model | Ghi chú |
+|------|-------|---------|
+| Sync Mall | `mall.mall` | Thông tin khu thương mại |
+| Sync Floor | `mall.floor` | Thông tin tầng |
+| Sync Partner | `res.partner` | Thông tin khách thuê |
+| Sync Account Move | `account.move` | Hóa đơn |
+| Sync Payment | `account.payment` | Thanh toán |
+| ~~Sync Contract~~ | `leasing.contract` | **Disabled** (`active=False`) |
+
+> Trường đồng bộ: `ams_id` (ID bên AMS), `last_ams_sync_at` (thời điểm sync cuối), `ams_sync_needed` (flag cần sync lại)
+
+---
+
+#### Cron tạo hóa đơn tự động (mỗi 3 giờ)
+
+`account.move.trigger_to_generate_invoices_for_contracts()` — quét tất cả hợp đồng đang hiệu lực, tự động tạo hóa đơn định kỳ theo kỳ MEC
 
 ### Email Templates (`scid_leasing_mail_workflow`)
 26 templates thông báo qua từng bước workflow (subject: `[Cho thuê] {mall} - {brand} - ...`):
