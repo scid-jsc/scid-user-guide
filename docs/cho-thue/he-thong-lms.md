@@ -42,7 +42,33 @@ Mall (ID 222)
 | Số tầng | 5 |
 | Tổng vị trí | 40 |
 
-**Fields quan trọng**: `floor_ids` (tầng), `location_ids` (vị trí), `mall_income_ids` (tiện ích/income), `bank_ids`, `contact_ids`, `mall_image_ids`, `profit_center_id`, `cost_center_id`, `last_ams_sync_at`, `ams_sync_needed`
+**Định nghĩa fields** (`mall.mall`):
+
+| Field | Tên hiển thị | Kiểu | Bắt buộc |
+|-------|-------------|------|----------|
+| `name` | Mall | char | ✓ |
+| `code` | Số hiệu | char | ✓ |
+| `mall_category_id` | Loại hình | many2one → `mall.category` | ✓ |
+| `manager_id` | Đơn vị quản lý | many2one → `res.partner` | ✓ |
+| `responsible_partner_id` | Người đại diện | many2one → `res.partner` | ✓ |
+| `date_start` | Ngày bắt đầu hoạt động | date | ✓ |
+| `area_gfa` | Diện tích GFA (m²) | float | ✓ |
+| `area_nla` | Diện tích NLA (m²) | float | |
+| `area_non_nla` | Diện tích Non-NLA (m²) | float | |
+| `usable_rate` | Tỷ lệ hữu dụng (%) | float | |
+| `parking_area` | Diện tích bãi xe (m²) | float | |
+| `bike_slot` | Sức chứa xe máy | integer | |
+| `car_slot` | Sức chứa ô tô | integer | |
+| `floor_ids` | Danh sách tầng | one2many → `mall.floor` | |
+| `location_ids` | Danh sách vị trí | one2many → `mall.location` | |
+| `mall_income_ids` | Tiện ích/Income | one2many | |
+| `bank_ids` | Tài khoản ngân hàng | one2many | |
+| `contact_ids` | Liên hệ | one2many | |
+| `mall_image_ids` | Hình ảnh | one2many | |
+| `profit_center_id` | Profit Center | many2one | |
+| `cost_center_id` | Cost Center | many2one | |
+| `last_ams_sync_at` | Đồng bộ AMS lần cuối | datetime | |
+| `ams_sync_needed` | Đang chờ đồng bộ | boolean | |
 
 ### model: mall.floor (Tầng)
 **5 tầng** tại SMCB1:
@@ -55,9 +81,23 @@ Mall (ID 222)
 | Khối Ending - Tầng 2 | 177.79 | 1 | 1 | 0% |
 | Khối Mở | 362.46 | 23 | 17 | 41.11% |
 
-**Fields**: `code`, `mall_id`, `area_nla`, `area_non_nla`, `location_ids`, `booked_location_ratio`, `layout_image`, `layout_data`, `tooltip_data`, `ams_id`, `last_ams_sync_at`
+**Định nghĩa fields** (`mall.floor`):
 
-> Có layout_image (Sơ đồ mặt bằng) và layout_data/tooltip_data — dùng cho interactive floor map
+| Field | Tên hiển thị | Kiểu | Bắt buộc |
+|-------|-------------|------|----------|
+| `code` | Số hiệu | char | ✓ |
+| `mall_id` | Mall | many2one → `mall.mall` | ✓ |
+| `area_nla` | Diện tích NLA (m²) | float | |
+| `area_non_nla` | Diện tích Non-NLA (m²) | float | |
+| `location_ids` | Danh sách vị trí | one2many → `mall.location` | |
+| `booked_location_ratio` | Tỉ lệ lấp đầy (%) | float | |
+| `layout_image` | Sơ đồ mặt bằng | binary | |
+| `layout_data` | Layout Data (JSON) | text | |
+| `tooltip_data` | Tooltip Data (JSON) | text | |
+| `ams_id` | AMS ID | integer | |
+| `last_ams_sync_at` | Đồng bộ AMS lần cuối | datetime | |
+
+> Có `layout_image` (Sơ đồ mặt bằng) và `layout_data`/`tooltip_data` — dùng cho interactive floor map
 
 ### model: mall.location (Vị trí)
 **40 vị trí** với đầy đủ thông tin:
@@ -67,7 +107,31 @@ Mall (ID 222)
 - Hiệu lực từ/đến ngày — hầu hết từ 30/12/2023 đến 30/12/2073 (50 năm)
 - Liên kết với `contract_id`, `current_deal_id`, `brand_id`
 
-**Fields quan trọng**: `parent_ids`/`child_ids` (quan hệ nhập/tách), `construction_state`, `location_type` (NLA/Non-NLA), `layout_data`, `tooltip_data`
+**Định nghĩa fields** (`mall.location`):
+
+| Field | Tên hiển thị | Kiểu | Bắt buộc |
+|-------|-------------|------|----------|
+| `code` | Số hiệu | char | ✓ |
+| `mall_id` | Mall | many2one → `mall.mall` | ✓ |
+| `floor_id` | Tầng | many2one → `mall.floor` | ✓ |
+| `date_start` | Hiệu lực từ ngày | date | |
+| `date_end` | Hiệu lực đến ngày | date | |
+| `area` | Diện tích (m²) | float | |
+| `state` | Trạng thái | selection | |
+| `category_id` | Loại vị trí | many2one → `mall.location.type` | |
+| `business_category_id` | Ngành hàng | many2one → `leasing.business.category` | |
+| `deal_ids` | Danh sách Deal | one2many → `leasing.deal` | |
+| `current_deal_id` | Thỏa thuận hiện tại | many2one → `leasing.deal` | |
+| `contract_id` | Hợp đồng | many2one → `leasing.contract` | |
+| `brand_id` | Thương hiệu | many2one | |
+| `rental_end_date` | Ngày hết hạn HĐ | date | |
+| `construction_state` | Trạng thái nhập/tách | selection | |
+| `parent_ids` | Vị trí cha (nhập) | many2many → `mall.location` | |
+| `child_ids` | Vị trí con (tách) | many2many → `mall.location` | |
+| `location_type` | Phân loại | selection (NLA/Non-NLA) | |
+| `layout_data` | Layout Data (JSON) | text | |
+| `tooltip_data` | Tooltip Data (JSON) | text | |
+| `ams_id` | AMS ID | integer | |
 
 ### Thiết lập Mall
 
