@@ -1,0 +1,1929 @@
+
+<!doctype html>
+<html lang="vi" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Hướng dẫn sử dụng hệ thống ERP của SCID JSC">
+      
+      
+        <meta name="author" content="SCID JSC">
+      
+      
+        <link rel="canonical" href="https://document.scid.vn/cho-thue/dev/lms-codebase-analysis/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>LMS Server Codebase Analysis - SCID — Hướng dẫn Sử dụng</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M12%202C6.47%202%202%206.47%202%2012s4.47%2010%2010%2010%2010-4.47%2010-10S17.53%202%2012%202m3.1%205.07c.14%200%20.28.05.4.16l1.27%201.27c.23.22.23.57%200%20.78l-1%201-2.05-2.05%201-1c.1-.11.24-.16.38-.16m-1.97%201.74%202.06%202.06-6.06%206.06H7.07v-2.06z%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M12%206a6%206%200%200%201%206%206c0%202.22-1.21%204.16-3%205.2V19a1%201%200%200%201-1%201h-4a1%201%200%200%201-1-1v-1.8c-1.79-1.04-3-2.98-3-5.2a6%206%200%200%201%206-6m2%2015v1a1%201%200%200%201-1%201h-2a1%201%200%200%201-1-1v-1zm6-10h3v2h-3zM1%2011h3v2H1zM13%201v3h-2V1zM4.92%203.5l2.13%202.14-1.42%201.41L3.5%204.93zm12.03%202.13%202.12-2.13%201.43%201.43-2.13%202.12z%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M13%2014h-2V9h2m0%209h-2v-2h2M1%2021h22L12%202z%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M13%2013h-2V7h2m-2%208h2v2h-2m4.73-14H8.27L3%208.27v7.46L8.27%2021h7.46L21%2015.73V8.27z%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M13%209h-2V7h2m0%2010h-2v-6h2m-1-9A10%2010%200%200%200%202%2012a10%2010%200%200%200%2010%2010%2010%2010%200%200%200%2010-10A10%2010%200%200%200%2012%202%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M7%202v2h1v14a4%204%200%200%200%204%204%204%204%200%200%200%204-4V4h1V2zm4%2014c-.6%200-1-.4-1-1s.4-1%201-1%201%20.4%201%201-.4%201-1%201m2-4c-.6%200-1-.4-1-1s.4-1%201-1%201%20.4%201%201-.4%201-1%201m1-5h-4V4h4z%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Be+Vietnam+Pro:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Be Vietnam Pro";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lms-server-codebase-analysis" class="md-skip">
+          Bỏ qua
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Đầu trang">
+    <a href="../../.." title="SCID — Hướng dẫn Sử dụng" class="md-header__button md-logo" aria-label="SCID — Hướng dẫn Sử dụng" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2h7v5h5v11H6zm2 8v2h8v-2zm0 4v2h5v-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SCID — Hướng dẫn Sử dụng
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LMS Server Codebase Analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Tìm kiếm" placeholder="Tìm kiếm" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Tìm kiếm">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Chia sẻ" aria-label="Chia sẻ" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Xoá" aria-label="Xoá" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Thanh điều hướng" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="SCID — Hướng dẫn Sử dụng" class="md-nav__button md-logo" aria-label="SCID — Hướng dẫn Sử dụng" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2h7v5h5v11H6zm2 8v2h8v-2zm0 4v2h5v-2z"/></svg>
+
+    </a>
+    SCID — Hướng dẫn Sử dụng
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trang chủ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kế toán
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Kế toán
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ke-toan/huong-dan/van-hanh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vận hành Kế toán
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ke-toan/huong-dan/bao-cao-tt200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Báo cáo TT200
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cho thuê
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cho thuê
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../huong-dan/van-hanh-lms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vận hành Cho thuê
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Office
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    E-Office
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../e-office/huong-dan/van-hanh-eo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vận hành E-Office
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../e-office/huong-dan/hosotk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hồ sơ Tiếp khách
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nhân sự
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Nhân sự
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hrms/huong-dan/van-hanh-hrms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vận hành HRMS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Mục lục">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Mục lục
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#module-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-domain-models-scid_leasing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Domain Models (scid_leasing)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Domain Models (scid_leasing)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#leasing-deal-leasingdeal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Leasing Deal (leasing.deal)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leasing-contract-leasingcontract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Leasing Contract (leasing.contract)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leasing-base-leasingbase-abstractmodel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Leasing Base (leasing.base - AbstractModel)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leasing-approval-leasingapproval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Leasing Approval (leasing.approval)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leasing-appendix-leasingappendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Leasing Appendix (leasing.appendix)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leasing-termination-leasingtermination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Leasing Termination (leasing.termination)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leasing-laf-ol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Leasing LAF &amp; OL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mall-location-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mall &amp; Location Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invoicing-system-scid_invoicing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invoicing System (scid_invoicing)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Invoicing System (scid_invoicing)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#invoicing-mec-invoicingmec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invoicing MEC (invoicing.mec)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invoice-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invoice Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ams-sync-integration-scid_ams_sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AMS Sync Integration (scid_ams_sync)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AMS Sync Integration (scid_ams_sync)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rest-api-endpoints-all-require-authapi_key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REST API Endpoints (All require auth="api_key")
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="REST API Endpoints (All require auth=&#34;api_key&#34;)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-account-move-accounting-entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Account Move (Accounting Entries)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-deposit-category-partial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Deposit Category (Partial)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-income-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Income Type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-invoicing-mec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Invoicing MEC
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connector-pattern-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connector Pattern (Utilities)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#models-enhanced-with-ams-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models Enhanced with AMS Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-flow-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Flow &amp; Workflow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Flow &amp; Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deal-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deal Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approval-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approval Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invoicing-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invoicing Cycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ams-sync-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AMS Sync Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-fields-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Fields &amp; Extensions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom Fields &amp; Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vietnamese-address-mixin-vnaddressmixin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vietnamese Address Mixin (vn.address.mixin)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mail-notification-mixin-scid_mail_notification_mixin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mail Notification Mixin (scid_mail_notification_mixin)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documents-attachments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documents &amp; Attachments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment &amp; Operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment &amp; Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cronjobs-via-datacron_viewxml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cronjobs (via data/cron_view.xml)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#queue-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Queue Jobs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code Organization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-patterns-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Patterns &amp; Conventions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Patterns &amp; Conventions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-computed-fields-with-storetrue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Computed Fields with Store=True
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-related-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Related Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dynamic-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dynamic References
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-trackingtrue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Tracking=True
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-context-bypass-for-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Context Bypass for Sync
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-batch-queue-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Batch Queue Processing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-approval-chain-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Approval Chain Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-multi-level-state-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Multi-level State Machines
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#potential-issues-observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Potential Issues &amp; Observations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lms-server-codebase-analysis">LMS Server Codebase Analysis<a class="headerlink" href="#lms-server-codebase-analysis" title="Permanent link">&para;</a></h1>
+<p><strong>Server:</strong> 10.1.2.5 (Ubuntu)<br />
+<strong>System:</strong> Odoo 16.0 Community Edition<br />
+<strong>Database:</strong> LMS_Production<br />
+<strong>Custom Modules Path:</strong> <code>/opt/odoo/custom/custom/</code><br />
+<strong>Total Python Files:</strong> 165</p>
+<hr />
+<h2 id="module-overview">Module Overview<a class="headerlink" href="#module-overview" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Version</th>
+<th>Purpose</th>
+<th>Key Dependencies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>scid_leasing</strong></td>
+<td>16.0.2.0.0</td>
+<td>Core leasing domain model: deals, contracts, locations, malls, approvals, terminations</td>
+<td>base, base_vat, web_plan_layout, contacts, product, vn_address, account, queue_job, web_widget_open_tab</td>
+</tr>
+<tr>
+<td><strong>scid_ams_sync</strong></td>
+<td>16.0.1.0.0</td>
+<td>Bidirectional sync with AMS server (accounting, contracts, partners, banks) via REST API with API Key auth</td>
+<td>scid_leasing, scid_invoicing, queue_job</td>
+</tr>
+<tr>
+<td><strong>scid_invoicing</strong></td>
+<td>1.0</td>
+<td>Invoice generation (MEC - Monthly Equivalent Cycles), income types, TOS, utility calculations</td>
+<td>scid_leasing</td>
+</tr>
+<tr>
+<td><strong>scid_leasing_mail_workflow</strong></td>
+<td>16.0.1.0.0</td>
+<td>Email notifications for leasing deal state changes (approval, rejection, termination)</td>
+<td>scid_leasing, scid_mail_notification_mixin</td>
+</tr>
+<tr>
+<td><strong>scid_mail_notification_mixin</strong></td>
+<td>16.0.1.0.0</td>
+<td>Reusable mixin for mail notification patterns</td>
+<td>mail</td>
+</tr>
+<tr>
+<td><strong>vn_address</strong></td>
+<td>1.0</td>
+<td>Vietnamese hierarchical address: country &gt; state &gt; region &gt; district &gt; ward</td>
+<td>base</td>
+</tr>
+<tr>
+<td><strong>web_plan_layout</strong></td>
+<td>16.0.1.0.0</td>
+<td>Custom web UI layout for plan display (Kanban-like views)</td>
+<td>base_setup, web</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="core-domain-models-scid_leasing">Core Domain Models (scid_leasing)<a class="headerlink" href="#core-domain-models-scid_leasing" title="Permanent link">&para;</a></h2>
+<h3 id="leasing-deal-leasingdeal">Leasing Deal (<code>leasing.deal</code>)<a class="headerlink" href="#leasing-deal-leasingdeal" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Central entity representing a potential or active lease agreement<br />
+<strong>Inherits:</strong> <code>leasing.base</code>, <code>mail.thread</code>, <code>mail.activity.mixin</code><br />
+<strong>Key Fields:</strong>
+- <code>code</code> (Char) — Unique deal identifier
+- <code>state</code> (Selection) — Workflow states:
+  - draft, in_deal, wait_approval, on_agreement, wait_transfer, construction, leasing
+  - appendix_approval, termination_waiting, termination_to_approval, termination_to_confirm, termination_done, cancelled
+- <code>laf_ids</code> (One2many) → <code>leasing.laf</code> — Leasing Approval Forms (LAF)
+- <code>ol_ids</code> (One2many) → <code>leasing.ol</code> — Operational Leases
+- <code>contract_ids</code> (One2many) → <code>leasing.contract</code> — Active contracts
+- <code>appendix_ids</code> (One2many) → <code>leasing.appendix</code> — Contract amendments
+- <code>termination_ids</code> (One2many) → <code>leasing.termination</code> — End-of-lease agreements
+- <code>active_contract_id</code> (Many2one) — Currently effective contract (computed)
+- <code>approval_ids</code> (Many2many) → <code>leasing.approval</code> — Approval workflow chain
+- <code>approval_state</code> (Selection) — waiting | approved | rejected | none
+- <code>user_id</code> (Many2one) → <code>res.users</code> — Sales agent responsible
+- <code>partner_id</code> (Many2one) → <code>res.partner</code> — Tenant (business customer)</p>
+<p><strong>Key Computed Fields:</strong>
+- <code>_compute_deal_state()</code> — State logic based on LAF/OL/Contract/Appendix/Termination substates
+- <code>_compute_active_contract()</code> — Filters contracts with <code>is_effective=True</code> AND <code>state='confirmed'</code>
+- <code>_compute_current_laf()</code> — Next LAF by rental_start_date</p>
+<p><strong>Key Methods:</strong>
+- <code>get_deal_status()</code> — Comprehensive state machine logic (60+ lines)
+  - Checks draft/waiting/approved LAF counts
+  - Checks contract confirmations and handover docs
+  - Checks appendix and termination states
+  - Returns single authoritative state string</p>
+<hr />
+<h3 id="leasing-contract-leasingcontract">Leasing Contract (<code>leasing.contract</code>)<a class="headerlink" href="#leasing-contract-leasingcontract" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Signed agreement for a lease between SCID and tenant<br />
+<strong>Inherits:</strong> <code>leasing.base</code><br />
+<strong>Key Fields:</strong>
+- <code>code</code> (Char) — Contract code, required
+- <code>deal_id</code> (Many2one) → <code>leasing.deal</code> — Parent deal
+- <code>laf_id</code>, <code>ol_id</code> (Many2one) — Related approval/operational lease
+- <code>state</code> (Selection) — draft | waiting | confirm_waiting | confirmed | rejected | cancelled
+- <code>effective_date</code> (Date) — Contract activation date, required
+- <code>is_effective</code> (Boolean) — Whether contract is currently active
+- <code>appendix_ids</code>, <code>termination_ids</code> (One2many) — Amendments and terminations
+- <code>signed_attachment</code> (Binary) — Signed contract PDF (enforced for confirmation)
+- <code>rental_start_date</code>, <code>rental_end_date</code> (Date) — Lease period</p>
+<p><strong>AMS Sync Fields (inherited from scid_ams_sync):</strong>
+- <code>ams_sync_needed</code> (Boolean) — Flag if sync to AMS pending
+- <code>last_ams_sync_at</code> (Datetime) — Last successful sync timestamp</p>
+<p><strong>Key Methods:</strong>
+- <code>action_waiting_for_approval()</code> — State → 'waiting'
+- <code>action_approve_contract()</code> — Auto-transition to 'confirm_waiting' if approved
+- <code>action_confirm_finish()</code> — Critical: Transitions to 'confirmed', copies o2m lines and approvals to deal
+- <code>action_edit()</code> — Creates new draft copy, marks original as cancelled
+- <code>button_request_contract_approval()</code> — Initiates approval workflow
+- <code>_check_confirm_signed_available()</code> — Validates signed_attachment exists</p>
+<hr />
+<h3 id="leasing-base-leasingbase-abstractmodel">Leasing Base (<code>leasing.base</code> - AbstractModel)<a class="headerlink" href="#leasing-base-leasingbase-abstractmodel" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Common fields for all leasing transaction types (deal, contract, appendix, termination)<br />
+<strong>Inherits:</strong> <code>vn.address.mixin</code>, <code>mail.thread</code>, <code>mail.activity.mixin</code></p>
+<p><strong>Core Fields (200+ fields):</strong>
+- <strong>Location/Mall:</strong> mall_id, floor_id, location_id, brand_id, area
+- <strong>Partner:</strong> partner_id, partner_code, partner_vat (with issue date/ward/district/state/zip tracking), partner_category_id
+- <strong>Pricing Model:</strong> rental_fee_model (5 models: base rental, percentage revenue share, hybrid, tiered revenue)
+- <strong>Financials:</strong>
+  - <code>deposit_ids</code> (One2many) → <code>leasing.deposit</code> — Security deposits by category
+  - <code>deposit_amount</code>, <code>deposit_received_amount</code> (Monetary - computed)
+  - <code>rental_income_ids</code> (One2many) → <code>leasing.income.rental</code> — Monthly/quarterly/annual rental fees
+  - <code>share_income_ids</code> (One2many) → <code>leasing.income.share</code> — Revenue share percentages
+  - <code>bank_id</code>, <code>bank_account_no</code>, <code>bank_branch</code>, <code>bank_account_name</code> — Payment info
+  - <code>currency_id</code> — Default to company currency</p>
+<ul>
+<li><strong>Timeline:</strong></li>
+<li><code>rental_start_date</code>, <code>rental_end_date</code>, <code>proposed_term_year/month/day</code></li>
+<li><code>construct_start_date</code>, <code>construct_end_date</code></li>
+<li><code>space_issued_date</code> (computed)</li>
+<li>
+<p><code>invoice_cycle</code> (monthly|quarterly|yearly), <code>invoice_day</code></p>
+</li>
+<li>
+<p><strong>Approvals:</strong></p>
+</li>
+<li><code>approval_ids</code> (Many2many) → <code>leasing.approval</code></li>
+<li><code>approval_state</code> (waiting|approved|rejected|none)</li>
+<li>
+<p><code>next_approver_id</code>, <code>show_button_approve</code>, <code>show_button_reject</code></p>
+</li>
+<li>
+<p><strong>Documents:</strong> signed_attachment, signed_attachment_fname, handover_attachment (with fname)</p>
+</li>
+</ul>
+<p><strong>Key Computed Fields:</strong>
+- <code>_compute_approval_state()</code> — Checks related approvals
+- <code>_compute_legal_representative()</code> — From partner legal info
+- <code>_compute_construction_standards()</code> — Linked construction requirements
+- <code>_compute_business_category_id()</code> — From brand</p>
+<hr />
+<h3 id="leasing-approval-leasingapproval">Leasing Approval (<code>leasing.approval</code>)<a class="headerlink" href="#leasing-approval-leasingapproval" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Track approval workflows with multiple approvers and timestamps<br />
+<strong>Key Fields:</strong>
+- <code>sequence</code> (Integer) — Order in approval chain
+- <code>leasing_ref</code> (Reference field) — Dynamic link to deal/contract/appendix
+- <code>function</code> (Char) — Role (e.g., "Manager", "Director")
+- <code>approver_id</code> (Many2one) → <code>res.users</code> — Assigned approver
+- <code>approved_user_id</code>, <code>rejected_user_id</code> (Many2one) — Who actually approved/rejected
+- <code>state</code> (Selection) — waiting | approved | rejected
+- <code>approval_time</code> (Datetime) — When action taken
+- <code>reason</code> (Text) — Rejection reason</p>
+<hr />
+<h3 id="leasing-appendix-leasingappendix">Leasing Appendix (<code>leasing.appendix</code>)<a class="headerlink" href="#leasing-appendix-leasingappendix" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Contract amendments/modifications after initial signing<br />
+<strong>Key Fields:</strong>
+- <code>code</code>, <code>state</code> (draft|waiting|confirm_waiting|confirmed|rejected|cancelled)
+- <code>contract_id</code>, <code>deal_id</code> (Many2one)
+- <code>approved_by</code> (res.users)
+- Various amendment detail fields</p>
+<p><strong>State Logic:</strong> Appendix can only be created if no pending appendix/termination exists</p>
+<hr />
+<h3 id="leasing-termination-leasingtermination">Leasing Termination (<code>leasing.termination</code>)<a class="headerlink" href="#leasing-termination-leasingtermination" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> End-of-lease cleanup and final accounting<br />
+<strong>Key Fields:</strong>
+- <code>contract_id</code> (Many2one) — Which contract being terminated
+- <code>code</code>, <code>state</code> (waiting|waiting_to_confirm|termination_confirmed|termination_done|cancelled)
+- <code>deposit_ids</code> (One2many) — Deposit refund records
+- Termination date, final accounting</p>
+<hr />
+<h3 id="leasing-laf-ol">Leasing LAF &amp; OL<a class="headerlink" href="#leasing-laf-ol" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>LAF</strong> (<code>leasing.laf</code>) — Leasing Approval Form, initial approval</li>
+<li><strong>OL</strong> (<code>leasing.ol</code>) — Operational Lease form, alternative structure</li>
+</ul>
+<p>Both share base fields and follow similar state machines.</p>
+<hr />
+<h3 id="mall-location-models">Mall &amp; Location Models<a class="headerlink" href="#mall-location-models" title="Permanent link">&para;</a></h3>
+<p><strong>Mall</strong> (<code>mall.mall</code>) — Shopping center/property project<br />
+- name, code, address (Vietnamese address hierarchy)
+- mall_ids (nested malls)
+- floor_ids, location_ids, income_ids</p>
+<p><strong>Mall Floor</strong> (<code>mall.floor</code>) — Level within mall<br />
+- floor_code, floor_name, mall_id
+- <strong>Sync to AMS:</strong> ams_id, ams_sync_needed, last_ams_sync_at</p>
+<p><strong>Mall Location</strong> (<code>mall.location</code>) — Individual retail space<br />
+- code, area, floor_id, category_id
+- location_state (Kanban-like tracking)
+- location_tracking_ids (history)</p>
+<p><strong>Mall Location Category</strong> — Type classification (shop, kiosk, food court, etc.)</p>
+<hr />
+<h2 id="invoicing-system-scid_invoicing">Invoicing System (scid_invoicing)<a class="headerlink" href="#invoicing-system-scid_invoicing" title="Permanent link">&para;</a></h2>
+<h3 id="invoicing-mec-invoicingmec">Invoicing MEC (<code>invoicing.mec</code>)<a class="headerlink" href="#invoicing-mec-invoicingmec" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Monthly billing period management<br />
+<strong>Key Fields:</strong>
+- <code>invoice_period_monthly</code>, <code>invoice_period_annual</code> (Selection)
+- <code>period_start_time</code>, <code>period_end_time</code> (Date - computed)
+- <code>invoice_proforma_date</code>, <code>invoice_closing_date</code> (Date)
+- <code>state</code> (draft|active|closed|cancelled) — Only ONE can be 'active'
+- <code>code</code> (Unique constraint)</p>
+<p><strong>Key Methods:</strong>
+- <code>action_active()</code> — Activates MEC, deactivates all proforma invoices
+- <code>get_data_mec(type)</code> — Returns period dates for current/next/other MEC</p>
+<h3 id="invoice-models">Invoice Models<a class="headerlink" href="#invoice-models" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Invoicing TOS</strong> — Terms of service for invoicing</li>
+<li><strong>Invoicing Utility</strong> — Helper model for invoice calculations</li>
+<li><strong>Account Move Integration:</strong></li>
+<li>Custom <code>account.move</code> fields: ams_id, ams_sync_needed, is_proforma_invoice, is_deposit_difference_entry</li>
+<li>Links to deal/contract/deposit for context</li>
+<li>Special deposit entry generation logic</li>
+</ul>
+<hr />
+<h2 id="ams-sync-integration-scid_ams_sync">AMS Sync Integration (scid_ams_sync)<a class="headerlink" href="#ams-sync-integration-scid_ams_sync" title="Permanent link">&para;</a></h2>
+<h3 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h3>
+<p><strong>Bidirectional sync with AMS (Asset Management System) server</strong> at 10.1.2.6 using REST API with API Key authentication and batch queue processing.</p>
+<h3 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h3>
+<p><strong>Model:</strong> <code>auth.api.key</code>
+- <code>name</code> (Description)
+- <code>origin</code> (Origin header value for CORS)
+- <code>key</code> (Unique API key, generated via <code>generate_api_key()</code>)</p>
+<p><strong>Controller Override:</strong> <code>ir.http._auth_method_api_key()</code>
+- Validates <code>X-Api-Key</code> header + <code>Origin</code> header combination
+- Raises <code>AccessDenied</code> if not found
+- Sets <code>request.auth_api_key</code>, <code>request.auth_api_key_id</code> on success</p>
+<h3 id="rest-api-endpoints-all-require-authapi_key">REST API Endpoints (All require <code>auth="api_key"</code>)<a class="headerlink" href="#rest-api-endpoints-all-require-authapi_key" title="Permanent link">&para;</a></h3>
+<h4 id="1-account-move-accounting-entries">1. Account Move (Accounting Entries)<a class="headerlink" href="#1-account-move-accounting-entries" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>POST <code>/account_move/update_state</code></strong> — AMS → LMS</li>
+<li>Updates status of accounting entries</li>
+<li>Creates/updates records with <code>ams_id</code></li>
+<li>
+<p>Response includes lms_id, ams_id, last_sync_at</p>
+</li>
+<li>
+<p><strong>POST <code>/deposit_entry/post</code></strong> — AMS → LMS</p>
+</li>
+<li>Records deposit postings</li>
+<li>Auto-generates difference entries if posted &lt; suggested amount</li>
+<li>
+<p>Special field: <code>is_deposit_difference_entry</code></p>
+</li>
+<li>
+<p><strong>POST <code>/deposit_entry/get_deposit_contract</code></strong> — AMS → LMS (Query)</p>
+</li>
+<li>Given ams_id, returns deposit_contract_code from contract</li>
+</ul>
+<h4 id="2-deposit-category-partial">2. Deposit Category (Partial)<a class="headerlink" href="#2-deposit-category-partial" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Sync deposit type categories from AMS</li>
+</ul>
+<h4 id="3-income-type">3. Income Type<a class="headerlink" href="#3-income-type" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Sync income classification types</li>
+</ul>
+<h4 id="4-invoicing-mec">4. Invoicing MEC<a class="headerlink" href="#4-invoicing-mec" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Sync MEC period definitions</li>
+</ul>
+<h3 id="connector-pattern-utilities">Connector Pattern (Utilities)<a class="headerlink" href="#connector-pattern-utilities" title="Permanent link">&para;</a></h3>
+<p><strong>Base Connector</strong> (<code>base_connector_helper.py</code>)
+- REST HTTP client for AMS API calls
+- Methods: GET, POST with retry logic
+- Uses <code>requests</code> library</p>
+<p><strong>Connectors (one per entity):</strong>
+- <code>contract_connector_helper.py</code> — POST /contracts/sync
+- <code>partner_connector_helper.py</code> — POST /partners/sync
+- <code>bank_connector_helper.py</code> — POST /banks/sync
+- <code>account_move_connector_helper.py</code> — POST /entries/sync
+- Etc.</p>
+<p><strong>Sync Helpers</strong> (Transform data)
+- <code>base_sync_helper.py</code> — <code>_retrieve_record(**kw)</code> utility (search by fields)
+- <code>account_move_sync_helper.py</code> — <code>AccountMoveDataTransform</code> (validates, maps schema)
+- Similar for each entity</p>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
+<p><strong>Settings</strong> (<code>res_config_settings.py</code> via res.company)
+- <code>ams_host</code> (IP/hostname)
+- <code>ams_port</code> (Port number)
+- <code>ams_api_key</code> (API key)</p>
+<p><strong>Scheduled Jobs (via <code>ir_cron_data.xml</code>):</strong>
+- <code>cron_sync_contracts()</code> — Syncs contracts with pending flag or never-synced
+- Similar crons for other entities
+- Batch queue processing via <code>queue_job</code> for parallel execution</p>
+<h3 id="models-enhanced-with-ams-fields">Models Enhanced with AMS Fields<a class="headerlink" href="#models-enhanced-with-ams-fields" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>AMS Fields</th>
+<th>Sync Direction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>leasing.contract</td>
+<td>ams_sync_needed, last_ams_sync_at</td>
+<td>LMS → AMS on create</td>
+</tr>
+<tr>
+<td>res.partner</td>
+<td>ams_id, ams_sync_needed, ams_partner_code</td>
+<td>Bidirectional</td>
+</tr>
+<tr>
+<td>account.move</td>
+<td>ams_id, ams_sync_needed, is_proforma_invoice, suggested_deposit_amount</td>
+<td>Bidirectional</td>
+</tr>
+<tr>
+<td>account.payment</td>
+<td>ams_id, ams_sync_needed</td>
+<td>LMS → AMS</td>
+</tr>
+<tr>
+<td>mall.mall</td>
+<td>ams_id, ams_sync_needed</td>
+<td>LMS → AMS</td>
+</tr>
+<tr>
+<td>mall.floor</td>
+<td>ams_id, ams_sync_needed</td>
+<td>LMS → AMS</td>
+</tr>
+<tr>
+<td>res.bank</td>
+<td>ams_id, ams_sync_needed</td>
+<td>Bidirectional</td>
+</tr>
+<tr>
+<td>leasing.contract</td>
+<td>ams_sync_needed (set True on create)</td>
+<td>Auto-sync via cron</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="data-flow-workflow">Data Flow &amp; Workflow<a class="headerlink" href="#data-flow-workflow" title="Permanent link">&para;</a></h2>
+<h3 id="deal-lifecycle">Deal Lifecycle<a class="headerlink" href="#deal-lifecycle" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>1. DRAFT (new deal created)
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>   v
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>2. IN_DEAL (LAF created, still drafting)
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>   v
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>3. WAIT_APPROVAL (LAF submitted, pending approval)
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>   v
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>4. ON_AGREEMENT (LAF approved, contract negotiation)
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>   v
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>5. Contract created --&gt; WAIT_TRANSFER (handover pending)
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>   v
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>6. CONSTRUCTION (handover doc uploaded, before rental start)
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>   v
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>7. LEASING (rental_start_date reached, active lease)
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>   v (optional amendment)
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>8. APPENDIX_APPROVAL (amendment pending)
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>   v
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>9. TERMINATION_WAITING --&gt; TERMINATION_TO_APPROVAL --&gt; 
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>   TERMINATION_TO_CONFIRM --&gt; TERMINATION_DONE (end lease)
+</span></code></pre></div>
+<h3 id="approval-workflow">Approval Workflow<a class="headerlink" href="#approval-workflow" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Deal/Contract/Appendix has approval_ids chain</li>
+<li>Each approval has approver_id, state, approval_time</li>
+<li>Computed field next_approver_id shows next in chain</li>
+<li>Button visibility controlled by show_button_approve/reject</li>
+</ul>
+<h3 id="invoicing-cycle">Invoicing Cycle<a class="headerlink" href="#invoicing-cycle" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>MEC active period defined --&gt; contracts in that period
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>--&gt; Auto-generate invoices monthly/quarterly/yearly
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>--&gt; on invoice_day of month
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>--&gt; Link to contract rental_income_ids (base fee) + share_income_ids (%)
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>--&gt; Post to account.move (accounting entry)
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>--&gt; (Optional) Sync to AMS account.move
+</span></code></pre></div>
+<h3 id="ams-sync-flow">AMS Sync Flow<a class="headerlink" href="#ams-sync-flow" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>1. LMS User creates leasing.contract
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>   --&gt; create() hook calls _action_sync_to_ams()
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>   --&gt; Sets ams_sync_needed = False
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>   --&gt; Queues batch_queue (50 contracts) --&gt; _sync_contracts()
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>   --&gt; Calls AMS POST /contracts/sync
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>2. If ams_sync_needed = True or last_ams_sync_at = NULL
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>   --&gt; cron_sync_contracts() finds records
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>   --&gt; Calls _action_sync_to_ams()
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>   --&gt; Same batch queue flow
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>3. AMS can POST to LMS endpoints:
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>   --&gt; /account_move/update_state (record posted)
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>   --&gt; /deposit_entry/post (deposit confirmed)
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>   --&gt; /deposit_entry/get_deposit_contract (query)
+</span></code></pre></div>
+<hr />
+<h2 id="custom-fields-extensions">Custom Fields &amp; Extensions<a class="headerlink" href="#custom-fields-extensions" title="Permanent link">&para;</a></h2>
+<h3 id="vietnamese-address-mixin-vnaddressmixin">Vietnamese Address Mixin (<code>vn.address.mixin</code>)<a class="headerlink" href="#vietnamese-address-mixin-vnaddressmixin" title="Permanent link">&para;</a></h3>
+<p>Extends models with:
+- <code>street</code> → broken into <code>street</code>, <code>house_number</code>
+- Address hierarchy: state → region → district → ward
+- Computed address display</p>
+<h3 id="mail-notification-mixin-scid_mail_notification_mixin">Mail Notification Mixin (<code>scid_mail_notification_mixin</code>)<a class="headerlink" href="#mail-notification-mixin-scid_mail_notification_mixin" title="Permanent link">&para;</a></h3>
+<p>Base class for models that send emails on state changes</p>
+<h3 id="documents-attachments">Documents &amp; Attachments<a class="headerlink" href="#documents-attachments" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Binary fields: signed_attachment, handover_attachment, handover_attachment_fname</li>
+<li>Upload wizard: <code>upload_documents_wizard</code></li>
+<li>Document preview wizard: <code>document_preview_wizard</code></li>
+</ul>
+<hr />
+<h2 id="deployment-operations">Deployment &amp; Operations<a class="headerlink" href="#deployment-operations" title="Permanent link">&para;</a></h2>
+<h3 id="cronjobs-via-datacron_viewxml">Cronjobs (via <code>data/cron_view.xml</code>)<a class="headerlink" href="#cronjobs-via-datacron_viewxml" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Contract sync (AMS) — Periodic batch sync</li>
+<li>Invoice generation — MEC period monitoring</li>
+<li>Approval notifications — Email reminders</li>
+<li>State machine checks — Cascade updates</li>
+</ol>
+<h3 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>User-based access control (user_id field on deals)</li>
+<li>Record rules (ir_rules.xml) — Department/location based</li>
+<li>Group-based menu access (res_groups.xml)</li>
+<li>API Key auth for AMS endpoints (no normal user needed)</li>
+</ul>
+<h3 id="queue-jobs">Queue Jobs<a class="headerlink" href="#queue-jobs" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>queue_job</code> module used for async batch processing</li>
+<li>Batch size configurable via <code>batch.queue</code> param (default 50)</li>
+<li>Each contract sync queued separately for parallel execution</li>
+</ul>
+<hr />
+<h2 id="code-organization">Code Organization<a class="headerlink" href="#code-organization" title="Permanent link">&para;</a></h2>
+<p><strong>Directory Structure:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>scid_leasing/
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  +-- models/                                                                   
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>  |   +-- base/          (res.partner, res.user extensions)                     
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>  |   +-- leasing/       (deal, contract, appendix, termination, approval, etc.)
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  |   +-- mall/          (mall, floor, location, income models)                 
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>  |   +-- accounting/    (account.move, account.payment extensions)             
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>  +-- wizards/           (12 wizard classes for UI actions)                     
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>  +-- views/             (XML view definitions)                                 
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>  +-- security/          (access rules, groups)                                 
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>  +-- report/            (PDF reports)                                          
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>  +-- static/            (JS, SCSS, XML assets)                                 
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>scid_ams_sync/
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>  +-- models/            (Model overrides with ams_* fields)
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>  +-- controllers/       (REST API endpoints)               
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>  +-- schemas/           (Request validation)               
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>  +-- utils/                                                
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>  |   +-- ams_connector_helper/     (REST client wrappers)  
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>  |   +-- ams_sync_helper/          (Data transformation)   
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>  +-- views/             (Config settings views)            
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>scid_invoicing/
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>  +-- models/                                                      
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>  |   +-- invoicing_mec.py                                         
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>  |   +-- invoicing_tos.py                                         
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>  |   +-- invoicing_utility.py                                     
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>  |   +-- account_move.py           (Invoice generation logic)     
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>  |   +-- leasing_contract.py        (Invoice schedule integration)
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>  +-- wizard/            (Manual invoice creation)                 
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>  +-- views/                                                       
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>scid_leasing_mail_workflow/
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>  +-- models/            (State change email templates)
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>vn_address/
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>  +-- models/            (District, Ward, Region hierarchies)
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>web_plan_layout/
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>  +-- static/src/        (Kanban-like plan display)
+</span></code></pre></div></p>
+<hr />
+<h2 id="key-patterns-conventions">Key Patterns &amp; Conventions<a class="headerlink" href="#key-patterns-conventions" title="Permanent link">&para;</a></h2>
+<h3 id="1-computed-fields-with-storetrue">1. <strong>Computed Fields with Store=True</strong><a class="headerlink" href="#1-computed-fields-with-storetrue" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">state</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Selection</span><span class="p">(</span><span class="n">compute</span><span class="o">=</span><span class="s1">&#39;_compute_deal_state&#39;</span><span class="p">,</span> <span class="n">store</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># Enables searching/filtering by computed value, auto-updated on dependencies</span>
+</span></code></pre></div>
+<h3 id="2-related-fields">2. <strong>Related Fields</strong><a class="headerlink" href="#2-related-fields" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">deal_state</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Selection</span><span class="p">(</span><span class="n">related</span><span class="o">=</span><span class="s1">&#39;deal_id.state&#39;</span><span class="p">,</span> <span class="n">store</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># Denormalized for quick access and filtering</span>
+</span></code></pre></div>
+<h3 id="3-dynamic-references">3. <strong>Dynamic References</strong><a class="headerlink" href="#3-dynamic-references" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">leasing_ref</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Reference</span><span class="p">(</span><span class="n">selection</span><span class="o">=</span><span class="s1">&#39;_get_leasing_refs&#39;</span><span class="p">)</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># Links to deal/contract/appendix dynamically</span>
+</span></code></pre></div>
+<h3 id="4-trackingtrue">4. <strong>Tracking=True</strong><a class="headerlink" href="#4-trackingtrue" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">state</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Selection</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">tracking</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># Enables message tracking in mail.thread</span>
+</span></code></pre></div>
+<h3 id="5-context-bypass-for-sync">5. <strong>Context Bypass for Sync</strong><a class="headerlink" href="#5-context-bypass-for-sync" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">record</span><span class="o">.</span><span class="n">with_context</span><span class="p">(</span><span class="n">bypass_sync</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="o">...</span><span class="p">})</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="c1"># Prevents infinite loops when AMS pushes back changes</span>
+</span></code></pre></div>
+<h3 id="6-batch-queue-processing">6. <strong>Batch Queue Processing</strong><a class="headerlink" href="#6-batch-queue-processing" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">chunk_contracts</span><span class="o">.</span><span class="n">with_delay</span><span class="p">()</span><span class="o">.</span><span class="n">_sync_contracts</span><span class="p">()</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1"># Async job queuing via queue_job</span>
+</span></code></pre></div>
+<h3 id="7-approval-chain-pattern">7. <strong>Approval Chain Pattern</strong><a class="headerlink" href="#7-approval-chain-pattern" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">next_approver_id</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Many2one</span><span class="p">(</span><span class="n">compute</span><span class="o">=</span><span class="s1">&#39;_compute_next_approver&#39;</span><span class="p">)</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1"># Auto-advance workflow based on approval sequence</span>
+</span></code></pre></div>
+<h3 id="8-multi-level-state-machines">8. <strong>Multi-level State Machines</strong><a class="headerlink" href="#8-multi-level-state-machines" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Deal has main state (draft, leasing, etc.)</li>
+<li>Contract has substate (waiting, confirmed, etc.)</li>
+<li>Contract_summary_state reflects current state in deal context</li>
+<li>Enables complex workflows without losing granularity</li>
+</ul>
+<hr />
+<h2 id="potential-issues-observations">Potential Issues &amp; Observations<a class="headerlink" href="#potential-issues-observations" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Circular Sync Prevention:</strong> <code>bypass_sync=True</code> context flag prevents loops when AMS pushes changes</li>
+<li><strong>Batch Queue Risk:</strong> Large batches (50 contracts) may timeout on slow AMS server</li>
+<li><strong>API Key Storage:</strong> Keys stored plain in database (consider encryption in production)</li>
+<li><strong>State Complexity:</strong> 13+ leasing deal states + 5 contract states = hard to reason about</li>
+<li><strong>Document Upload:</strong> Binary attachment fields can cause memory issues on large files (see 5MB limit note)</li>
+<li><strong>Approval Inheritance:</strong> Complex copy logic when contract confirmed (copies approvals to deal)</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Trở lại mục lục
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2026 SCID JSC
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/scid-jsc" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "navigation.instant", "navigation.instant.progress", "navigation.path", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0110\u00e3 sao ch\u00e9p", "clipboard.copy": "Sao ch\u00e9p v\u00e0o b\u1ed9 nh\u1edb t\u1ea1m", "search.result.more.one": "1 t\u1eeb kh\u00e1c trong trang", "search.result.more.other": "# t\u1eeb kh\u00e1c trong trang", "search.result.none": "Kh\u00f4ng t\u00ecm th\u1ea5y t\u00e0i li\u1ec7u li\u00ean quan", "search.result.one": "1 t\u00e0i li\u1ec7u li\u00ean quan", "search.result.other": "# t\u00e0i li\u1ec7u li\u00ean quan", "search.result.placeholder": "Nh\u1eadp \u0111\u1ec3 b\u1eaft \u0111\u1ea7u t\u00ecm ki\u1ebfm", "search.result.term.missing": "Kh\u00f4ng", "select.version": "Ch\u1ecdn phi\u00ean b\u1ea3n"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3337 @@
+
+<!doctype html>
+<html lang="vi" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Hướng dẫn sử dụng hệ thống ERP của SCID JSC">
+      
+      
+        <meta name="author" content="SCID JSC">
+      
+      
+        <link rel="canonical" href="https://document.scid.vn/ke-toan/dev/ams-codebase-analysis/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>AMS Custom Modules - Comprehensive Code Analysis - SCID — Hướng dẫn Sử dụng</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M12%202C6.47%202%202%206.47%202%2012s4.47%2010%2010%2010%2010-4.47%2010-10S17.53%202%2012%202m3.1%205.07c.14%200%20.28.05.4.16l1.27%201.27c.23.22.23.57%200%20.78l-1%201-2.05-2.05%201-1c.1-.11.24-.16.38-.16m-1.97%201.74%202.06%202.06-6.06%206.06H7.07v-2.06z%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M12%206a6%206%200%200%201%206%206c0%202.22-1.21%204.16-3%205.2V19a1%201%200%200%201-1%201h-4a1%201%200%200%201-1-1v-1.8c-1.79-1.04-3-2.98-3-5.2a6%206%200%200%201%206-6m2%2015v1a1%201%200%200%201-1%201h-2a1%201%200%200%201-1-1v-1zm6-10h3v2h-3zM1%2011h3v2H1zM13%201v3h-2V1zM4.92%203.5l2.13%202.14-1.42%201.41L3.5%204.93zm12.03%202.13%202.12-2.13%201.43%201.43-2.13%202.12z%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M13%2014h-2V9h2m0%209h-2v-2h2M1%2021h22L12%202z%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M13%2013h-2V7h2m-2%208h2v2h-2m4.73-14H8.27L3%208.27v7.46L8.27%2021h7.46L21%2015.73V8.27z%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M13%209h-2V7h2m0%2010h-2v-6h2m-1-9A10%2010%200%200%200%202%2012a10%2010%200%200%200%2010%2010%2010%2010%200%200%200%2010-10A10%2010%200%200%200%2012%202%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M7%202v2h1v14a4%204%200%200%200%204%204%204%204%200%200%200%204-4V4h1V2zm4%2014c-.6%200-1-.4-1-1s.4-1%201-1%201%20.4%201%201-.4%201-1%201m2-4c-.6%200-1-.4-1-1s.4-1%201-1%201%20.4%201%201-.4%201-1%201m1-5h-4V4h4z%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Be+Vietnam+Pro:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Be Vietnam Pro";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ams-custom-modules-comprehensive-code-analysis" class="md-skip">
+          Bỏ qua
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Đầu trang">
+    <a href="../../.." title="SCID — Hướng dẫn Sử dụng" class="md-header__button md-logo" aria-label="SCID — Hướng dẫn Sử dụng" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2h7v5h5v11H6zm2 8v2h8v-2zm0 4v2h5v-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SCID — Hướng dẫn Sử dụng
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AMS Custom Modules - Comprehensive Code Analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Tìm kiếm" placeholder="Tìm kiếm" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Tìm kiếm">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Chia sẻ" aria-label="Chia sẻ" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Xoá" aria-label="Xoá" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Thanh điều hướng" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="SCID — Hướng dẫn Sử dụng" class="md-nav__button md-logo" aria-label="SCID — Hướng dẫn Sử dụng" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2h7v5h5v11H6zm2 8v2h8v-2zm0 4v2h5v-2z"/></svg>
+
+    </a>
+    SCID — Hướng dẫn Sử dụng
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trang chủ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kế toán
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Kế toán
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../huong-dan/van-hanh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vận hành Kế toán
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../huong-dan/bao-cao-tt200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Báo cáo TT200
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cho thuê
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cho thuê
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cho-thue/huong-dan/van-hanh-lms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vận hành Cho thuê
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Office
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    E-Office
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../e-office/huong-dan/van-hanh-eo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vận hành E-Office
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../e-office/huong-dan/hosotk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hồ sơ Tiếp khách
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nhân sự
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Nhân sự
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hrms/huong-dan/van-hanh-hrms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vận hành HRMS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Mục lục">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Mục lục
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ams-leasing-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AMS Leasing Module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AMS Leasing Module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-mallmall-mall_mallpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. mall.mall (mall_mall.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-mallfloor-mall_floorpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. mall.floor (mall_floor.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-leasingcontract-leasing_contractpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. leasing.contract (leasing_contract.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-incometype-income_typepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. income.type (income_type.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-mallincomeconfig-mall_income_configpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. mall.income.config (mall_income_config.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-depositcategory-deposit_categorypy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. deposit.category (deposit_category.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-accountjournal-extension-account_journalpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. account.journal Extension (account_journal.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#views" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Views
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ams-invoicing-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AMS Invoicing Module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AMS Invoicing Module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#models_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-accountmove-extension-account_movepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. account.move Extension (account_move.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-accountdebtreport-account_debt_reportpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. account.debt.report (account_debt_report.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-accountmoveline-extension-account_move_linepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. account.move.line Extension (account_move_line.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-accountpayment-extension-account_paymentpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. account.payment Extension (account_payment.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-invoicingmec-invoicing_mecpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. invoicing.mec (invoicing_mec.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-rescompany-extension-res_companypy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. res.company Extension (res_company.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-accountpartialreconcile-extension-account_partial_reconcilepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. account.partial.reconcile Extension (account_partial_reconcile.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-respartner-extension-res_partnerpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. res.partner Extension (res_partner.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wizards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wizards
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wizards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-confirmmessagewizard-confirm_message_wizardpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. confirm.message.wizard (confirm_message_wizard.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-calculate_late_payment_wizard-calculate_late_payment_wizardpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. calculate_late_payment_wizard (calculate_late_payment_wizard.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-accountpaymentregister-extension-account_payment_registerpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. account.payment.register Extension (account_payment_register.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utilities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Utilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#utilshelperpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        utils/helper.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#views_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Views
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reports
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ams-odoo-connector-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AMS Odoo Connector Module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AMS Odoo Connector Module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controllers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controllers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Controllers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-account_movepy-accountmovecontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. account_move.py (AccountMoveController)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-partnerpy-partnercontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. partner.py (PartnerController)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-contractpy-contractcontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. contract.py (ContractController)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-mall_mallpy-mallcontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. mall_mall.py (MallController)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-mall_floorpy-floorcontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. mall_floor.py (FloorController)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-bankpy-bankcontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. bank.py (BankController)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-bank_accountpy-bankcontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. bank_account.py (BankController)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-account_paymentpy-accountpaymentcontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. account_payment.py (AccountPaymentController)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#models-extended-with-lms-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models Extended with LMS Sync
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Models Extended with LMS Sync">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-mallfloor-lms_id-integer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. mall.floor — lms_id (Integer)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-accountmove-lms_id-lms_sync_needed-last_lms_sync_at" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. account.move — lms_id, lms_sync_needed, last_lms_sync_at
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-incometype-lms_id-lms_sync_needed-last_lms_sync_at" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. income.type — lms_id, lms_sync_needed, last_lms_sync_at
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-depositcategory-similar-to-incometype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. deposit.category — Similar to income.type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-invoicingmec-similar-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. invoicing.mec — Similar structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-accountmoveline-lms_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. account.move.line — lms_id
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-accountpayment-lms_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. account.payment — lms_id
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-respartner-lms_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. res.partner — lms_id
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-rescompany-extension-res_config_settingspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. res.company Extension (res_config_settings.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#auth_api_keypy-authapikey-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        auth_api_key.py (AuthApiKey model)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Method
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication Method">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ir_httppy-irhttp-override" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ir_http.py (IrHttp override)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sync-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sync Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#queue-jobs-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Queue Jobs Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cron-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cron Jobs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ams-partner-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AMS Partner Module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AMS Partner Module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#models_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-respartner-extension-res_partnerpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. res.partner Extension (res_partner.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-resbank-extension-res_bankpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. res.bank Extension (res_bank.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#views_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Views
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pcv-s-invoice-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PCV S-Invoice Module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PCV S-Invoice Module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#models_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-accountmove-extension-account_movepy_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. account.move Extension (account_move.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-sinvoiceaccount-sinvoice_accountpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. sinvoice.account (sinvoice_account.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-sinvoicetemplate-sinvoice_templatepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. sinvoice.template (sinvoice_template.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-sinvoicebase-mixin-sinvoice_basepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. sinvoice.base Mixin (sinvoice_base.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-accountjournal-extension-account_journalpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. account.journal Extension (account_journal.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-resconfigsettings-extension-res_config_settingspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. res.config.settings Extension (res_config_settings.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wizards_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wizards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cron-jobs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cron Jobs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scid-leasing-mail-workflow-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SCID Leasing Mail Workflow Module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SCID Leasing Mail Workflow Module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#models_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-leasingcontract-extension-leasing_contractpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. leasing.contract Extension (leasing_contract.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-leasingtermination-leasing_terminationpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. leasing.termination (leasing_termination.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-leasingdeal-leasing_dealpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. leasing.deal (leasing_deal.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-leasinglaf-leasing_lafpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. leasing.laf (leasing_laf.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-leasingol-leasing_olpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. leasing.ol (leasing_ol.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-leasingappendix-leasing_appendixpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. leasing.appendix (leasing_appendix.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-leasingbase-leasing_basepy-abstractmodel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. leasing.base (leasing_base.py) — AbstractModel
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mail-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mail Templates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cron-jobs_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cron Jobs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scid-mail-notification-mixin-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SCID Mail Notification Mixin Module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SCID Mail Notification Mixin Module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#models_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-scidmailnotificationmixin-scid_mail_notification_mixinpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ScidMailNotificationMixin (scid_mail_notification_mixin.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-mailmail-extension-mail_mailpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. mail.mail Extension (mail_mail.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#journal-restrict-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Journal Restrict Module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Journal Restrict Module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#models_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-accountjournal-extension-accountpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. account.journal Extension (account.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-resusers-extension-accountpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. res.users Extension (account.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-rescompany-extension-res_config_settingspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. res.company Extension (res_config_settings.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-resconfigsettings-res_config_settingspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. res.config.settings (res_config_settings.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#views_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Views
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#biz-accounting-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BIZ Accounting Module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BIZ Accounting Module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sub-modules-brief-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sub-modules (Brief Overview)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-architecture-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Architecture Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Architecture Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-inheritance-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Inheritance &amp; Extension
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-computed-fields-with-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Computed Fields with Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-onchange-handlers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. onchange Handlers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-tracking-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Tracking &amp; Notifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-action-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Action Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-api-key-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. API Key Authentication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-queue-jobs-for-async-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Queue Jobs for Async Sync
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-sql-queries-for-complex-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. SQL Queries for Complex Reports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-mixin-classes-for-reusability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Mixin Classes for Reusability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-context-flags-for-conditional-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Context Flags for Conditional Logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model Relationships
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model Relationships">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Domain
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-flow-sync-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Flow &amp; Sync Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Flow &amp; Sync Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ams-lms-sync-outbound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AMS → LMS Sync (Outbound)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lms-ams-sync-inbound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LMS → AMS Sync (Inbound)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-invoice-s-invoice-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E-Invoice (S-Invoice) Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#late-payment-fee-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Late Payment Fee Calculation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lease-renewal-reminder-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lease Renewal Reminder Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ams-custom-modules-comprehensive-code-analysis">AMS Custom Modules - Comprehensive Code Analysis<a class="headerlink" href="#ams-custom-modules-comprehensive-code-analysis" title="Permanent link">&para;</a></h1>
+<p><strong>Date:</strong> 2026-04-04<br />
+<strong>Server:</strong> 10.1.2.6 (AMS Odoo 16 Enterprise)<br />
+<strong>Location:</strong> <code>/opt/odoo/custom/</code></p>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#module-overview">Module Overview</a></li>
+<li><a href="#ams-leasing-module">AMS Leasing Module</a></li>
+<li><a href="#ams-invoicing-module">AMS Invoicing Module</a></li>
+<li><a href="#ams-odoo-connector-module">AMS Odoo Connector Module</a></li>
+<li><a href="#ams-partner-module">AMS Partner Module</a></li>
+<li><a href="#pcv-sinvoice-module">PCV S-Invoice Module</a></li>
+<li><a href="#scid-leasing-mail-workflow-module">SCID Leasing Mail Workflow Module</a></li>
+<li><a href="#scid-mail-notification-mixin-module">SCID Mail Notification Mixin Module</a></li>
+<li><a href="#journal-restrict-module">Journal Restrict Module</a></li>
+<li><a href="#biz-accounting-module">BIZ Accounting Module</a></li>
+<li><a href="#key-architecture-patterns">Key Architecture Patterns</a></li>
+<li><a href="#model-relationships">Model Relationships</a></li>
+<li><a href="#data-flow--sync-strategy">Data Flow &amp; Sync Strategy</a></li>
+</ol>
+<hr />
+<h2 id="module-overview">Module Overview<a class="headerlink" href="#module-overview" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Version</th>
+<th>Purpose</th>
+<th>Dependencies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ams_leasing</strong></td>
+<td>16.0.1.0.0</td>
+<td>Core leasing contracts, malls, floors, income types</td>
+<td>account, contacts, vn_address</td>
+</tr>
+<tr>
+<td><strong>ams_invoicing</strong></td>
+<td>1.0</td>
+<td>Invoicing, debt reporting, late payments, deposits</td>
+<td>ams_leasing, account, account_asset</td>
+</tr>
+<tr>
+<td><strong>ams_odoo_connector</strong></td>
+<td>16.0.1.0.0</td>
+<td>REST API sync AMS ↔ LMS (two-way), queue_job</td>
+<td>ams_leasing, ams_invoicing, queue_job</td>
+</tr>
+<tr>
+<td><strong>ams_partner</strong></td>
+<td>16.0.1.0.0</td>
+<td>Partner extensions (ID card, business license, VAT)</td>
+<td>contacts, vn_address, base_vat</td>
+</tr>
+<tr>
+<td><strong>pcv_sinvoice</strong></td>
+<td>1.0</td>
+<td>S-Invoice integration (e-invoicing)</td>
+<td>account, web_widget_*</td>
+</tr>
+<tr>
+<td><strong>scid_leasing_mail_workflow</strong></td>
+<td>16.0.1.0.0</td>
+<td>Mail notifications for leasing state changes</td>
+<td>scid_leasing, scid_mail_notification_mixin</td>
+</tr>
+<tr>
+<td><strong>scid_mail_notification_mixin</strong></td>
+<td>16.0.1.0.0</td>
+<td>Mixin for mail notifications with group routing</td>
+<td>mail</td>
+</tr>
+<tr>
+<td><strong>journal_restrict</strong></td>
+<td>1.0</td>
+<td>Journal access control by user</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>biz_accounting</strong></td>
+<td>N/A</td>
+<td>Collection of 14+ accounting report modules</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ams-leasing-module">AMS Leasing Module<a class="headerlink" href="#ams-leasing-module" title="Permanent link">&para;</a></h2>
+<p><strong>Purpose:</strong> Core domain model for property leasing business.</p>
+<h3 id="models">Models<a class="headerlink" href="#models" title="Permanent link">&para;</a></h3>
+<h4 id="1-mallmall-mall_mallpy">1. <strong>mall.mall</strong> (<code>mall_mall.py</code>)<a class="headerlink" href="#1-mallmall-mall_mallpy" title="Permanent link">&para;</a></h4>
+<p>Central entity representing a shopping mall/property complex.</p>
+<p><strong>Fields:</strong>
+- <code>name</code> (Char, required) — Mall name, unique
+- <code>code</code> (Char, required, 5 chars) — Mall code, unique, must be exactly 5 characters
+- <code>active</code> (Boolean) — Is mall active
+- <code>manager_id</code> (Many2one → res.partner) — Property manager
+- <code>profit_center_id</code> (Many2one → account.journal) — Profit center journal
+- <code>cost_center_id</code> (Many2one → account.journal) — Cost center journal
+- <code>accountant_id</code> (Many2one → res.partner) — Accountant for invoices
+- <code>journal_ids</code> (One2many → account.journal) — All journals linked to mall
+- <code>mall_income_config_ids</code> (One2many → mall.income.config) — Income type configs per floor
+- <code>account_journal_report</code> (Many2one → account.journal, computed) — Bank journal for proforma invoices</p>
+<p><strong>Key Methods:</strong>
+- <code>default_get()</code> — Pre-populate profit/cost centers with default sale/purchase journals
+- <code>constrains_mall_code()</code> — Validate code is exactly 5 characters
+- <code>_compute_account_journal_report()</code> — Auto-select first bank journal
+- <code>get_mall_journal_by_type(journal_type)</code> — Get journal by type (sale, bank, etc.) for reporting</p>
+<p><strong>Constraints:</strong>
+- Unique: name, code</p>
+<hr />
+<h4 id="2-mallfloor-mall_floorpy">2. <strong>mall.floor</strong> (<code>mall_floor.py</code>)<a class="headerlink" href="#2-mallfloor-mall_floorpy" title="Permanent link">&para;</a></h4>
+<p>Floors/units within a mall.</p>
+<p><strong>Fields:</strong>
+- <code>mall_id</code> (Many2one → mall.mall, required) — Parent mall
+- <code>code</code> (Char, required) — Floor identifier</p>
+<hr />
+<h4 id="3-leasingcontract-leasing_contractpy">3. <strong>leasing.contract</strong> (<code>leasing_contract.py</code>)<a class="headerlink" href="#3-leasingcontract-leasing_contractpy" title="Permanent link">&para;</a></h4>
+<p>Leasing contracts between mall and tenants.</p>
+<p><strong>Fields:</strong>
+- <code>code</code> (Char, required) — Contract identifier
+- <code>floor_id</code> (Many2one → mall.floor, required) — Leased floor
+- <code>mall_id</code> (Many2one → mall.mall, readonly, related from floor)
+- <code>location</code> (Char) — Specific location within floor
+- <code>deal_code</code> (Char) — Related deal code
+- <code>brand</code> (Char, required) — Tenant brand name
+- <code>business_category</code> (Char) — Tenant business type
+- <code>partner_id</code> (Many2one → res.partner) — Tenant
+- <code>deffered_interest</code> (Float) — Late payment interest rate
+- <code>lms_url</code> (Char) — Link to LMS record
+- <code>proposed_term_year/month/day</code> (Integer) — Lease duration
+- <code>rental_start_date</code> (Date) — Start of rental period
+- <code>rental_end_date</code> (Date, computed) — Auto-calculated end date based on duration</p>
+<p><strong>Key Methods:</strong>
+- <code>_compute_rental_date()</code> — Calculate end date: <code>start_date + (years*365 + months*30 + days)</code>
+- <code>action_open_lms_url()</code> — Open LMS contract in new window</p>
+<hr />
+<h4 id="4-incometype-income_typepy">4. <strong>income.type</strong> (<code>income_type.py</code>)<a class="headerlink" href="#4-incometype-income_typepy" title="Permanent link">&para;</a></h4>
+<p>Types of income/fees charged to tenants.</p>
+<p><strong>Fields:</strong>
+- <code>name</code> (Char, required) — Fee name
+- <code>code</code> (Char, unique) — Auto-generated code via sequence
+- <code>category</code> (Selection, required) — Classification:
+  - <code>revenue_rent</code> — Percentage of revenue rent
+  - <code>basic_rent</code> — Fixed base rent
+  - <code>service</code> — Service fee
+  - <code>marketing</code> — Marketing fee
+  - <code>cleaning</code> — Cleaning fee
+  - <code>utility</code> — Utilities (water, electricity, gas)
+  - <code>other</code> — Other fees
+- <code>uom</code> (Selection, required) — Unit of measurement:
+  - <code>area</code> — VND/m²/month
+  - <code>kwh</code> — VND/kWh
+  - <code>vnd</code> — Fixed amount VND
+  - <code>area_vnd</code> — VND/m²
+  - <code>vnd_month</code> — VND/month
+  - <code>vnd_m3</code> — VND/m³
+  - <code>vnd_kg</code> — VND/kg
+- <code>invoice_description</code> (Char) — Description on invoices
+- <code>credit_note_description</code> (Char) — Description on credit notes
+- <code>account_id</code> (Many2one → account.account) — Revenue account
+- <code>income_tax_id</code> (Many2one → account.tax) — Tax to apply
+- <code>product_id</code> (Many2one → product.product) — Service product</p>
+<p><strong>Key Methods:</strong>
+- <code>create(vals_list)</code> — Auto-generate code from sequence 'income.type'</p>
+<p><strong>Constraints:</strong>
+- Unique: code, product_id</p>
+<hr />
+<h4 id="5-mallincomeconfig-mall_income_configpy">5. <strong>mall.income.config</strong> (<code>mall_income_config.py</code>)<a class="headerlink" href="#5-mallincomeconfig-mall_income_configpy" title="Permanent link">&para;</a></h4>
+<p>Mapping of income types to specific floors with computed fields.</p>
+<p><strong>Fields:</strong>
+- <code>sequence</code> (Integer) — Display order
+- <code>mall_id</code> (Many2one → mall.mall, required)
+- <code>floor_id</code> (Many2one → mall.floor, required) — Filtered by mall
+- <code>income_type_id</code> (Many2one → income.type, required)
+- <code>available_income_type_ids</code> (Many2many → income.type, computed) — Types not used on this floor
+- <code>account_id</code> (Many2one → account.account, computed/stored) — From income_type
+- <code>tax_id</code> (Many2one → account.tax, computed/stored) — From income_type</p>
+<p><strong>Key Methods:</strong>
+- <code>_compute_account()</code> — Copy account from selected income_type
+- <code>_compute_tax()</code> — Copy tax from selected income_type
+- <code>_compute_available_income_types()</code> — Show only unused income types on floor
+- <code>write()</code> — Auto post tracking messages to parent mall when config changes
+- <code>unlink()</code> — Auto post deletion notification to mall</p>
+<hr />
+<h4 id="6-depositcategory-deposit_categorypy">6. <strong>deposit.category</strong> (<code>deposit_category.py</code>)<a class="headerlink" href="#6-depositcategory-deposit_categorypy" title="Permanent link">&para;</a></h4>
+<p>Classification of deposits/security money.</p>
+<p><strong>Fields:</strong>
+- <code>name</code> (Char, required)
+- <code>code</code> (Char, unique) — Auto-generated
+- <code>sequence</code> (Integer)
+- <code>deposit_account_id</code> (Many2one → account.account) — Account for deposits</p>
+<p><strong>Key Methods:</strong>
+- <code>create(vals_list)</code> — Auto-generate code</p>
+<hr />
+<h4 id="7-accountjournal-extension-account_journalpy">7. <strong>account.journal Extension</strong> (<code>account_journal.py</code>)<a class="headerlink" href="#7-accountjournal-extension-account_journalpy" title="Permanent link">&para;</a></h4>
+<p>Adds mall reference to journals.</p>
+<p><strong>Fields:</strong>
+- <code>mall_id</code> (Many2one → mall.mall) — Links journal to mall</p>
+<hr />
+<h3 id="views">Views<a class="headerlink" href="#views" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>mall_mall_views.xml</code> — List/form views for malls with tree visualization</li>
+<li><code>mall_floor_views.xml</code> — Floor management</li>
+<li><code>income_type_views.xml</code> — Fee types</li>
+<li><code>leasing_contract_views.xml</code> — Contracts</li>
+<li><code>deposit_category_views.xml</code> — Deposits</li>
+</ul>
+<h3 id="data">Data<a class="headerlink" href="#data" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>ir_sequence_data.xml</code> — Sequences for code generation:</li>
+<li><code>income.type</code> — Income type codes</li>
+<li><code>deposit.category</code> — Deposit category codes</li>
+</ul>
+<hr />
+<h2 id="ams-invoicing-module">AMS Invoicing Module<a class="headerlink" href="#ams-invoicing-module" title="Permanent link">&para;</a></h2>
+<p><strong>Purpose:</strong> Invoicing, debt aging reports, late payment interest, and deposit tracking.</p>
+<h3 id="models_1">Models<a class="headerlink" href="#models_1" title="Permanent link">&para;</a></h3>
+<h4 id="1-accountmove-extension-account_movepy">1. <strong>account.move Extension</strong> (<code>account_move.py</code>)<a class="headerlink" href="#1-accountmove-extension-account_movepy" title="Permanent link">&para;</a></h4>
+<p><strong>31 custom fields + 29 methods</strong> — Heavily extended accounting entry for invoicing.</p>
+<p><strong>Key Custom Fields:</strong>
+- <code>scid_invoice_type</code> (Selection) — Rent &amp; expenses vs. Utility invoice
+- <code>contract_id</code> (Many2one → leasing.contract)
+- <code>floor_id</code>, <code>mall_id</code> (Related from contract)
+- <code>location</code>, <code>brand</code>, <code>deal_code</code> (Related from contract)
+- <code>deffered_interest</code> (Late payment rate)
+- <code>payment_start_date</code>, <code>new_payment_start_date</code> (Tracked separately)
+- <code>rental_start_date</code>, <code>rental_end_date</code> (From contract)
+- <code>is_proforma_invoice</code> (Boolean) — Can't post proforma invoices
+- <code>is_deposit_entry</code> (Boolean) — Marks deposit journal entries
+- <code>deposit_category_id</code> (Many2one → deposit.category)
+- <code>accountant_id</code> (Computed from mall)
+- <code>mobile</code>, <code>email</code> (Computed from accountant)
+- <code>payment_type_code</code> (Selection) — inbound/outbound/banking
+- <code>account_code</code> (Char, computed) — Auto-generated receipt number (Phiếu Thu/Chi)
+- <code>available_vendor_bank_ids</code>, <code>vendor_bank_id</code> (For payment routing)
+- <code>late_payment_original_move_id</code>, <code>late_payment_created_move_ids</code> — Links for late fee entries
+- <code>is_storno</code> (Boolean) — Direct deduction entry</p>
+<p><strong>Key Methods:</strong></p>
+<ul>
+<li><code>_compute_invoice_date_due()</code> — Override: find max maturity date from payment terms</li>
+<li><code>_compute_mall_id()</code> — Link to mall based on journal type (profit center for invoices, journals for entries)</li>
+<li><code>_onchange_contract()</code> — Auto-fill deal_code from contract</li>
+<li><code>get_late_payment_invoice(mec_id)</code> — Generator: yield (move, late_fees) for unpaid invoices in period</li>
+<li>Calculates late fees for paid portion (via payment register)</li>
+<li>Calculates late fees for unpaid residual</li>
+<li><code>_compute_mobile_and_email()</code> — From accountant_id</li>
+<li><code>_compute_vendor_bank_id()</code> — Get vendor banks from invoice lines</li>
+<li><code>calculate_sum_price_foreach_tax()</code> — Sum line amounts by tax rate</li>
+<li><code>_compute_accountant_id()</code> — From mall.accountant_id</li>
+<li><code>_compute_suitable_journal_ids()</code> — Different journal selection logic based on move type</li>
+<li><code>_compute_new_payment_start_date()</code> — Default to payment_start_date if not set</li>
+<li><code>_compute_account_code()</code> — Generate receipt number based on sequence &amp; date</li>
+<li><code>_onchange_journal_date()</code> — Auto-clear journal if setting to non-bank for banking payments</li>
+<li><code>action_post()</code> — Override: </li>
+<li>Warn if payment dates/rates differ from contract</li>
+<li>Prevent posting proforma invoices</li>
+<li>Auto-send invoice email (if template exists)</li>
+<li><code>button_open_late_journal_entry_interest()</code> — Open first late fee entry</li>
+<li><code>_get_sinvoice_payment_journal()</code> — Map S-Invoice payment method to Odoo journal</li>
+<li><code>_prepare_sinvoice_payment_data()</code> — Prepare payment register data from S-Invoice</li>
+<li><code>generate_sinvoice_payment()</code> — Create payment entry for S-Invoice</li>
+<li><code>action_open_contract_lms_url()</code> — Open LMS contract</li>
+<li><code>button_draft()</code> — Reset payment_reference when drafting</li>
+<li><code>action_register_payment()</code> — Override: determine inbound/outbound based on residual</li>
+<li><code>print_invoice_template_report_name()</code> — Generate filename: <code>ĐNTT_[code]_[date]</code> or <code>HĐ_[code]_[date]</code></li>
+<li><code>_get_confirm_message_wizard()</code> — Return action to open confirmation dialog</li>
+<li><code>_get_is_inbound_payment_type()</code> — Determine payment direction for reports</li>
+<li><code>get_deposit_amount(partner_id, mall_id, date_to, contract_id)</code> — <strong>Complex SQL query</strong> to calculate:</li>
+<li>Sum of deposits (credit) minus usage (debit) per partner/mall up to date</li>
+<li>Used in reports</li>
+<li><code>_get_invoice_computed_reference()</code> — Generate reference text with dates if rental dates present</li>
+</ul>
+<hr />
+<h4 id="2-accountdebtreport-account_debt_reportpy">2. <strong>account.debt.report</strong> (<code>account_debt_report.py</code>)<a class="headerlink" href="#2-accountdebtreport-account_debt_reportpy" title="Permanent link">&para;</a></h4>
+<p>Aged debt analysis (BĐCCN — Bảng Đối Chiếu Công Nợ).</p>
+<p><strong>Fields:</strong>
+- <code>name</code> (Char, computed) — Display as "BĐCCN [partner] từ [from_date] đến [to_date]"
+- <code>partner_id</code>, <code>mall_id</code>, <code>contract_id</code> (Filters)
+- <code>from_date</code>, <code>to_date</code> (Date range)
+- <code>account_ids</code> (Many2many → account.account) — Receivable accounts
+- <code>debt_line_ids</code> (One2many → account.debt.report.line)</p>
+<p><strong>Key Methods:</strong>
+- <code>_compute_name()</code> — Format report title
+- <code>onchange_contract_id()</code> — Auto-fill partner &amp; mall from contract
+- <code>_compute_account_ids()</code> — Default to partner's receivable account
+- <code>format_date()</code> — Format date for display
+- <code>action_export_pdf()</code> — Generate PDF report
+- <code>get_debt_data_lst()</code> — Fetch debt details
+- <code>_query_debt_report_data()</code> — <strong>SQL query</strong> building complex debt aging analysis</p>
+<hr />
+<h4 id="3-accountmoveline-extension-account_move_linepy">3. <strong>account.move.line Extension</strong> (<code>account_move_line.py</code>)<a class="headerlink" href="#3-accountmoveline-extension-account_move_linepy" title="Permanent link">&para;</a></h4>
+<p><strong>9 fields</strong> added for detailed invoice line tracking.</p>
+<p><strong>Fields:</strong>
+- <code>contract_id</code>, <code>mall_id</code> (Many2one) — Related from parent move
+- <code>income_type_id</code> (Many2one → income.type)
+- <code>rental_from_date</code>, <code>rental_to_date</code> (Date) — Rental period for line
+- <code>product_id</code> (Many2one → product.product)
+- <code>multiplier</code> (Float) — Calculation multiplier
+- <code>original_late_move_line_id</code> (Many2one → self)
+- <code>total_vat</code> (Monetary, computed)</p>
+<p><strong>Key Methods:</strong>
+- <code>_compute_total_vat()</code> — Calculate VAT amount
+- <code>_compute_tax_ids()</code> — Auto-set tax from income_type
+- <code>_compute_account_id()</code> — Auto-set account from income_type
+- <code>_compute_product()</code> — Auto-set product from income_type</p>
+<hr />
+<h4 id="4-accountpayment-extension-account_paymentpy">4. <strong>account.payment Extension</strong> (<code>account_payment.py</code>)<a class="headerlink" href="#4-accountpayment-extension-account_paymentpy" title="Permanent link">&para;</a></h4>
+<p><strong>7 fields</strong> for payment-specific data.</p>
+<p><strong>Fields:</strong>
+- <code>contract_id</code>, <code>deposit</code> (Char) — Payment classification
+- <code>payment_start_date</code>, <code>payment_end_date</code> (Date)
+- <code>payment_type</code> (Selection)
+- <code>note</code> (Text)
+- <code>analytic_line_id</code> (Many2one → account.analytic.line)</p>
+<p><strong>Key Methods:</strong>
+- <code>default_get()</code> — Set defaults from context
+- <code>_compute_available_journal_ids()</code> — Filter by payment type
+- <code>action_post()</code> — Override posting logic
+- <code>get_late_payment_amount()</code> — Calculate late fees for paid amount using helper</p>
+<hr />
+<h4 id="5-invoicingmec-invoicing_mecpy">5. <strong>invoicing.mec</strong> (<code>invoicing_mec.py</code>)<a class="headerlink" href="#5-invoicingmec-invoicing_mecpy" title="Permanent link">&para;</a></h4>
+<p><strong>Invoicing Milestone/Execution Period</strong> — Defines billing periods.</p>
+<p><strong>Fields:</strong>
+- <code>code</code> (Char, required) — Period identifier
+- <code>state</code> (Selection) — active / closed / cancelled
+- <code>invoice_period_monthly</code>, <code>invoice_period_annual</code> (Selection) — Month/quarter selection
+- <code>invoice_proforma_date</code>, <code>invoice_closing_date</code> (Date)
+- <code>period_start_time</code>, <code>period_end_time</code> (Computed)
+- <code>period_time_display</code> (Char, computed)
+- <code>invoice_period_display</code> (Char, computed)</p>
+<p><strong>Key Methods:</strong>
+- <code>_compute_period_time()</code> — Calculate actual dates from monthly/annual selection
+- <code>_get_number_of_days_in_month()</code> — Helper for date calculations
+- <code>_get_invoice_date_in_mec()</code> — Get invoice date within MEC period
+- <code>action_active()</code>, <code>action_closed()</code>, <code>action_cancel()</code> — State transitions
+- <code>create(vals_list)</code> — Assign code from sequence</p>
+<hr />
+<h4 id="6-rescompany-extension-res_companypy">6. <strong>res.company Extension</strong> (<code>res_company.py</code>)<a class="headerlink" href="#6-rescompany-extension-res_companypy" title="Permanent link">&para;</a></h4>
+<p><strong>4 fields</strong> for company-level accounting configuration.</p>
+<p><strong>Fields:</strong>
+- <code>analytic_account_id</code> (Many2one → account.analytic.account)
+- <code>deposit_account_id</code> (Many2one → account.account)
+- <code>late_payment_debit_account_id</code>, <code>late_payment_credit_account_id</code> (Many2one)</p>
+<hr />
+<h4 id="7-accountpartialreconcile-extension-account_partial_reconcilepy">7. <strong>account.partial.reconcile Extension</strong> (<code>account_partial_reconcile.py</code>)<a class="headerlink" href="#7-accountpartialreconcile-extension-account_partial_reconcilepy" title="Permanent link">&para;</a></h4>
+<p>Tracks partial reconciliation details for reporting.</p>
+<p><strong>Fields:</strong>
+- <code>amount</code> (Float)
+- <code>reconcile_date</code> (Date)
+- <code>debit_move_id</code>, <code>credit_move_id</code> (Many2one → account.move)
+- <code>partial_reconcile_id</code> (Many2one → self)</p>
+<hr />
+<h4 id="8-respartner-extension-res_partnerpy">8. <strong>res.partner Extension</strong> (<code>res_partner.py</code>)<a class="headerlink" href="#8-respartner-extension-res_partnerpy" title="Permanent link">&para;</a></h4>
+<p><strong>1 field</strong> for partner-level deposit account override.</p>
+<ul>
+<li><code>deposit_account_id</code> (Many2one)</li>
+</ul>
+<p><strong>Key Methods:</strong>
+- <code>get_full_partner_address(country_required=True)</code> — Format address for reports</p>
+<hr />
+<h3 id="wizards">Wizards<a class="headerlink" href="#wizards" title="Permanent link">&para;</a></h3>
+<h4 id="1-confirmmessagewizard-confirm_message_wizardpy">1. <strong>confirm.message.wizard</strong> (<code>confirm_message_wizard.py</code>)<a class="headerlink" href="#1-confirmmessagewizard-confirm_message_wizardpy" title="Permanent link">&para;</a></h4>
+<p>Dialog to confirm actions with user message.</p>
+<h4 id="2-calculate_late_payment_wizard-calculate_late_payment_wizardpy">2. <strong>calculate_late_payment_wizard</strong> (<code>calculate_late_payment_wizard.py</code>)<a class="headerlink" href="#2-calculate_late_payment_wizard-calculate_late_payment_wizardpy" title="Permanent link">&para;</a></h4>
+<p>Batch calculate late fees for period.</p>
+<h4 id="3-accountpaymentregister-extension-account_payment_registerpy">3. <strong>account.payment.register Extension</strong> (<code>account_payment_register.py</code>)<a class="headerlink" href="#3-accountpaymentregister-extension-account_payment_registerpy" title="Permanent link">&para;</a></h4>
+<p>Override to support late payment fee workflow.</p>
+<hr />
+<h3 id="utilities">Utilities<a class="headerlink" href="#utilities" title="Permanent link">&para;</a></h3>
+<h4 id="utilshelperpy"><code>utils/helper.py</code><a class="headerlink" href="#utilshelperpy" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>CalculateLatePaymentInterestHelper</strong> — Helper class to calculate late fees:</li>
+<li>Takes: payment_start_date, deffered_interest rate, payment_end_date</li>
+<li>Calculates: daily interest amount, total fee for period</li>
+<li>
+<p>Methods: <code>_get_account_move_unpaid_interest()</code> — Creates move line for unpaid fee</p>
+</li>
+<li>
+<p><strong>GetSequenceAccountHelper</strong> — Helper to generate receipt numbers:</p>
+</li>
+<li>Takes: create_date, payment_type, journal</li>
+<li>Checks if sequence changed in year</li>
+<li>Returns: formatted receipt code (Phiếu Thu/Chi code)</li>
+</ul>
+<hr />
+<h3 id="views_1">Views<a class="headerlink" href="#views_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>account_move_views.xml</code> — Extended invoice form with custom fields</li>
+<li><code>account_debt_report.xml</code> — Debt report form</li>
+<li><code>account_payment_views.xml</code> — Payment form</li>
+<li><code>invoicing_mec_views.xml</code> — Billing period management</li>
+</ul>
+<hr />
+<h3 id="reports">Reports<a class="headerlink" href="#reports" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>report_invoice_receipt_templates.xml</code> — Receipt (Phiếu Thu/Chi) template</li>
+<li><code>account_move_report.xml</code>, <code>account_payment_report.xml</code> — Reports</li>
+</ul>
+<hr />
+<h2 id="ams-odoo-connector-module">AMS Odoo Connector Module<a class="headerlink" href="#ams-odoo-connector-module" title="Permanent link">&para;</a></h2>
+<p><strong>Purpose:</strong> Two-way REST API sync between AMS (Odoo 16) and LMS (another system).</p>
+<h3 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Controllers</strong> (HTTP routes) — REST API endpoints for LMS → AMS sync</li>
+<li><strong>Models</strong> — Extended models with <code>lms_id</code> and <code>lms_sync_needed</code> fields</li>
+<li><strong>Utils/Sync Helpers</strong> — Data transformation &amp; connector logic</li>
+<li><strong>Schemas</strong> — JSON schema validation</li>
+<li><strong>Queue Jobs</strong> — Async sync via OCA queue_job</li>
+</ul>
+<h3 id="controllers">Controllers<a class="headerlink" href="#controllers" title="Permanent link">&para;</a></h3>
+<h4 id="1-account_movepy-accountmovecontroller">1. <strong>account_move.py</strong> (<code>AccountMoveController</code>)<a class="headerlink" href="#1-account_movepy-accountmovecontroller" title="Permanent link">&para;</a></h4>
+<p>Routes:
+- <code>POST /account_move/sync</code> (auth: api_key) — Sync invoices from LMS
+  - Schema: Validates incoming data
+  - Transform: AccountMoveDataTransform handles create/update
+  - Response: Returns AMS IDs, LMS IDs, and account line IDs</p>
+<ul>
+<li><code>POST /account_move/cancel</code> (auth: api_key) — Cancel invoices synced from LMS</li>
+<li>Uses: CancelAccountMoveDataTransform</li>
+<li>Action: Calls <code>button_cancel()</code> with bypass context</li>
+</ul>
+<h4 id="2-partnerpy-partnercontroller">2. <strong>partner.py</strong> (<code>PartnerController</code>)<a class="headerlink" href="#2-partnerpy-partnercontroller" title="Permanent link">&para;</a></h4>
+<p>Route: <code>POST /partner/sync</code> — Partner sync</p>
+<h4 id="3-contractpy-contractcontroller">3. <strong>contract.py</strong> (<code>ContractController</code>)<a class="headerlink" href="#3-contractpy-contractcontroller" title="Permanent link">&para;</a></h4>
+<p>Route: <code>POST /contract/sync</code> — Leasing contract sync</p>
+<h4 id="4-mall_mallpy-mallcontroller">4. <strong>mall_mall.py</strong> (<code>MallController</code>)<a class="headerlink" href="#4-mall_mallpy-mallcontroller" title="Permanent link">&para;</a></h4>
+<p>Route: <code>POST /mall/sync</code> — Mall/property sync</p>
+<h4 id="5-mall_floorpy-floorcontroller">5. <strong>mall_floor.py</strong> (<code>FloorController</code>)<a class="headerlink" href="#5-mall_floorpy-floorcontroller" title="Permanent link">&para;</a></h4>
+<p>Route: <code>POST /floor/sync</code> — Floor sync</p>
+<h4 id="6-bankpy-bankcontroller">6. <strong>bank.py</strong> (<code>BankController</code>)<a class="headerlink" href="#6-bankpy-bankcontroller" title="Permanent link">&para;</a></h4>
+<p>Route: <code>POST /bank/sync</code> — Bank master data sync</p>
+<h4 id="7-bank_accountpy-bankcontroller">7. <strong>bank_account.py</strong> (<code>BankController</code>)<a class="headerlink" href="#7-bank_accountpy-bankcontroller" title="Permanent link">&para;</a></h4>
+<p>Route: <code>POST /bank_account/sync</code> — Bank account sync</p>
+<h4 id="8-account_paymentpy-accountpaymentcontroller">8. <strong>account_payment.py</strong> (<code>AccountPaymentController</code>)<a class="headerlink" href="#8-account_paymentpy-accountpaymentcontroller" title="Permanent link">&para;</a></h4>
+<p>Route: <code>POST /account_payment/sync</code> — Payment sync</p>
+<hr />
+<h3 id="models-extended-with-lms-sync">Models Extended with LMS Sync<a class="headerlink" href="#models-extended-with-lms-sync" title="Permanent link">&para;</a></h3>
+<h4 id="1-mallfloor-lms_id-integer">1. <strong>mall.floor</strong> — <code>lms_id</code> (Integer)<a class="headerlink" href="#1-mallfloor-lms_id-integer" title="Permanent link">&para;</a></h4>
+<h4 id="2-accountmove-lms_id-lms_sync_needed-last_lms_sync_at">2. <strong>account.move</strong> — <code>lms_id</code>, <code>lms_sync_needed</code>, <code>last_lms_sync_at</code><a class="headerlink" href="#2-accountmove-lms_id-lms_sync_needed-last_lms_sync_at" title="Permanent link">&para;</a></h4>
+<p><strong>Key Methods:</strong>
+- <code>_get_lms_connector()</code> — Instantiate LMS API client
+- <code>_sync_account_move_state()</code> — Push move state to LMS
+- <code>_sync_posted_deposit_entry()</code> — Push deposit entry when posted
+- <code>_action_sync_state_to_lms()</code> — Public action to manually sync
+- <code>_action_post_deposit_entry_to_lms()</code> — Post deposit to LMS after creating
+- <code>write()</code> — Auto-trigger sync if lms_sync_needed set
+- <code>cron_update_deposit_contract()</code> — Scheduled job to update contracts from deposit entries</p>
+<h4 id="3-incometype-lms_id-lms_sync_needed-last_lms_sync_at">3. <strong>income.type</strong> — <code>lms_id</code>, <code>lms_sync_needed</code>, <code>last_lms_sync_at</code><a class="headerlink" href="#3-incometype-lms_id-lms_sync_needed-last_lms_sync_at" title="Permanent link">&para;</a></h4>
+<p><strong>Key Methods:</strong>
+- <code>_sync_fields()</code> — Map fields to LMS format
+- <code>_sync_income_types()</code> — Batch sync to LMS
+- <code>cron_sync_income_types()</code> — Scheduled cron job
+- <code>write()</code> → triggers sync</p>
+<h4 id="4-depositcategory-similar-to-incometype">4. <strong>deposit.category</strong> — Similar to income.type<a class="headerlink" href="#4-depositcategory-similar-to-incometype" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>cron_sync_deposit_categories()</code></li>
+</ul>
+<h4 id="5-invoicingmec-similar-structure">5. <strong>invoicing.mec</strong> — Similar structure<a class="headerlink" href="#5-invoicingmec-similar-structure" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>cron_sync_invoicing_mecs()</code></li>
+</ul>
+<h4 id="6-accountmoveline-lms_id">6. <strong>account.move.line</strong> — <code>lms_id</code><a class="headerlink" href="#6-accountmoveline-lms_id" title="Permanent link">&para;</a></h4>
+<h4 id="7-accountpayment-lms_id">7. <strong>account.payment</strong> — <code>lms_id</code><a class="headerlink" href="#7-accountpayment-lms_id" title="Permanent link">&para;</a></h4>
+<h4 id="8-respartner-lms_id">8. <strong>res.partner</strong> — <code>lms_id</code><a class="headerlink" href="#8-respartner-lms_id" title="Permanent link">&para;</a></h4>
+<h4 id="9-rescompany-extension-res_config_settingspy">9. <strong>res.company Extension</strong> (<code>res_config_settings.py</code>)<a class="headerlink" href="#9-rescompany-extension-res_config_settingspy" title="Permanent link">&para;</a></h4>
+<p><strong>Fields:</strong>
+- <code>lms_host</code> (Char) — LMS server hostname
+- <code>lms_port</code> (Char) — Port number
+- <code>lms_api_key</code> (Char) — API key for authentication</p>
+<hr />
+<h3 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h3>
+<h4 id="auth_api_keypy-authapikey-model"><strong>auth_api_key.py</strong> (<code>AuthApiKey</code> model)<a class="headerlink" href="#auth_api_keypy-authapikey-model" title="Permanent link">&para;</a></h4>
+<p>API key storage for LMS connections.</p>
+<p><strong>Fields:</strong>
+- <code>name</code> (Char)
+- <code>key</code> (Char, auto-generated)
+- <code>origin</code> (Char)</p>
+<p><strong>Key Methods:</strong>
+- <code>generate_api_key()</code> — Create random key
+- <code>_retrieve_api_key(origin)</code> — Look up key</p>
+<hr />
+<h3 id="authentication-method">Authentication Method<a class="headerlink" href="#authentication-method" title="Permanent link">&para;</a></h3>
+<h4 id="ir_httppy-irhttp-override"><strong>ir_http.py</strong> (<code>IrHttp</code> override)<a class="headerlink" href="#ir_httppy-irhttp-override" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>_auth_method_api_key(cls)</code> — Custom auth handler for <code>@http.route(..., auth='api_key')</code></li>
+<li>Reads API key from request header</li>
+<li>Validates against AuthApiKey records</li>
+<li>Returns authenticated user context</li>
+</ul>
+<hr />
+<h3 id="sync-utilities">Sync Utilities<a class="headerlink" href="#sync-utilities" title="Permanent link">&para;</a></h3>
+<p>Base class: <strong><code>ams_sync_helper/base_sync_helper.py</code></strong> (<code>AMSSyncHelper</code>)
+- <code>_retrieve_record(**kw)</code> — Search by field=value</p>
+<p>Specialized helpers:
+- <strong><code>account_move_sync_helper.py</code></strong> — <code>AccountMoveDataTransform</code>, <code>CancelAccountMoveDataTransform</code>
+  - Transforms LMS invoice JSON → Odoo move data
+  - Handles create vs. update logic
+  - Maps LMS IDs to AMS records</p>
+<ul>
+<li><strong><code>partner_sync_helper.py</code></strong> — Partner sync</li>
+<li><strong><code>contract_sync_helper.py</code></strong> — Contract sync</li>
+<li><strong><code>mall_sync_helper.py</code></strong> — Mall sync</li>
+<li><strong><code>floor_sync_helper.py</code></strong> — Floor sync</li>
+<li><strong><code>bank_sync_helper.py</code></strong> — Bank sync</li>
+<li><strong><code>bank_account_sync_helper.py</code></strong> — Bank account sync</li>
+</ul>
+<h3 id="schema-validation">Schema Validation<a class="headerlink" href="#schema-validation" title="Permanent link">&para;</a></h3>
+<p><strong><code>schemas/schemas.py</code></strong> (<code>SchemaHelper</code>)
+- Static methods for each entity's schema
+- E.g., <code>account_move_schema()</code> — Returns JSON schema for invoice sync payload</p>
+<hr />
+<h3 id="queue-jobs-configuration">Queue Jobs Configuration<a class="headerlink" href="#queue-jobs-configuration" title="Permanent link">&para;</a></h3>
+<p><strong><code>data/queue_job_config_data.xml</code></strong> — Configure OCA queue_job for async sync</p>
+<h3 id="cron-jobs">Cron Jobs<a class="headerlink" href="#cron-jobs" title="Permanent link">&para;</a></h3>
+<p><strong><code>data/ir_cron_data.xml</code></strong> — Scheduled sync tasks:
+- <code>cron_sync_income_types</code>
+- <code>cron_sync_deposit_categories</code>
+- <code>cron_sync_invoicing_mecs</code>
+- <code>cron_update_deposit_contract</code></p>
+<hr />
+<h2 id="ams-partner-module">AMS Partner Module<a class="headerlink" href="#ams-partner-module" title="Permanent link">&para;</a></h2>
+<p><strong>Purpose:</strong> Extend partner/contact records with Vietnamese business details.</p>
+<h3 id="models_2">Models<a class="headerlink" href="#models_2" title="Permanent link">&para;</a></h3>
+<h4 id="1-respartner-extension-res_partnerpy">1. <strong>res.partner Extension</strong> (<code>res_partner.py</code>)<a class="headerlink" href="#1-respartner-extension-res_partnerpy" title="Permanent link">&para;</a></h4>
+<p><strong>19 custom fields</strong> for business/identity verification.</p>
+<p><strong>Fields:</strong>
+- <strong>Contact Classification:</strong>
+  - <code>scid_contact_type</code> (Selection) — person / business / bank / supplier / investor
+  - <code>is_customer</code> (Boolean)
+  - <code>is_contact_point</code> (Boolean)
+  - <code>partner_category</code> (Char)</p>
+<ul>
+<li><strong>Identity:</strong></li>
+<li><code>id_card_no</code> (Char) — ID card number</li>
+<li><code>id_card_issued_date</code> (Date)</li>
+<li>
+<p><code>id_card_issued_place</code> (Char)</p>
+</li>
+<li>
+<p><strong>Business License:</strong></p>
+</li>
+<li><code>business_license</code> (Binary) — File upload</li>
+<li>
+<p><code>business_license_fname</code> (Char) — Filename</p>
+</li>
+<li>
+<p><strong>Authority/Authorization:</strong></p>
+</li>
+<li><code>authority_no</code> (Char)</li>
+<li><code>authority_start_date</code>, <code>authority_end_date</code> (Date)</li>
+<li><code>authority_attach</code> (Binary)</li>
+<li>
+<p><code>authority_attach_filename</code> (Char)</p>
+</li>
+<li>
+<p><strong>Contact Details:</strong></p>
+</li>
+<li><code>fax</code> (Char)</li>
+</ul>
+<p><strong>Key Methods:</strong>
+- <code>onchange_scid_contact_type()</code> — Update field visibility based on type
+- <code>_commercial_fields()</code> — Specify which fields are commercial (not propagated to address contacts)
+- <code>check_vat()</code> — Validate Vietnamese tax code format</p>
+<hr />
+<h4 id="2-resbank-extension-res_bankpy">2. <strong>res.bank Extension</strong> (<code>res_bank.py</code>)<a class="headerlink" href="#2-resbank-extension-res_bankpy" title="Permanent link">&para;</a></h4>
+<p><strong>1 field</strong> for bank branches.</p>
+<p><strong>Fields:</strong>
+- <code>branch</code> (Char) — Branch name/code</p>
+<p><strong>Key Methods:</strong>
+- <code>get_full_bank_address()</code> — Format bank address for reports</p>
+<hr />
+<h3 id="views_2">Views<a class="headerlink" href="#views_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>res_partner_views.xml</code> — Extended partner form</li>
+<li><code>res_bank_views.xml</code> — Bank form with branch field</li>
+</ul>
+<hr />
+<h2 id="pcv-s-invoice-module">PCV S-Invoice Module<a class="headerlink" href="#pcv-s-invoice-module" title="Permanent link">&para;</a></h2>
+<p><strong>Purpose:</strong> Integration with PC S-Invoice e-invoicing system.</p>
+<h3 id="models_3">Models<a class="headerlink" href="#models_3" title="Permanent link">&para;</a></h3>
+<h4 id="1-accountmove-extension-account_movepy_1">1. <strong>account.move Extension</strong> (<code>account_move.py</code>)<a class="headerlink" href="#1-accountmove-extension-account_movepy_1" title="Permanent link">&para;</a></h4>
+<p><strong>6 fields + 22 methods</strong> for S-Invoice workflow.</p>
+<p><strong>Fields:</strong>
+- <code>sinvoice_account_id</code> (Many2one → sinvoice.account)
+- <code>sinvoice_no</code> (Char) — S-Invoice number issued
+- <code>sinvoice_state</code> (Selection) — issued / cancelled / payment_confirmed
+- <code>sinvoice_payment_state</code> (Selection) — unpaid / partial / paid
+- <code>sinvoice_email</code> (Char) — Email to send S-Invoice to
+- <code>transaction_uuid</code> (Char) — Transaction ID for tracking</p>
+<p><strong>Key Methods:</strong>
+- <code>get_sinvoice_template_code_selection(domain=None)</code> — Get available S-Invoice templates
+- <code>_get_view_exported_sinvoice_endpoint()</code> — S-Invoice API endpoint
+- <code>_action_send_sinvoice_email(sinvoice_account)</code> — Send S-Invoice via API
+- <code>update_sinvoice_data(sinvoice_state)</code> — Update from S-Invoice response
+- <code>button_open_sinvoice_wizard()</code> — Open S-Invoice action wizard
+- <code>_prepare_data_to_get_sinvoice()</code> — Prepare API payload to issue S-Invoice
+- <code>_prepare_data_to_send_email_sinvoice()</code> — Prepare email payload
+- <code>_prepare_data_to_update_payment_status_sinvoice()</code> — Prepare payment status update
+- <code>view_exported_sinvoice()</code> — Open S-Invoice in PC viewer
+- <code>action_send_sinvoice_email()</code> — Public action
+- <code>action_send_sinvoice_emails()</code> — Batch send for multiple invoices
+- <code>generate_sinvoice_payment()</code> — Create payment register entry from S-Invoice
+- ... (22 total)</p>
+<hr />
+<h4 id="2-sinvoiceaccount-sinvoice_accountpy">2. <strong>sinvoice.account</strong> (<code>sinvoice_account.py</code>)<a class="headerlink" href="#2-sinvoiceaccount-sinvoice_accountpy" title="Permanent link">&para;</a></h4>
+<p>S-Invoice provider account (PC credentials).</p>
+<p><strong>Fields:</strong>
+- <code>name</code> (Char, required)
+- <code>username</code> (Char) — PC username
+- <code>password</code> (Char) — PC password
+- <code>serial_number</code> (Char) — Invoice serial/batch number
+- <code>production_host</code> (Char) — PC API host
+- <code>status</code> (Selection, computed) — connected / disconnected
+- <code>toggle_status</code> (Boolean, inverse) — Toggle connection
+- <code>partner_id</code> (Many2one → res.partner)</p>
+<p><strong>Key Methods:</strong>
+- <code>_compute_get_status()</code> — Test connection to PC API
+- <code>_inverse_set_status()</code> — Toggle connection on/off
+- <code>test_sinvoice_connection()</code> — Validate credentials
+- <code>disconnect()</code> — Close connection
+- <code>reconnect()</code> — Reopen connection
+- <code>action_update_sinvoice_template()</code> — Sync templates from PC
+- <code>action_view_sinvoice_template()</code> — List templates
+- <code>_update_sinvoice_template(data)</code> — Update local templates from PC response</p>
+<hr />
+<h4 id="3-sinvoicetemplate-sinvoice_templatepy">3. <strong>sinvoice.template</strong> (<code>sinvoice_template.py</code>)<a class="headerlink" href="#3-sinvoicetemplate-sinvoice_templatepy" title="Permanent link">&para;</a></h4>
+<p>S-Invoice templates (invoice formats).</p>
+<p><strong>Fields:</strong>
+- <code>name</code> (Char)
+- <code>code</code> (Char) — Template code from PC
+- <code>active</code> (Boolean)
+- <code>sinvoice_account_id</code> (Many2one → sinvoice.account)
+- <code>sinvoice_type</code> (Selection) — 01 (Normal) / 03 (Replacement) / 07 (Adjustment)
+- <code>invoice_series</code> (Char) — Invoice series code
+- <code>payment_method</code> (Selection) — TM (cash) / CK (transfer) / DTCN / etc.
+- <code>sinvoice_tax_template</code> (Selection) — Standard / Simple accounting
+- <code>journal_ids</code> (Many2many → account.journal) — Links to journals
+- <code>currency_id</code> (Many2one → res.currency)</p>
+<hr />
+<h4 id="4-sinvoicebase-mixin-sinvoice_basepy">4. <strong>sinvoice.base Mixin</strong> (<code>sinvoice_base.py</code>)<a class="headerlink" href="#4-sinvoicebase-mixin-sinvoice_basepy" title="Permanent link">&para;</a></h4>
+<p>Abstract base for S-Invoice fields shared across models.</p>
+<p><strong>Fields:</strong>
+- <code>sinvoice_template_id</code>, <code>sinvoice_template_code</code> (Many2one, Char)
+- <code>sinvoice_issued_date</code> (Datetime)
+- <code>sinvoice_note</code> (Char)
+- <code>sinvoice_template_payment_method</code> (Selection)
+- <code>original_sinvoice_template_id</code>, <code>original_sinvoice_no</code>, <code>original_sinvoice_issued_date</code></p>
+<hr />
+<h4 id="5-accountjournal-extension-account_journalpy">5. <strong>account.journal Extension</strong> (<code>account_journal.py</code>)<a class="headerlink" href="#5-accountjournal-extension-account_journalpy" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>sinvoice_account_id</code> (Many2one → sinvoice.account)</li>
+</ul>
+<hr />
+<h4 id="6-resconfigsettings-extension-res_config_settingspy">6. <strong>res.config.settings Extension</strong> (<code>res_config_settings.py</code>)<a class="headerlink" href="#6-resconfigsettings-extension-res_config_settingspy" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>sinvoice_host_url</code> (Char) — S-Invoice API URL</li>
+</ul>
+<hr />
+<h3 id="wizards_1">Wizards<a class="headerlink" href="#wizards_1" title="Permanent link">&para;</a></h3>
+<p><strong>sinvoice_action_wizard</strong> — Dialog to select action (issue, send, view, update payment)</p>
+<h3 id="cron-jobs_1">Cron Jobs<a class="headerlink" href="#cron-jobs_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>ir_cron_update_payment_state_sinvoice</code> — Scheduled update of payment states from PC</li>
+</ul>
+<hr />
+<h2 id="scid-leasing-mail-workflow-module">SCID Leasing Mail Workflow Module<a class="headerlink" href="#scid-leasing-mail-workflow-module" title="Permanent link">&para;</a></h2>
+<p><strong>Purpose:</strong> Email notifications triggered by leasing document state changes.</p>
+<h3 id="models_4">Models<a class="headerlink" href="#models_4" title="Permanent link">&para;</a></h3>
+<p>All extend from parent leasing models and implement mail notification patterns.</p>
+<h4 id="1-leasingcontract-extension-leasing_contractpy">1. <strong>leasing.contract Extension</strong> (<code>leasing_contract.py</code>)<a class="headerlink" href="#1-leasingcontract-extension-leasing_contractpy" title="Permanent link">&para;</a></h4>
+<p><strong>1 field + 11 methods</strong></p>
+<p><strong>Field:</strong>
+- <code>is_reminder_sent</code> (Boolean) — Tracks if renewal reminder emailed</p>
+<p><strong>Key Methods:</strong>
+- <code>action_confirm_finish()</code> → <code>_action_send_mail_contract_confirmed()</code>
+- <code>action_cancel()</code> → <code>_action_send_mail_contract_cancelled()</code>
+- <code>_action_send_mail_contract_handover_attachment_uploaded()</code> — When handover docs uploaded
+- <code>_action_send_mail_contract_upload_handover()</code> — Request handover upload
+- <code>_action_send_mail_contract_in_leasing()</code> — Notify lease active
+- <code>_run_reminder(days=0, months=6)</code> — Send renewal reminders for contracts expiring in 6 months
+  - Groups emails by user
+  - Uses <code>_send_email_notification()</code> with multi-recipient
+- <code>_get_rental_end_date_contracts(mall_id, days, months, user_id)</code> — Find contracts near expiry
+- <code>write()</code> — Auto-send handover upload email when field updated</p>
+<h4 id="2-leasingtermination-leasing_terminationpy">2. <strong>leasing.termination</strong> (<code>leasing_termination.py</code>)<a class="headerlink" href="#2-leasingtermination-leasing_terminationpy" title="Permanent link">&para;</a></h4>
+<p><strong>4 methods</strong>
+- <code>action_termination_done()</code> → <code>_action_send_mail_termination_done()</code>
+- <code>_action_send_mail_termination_upload_agreement()</code> — Request termination agreement</p>
+<h4 id="3-leasingdeal-leasing_dealpy">3. <strong>leasing.deal</strong> (<code>leasing_deal.py</code>)<a class="headerlink" href="#3-leasingdeal-leasing_dealpy" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>get_deal_status()</code> — Helper method</li>
+</ul>
+<h4 id="4-leasinglaf-leasing_lafpy">4. <strong>leasing.laf</strong> (<code>leasing_laf.py</code>)<a class="headerlink" href="#4-leasinglaf-leasing_lafpy" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>create()</code> → <code>_action_send_mail_created()</code> — Send on creation</li>
+</ul>
+<h4 id="5-leasingol-leasing_olpy">5. <strong>leasing.ol</strong> (<code>leasing_ol.py</code>)<a class="headerlink" href="#5-leasingol-leasing_olpy" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>action_confirm_signed()</code> → <code>_action_send_mail_ol_confirm_signed()</code></li>
+</ul>
+<h4 id="6-leasingappendix-leasing_appendixpy">6. <strong>leasing.appendix</strong> (<code>leasing_appendix.py</code>)<a class="headerlink" href="#6-leasingappendix-leasing_appendixpy" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>button_appendix_confirm()</code> → <code>_action_send_mail_appendix_confirmed()</code></li>
+</ul>
+<h4 id="7-leasingbase-leasing_basepy-abstractmodel">7. <strong>leasing.base</strong> (<code>leasing_base.py</code>) — AbstractModel<a class="headerlink" href="#7-leasingbase-leasing_basepy-abstractmodel" title="Permanent link">&para;</a></h4>
+<p><strong>Core mail notification logic</strong></p>
+<p><strong>Key Methods:</strong>
+- <code>_compute_approval_state()</code> — Computed field
+- <code>_action_send_mail_approval_request(groups=None)</code> — Send approval request to groups
+- <code>_action_send_mail_rejected()</code> — Approval rejected
+- <code>_action_send_mail_approved()</code> — Approved
+- <code>_action_send_mail_signed_uploaded()</code> — Signed docs uploaded
+- <code>_run_reminder_send_approval_request()</code> — Scheduled reminder
+- <code>write()</code> — Hook to auto-send mails on field changes</p>
+<p>All mail methods delegate to <strong><code>ScidMailNotificationMixin._send_email_notification()</code></strong></p>
+<hr />
+<h3 id="mail-templates">Mail Templates<a class="headerlink" href="#mail-templates" title="Permanent link">&para;</a></h3>
+<p><strong><code>data/mail_template_data.xml</code></strong>
+- <code>leasing_contract_confirmed_mail_template</code>
+- <code>leasing_contract_cancelled_mail_template</code>
+- <code>leasing_contract_handover_uploaded_mail_template</code>
+- <code>leasing_contract_handover_attachment_uploaded_mail_template</code>
+- <code>leasing_contract_in_leasing_mail_template</code>
+- <code>leasing_contract_reminder_mail_template</code>
+- ... (7+ templates total)</p>
+<h3 id="cron-jobs_2">Cron Jobs<a class="headerlink" href="#cron-jobs_2" title="Permanent link">&para;</a></h3>
+<p><strong><code>data/cron_view.xml</code></strong>
+- Scheduled task to run <code>_run_reminder()</code> monthly</p>
+<hr />
+<h2 id="scid-mail-notification-mixin-module">SCID Mail Notification Mixin Module<a class="headerlink" href="#scid-mail-notification-mixin-module" title="Permanent link">&para;</a></h2>
+<p><strong>Purpose:</strong> Reusable mixin for sending email notifications to groups.</p>
+<h3 id="models_5">Models<a class="headerlink" href="#models_5" title="Permanent link">&para;</a></h3>
+<h4 id="1-scidmailnotificationmixin-scid_mail_notification_mixinpy">1. <strong>ScidMailNotificationMixin</strong> (<code>scid_mail_notification_mixin.py</code>)<a class="headerlink" href="#1-scidmailnotificationmixin-scid_mail_notification_mixinpy" title="Permanent link">&para;</a></h4>
+<p>AbstractModel providing email utility methods.</p>
+<p><strong>Key Methods:</strong>
+- <code>_send_email_notification(groups=None, template_id=None, excluded_groups=None, added_users=None, multi=False)</code>
+  - Groups: IR groups to notify
+  - Template: Mail template to use
+  - excluded_groups: Groups to exclude
+  - added_users: Additional individual users
+  - multi: Whether to send to multiple recipients
+  - Logic: Build recipient list, send mail via template</p>
+<ul>
+<li><code>get_groups_by_xml_ids(xml_ids=[])</code> — Convert XML IDs to group records</li>
+<li><code>get_odoo_url(action)</code> — Generate deeplink to record in Odoo</li>
+<li>Uses format: <code>{server_url}/web#id={id}&amp;model={model}&amp;action={action}</code></li>
+</ul>
+<h4 id="2-mailmail-extension-mail_mailpy">2. <strong>mail.mail Extension</strong> (<code>mail_mail.py</code>)<a class="headerlink" href="#2-mailmail-extension-mail_mailpy" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>create(values_list)</code> — Hook to track email creation (logging/notifications)</li>
+</ul>
+<hr />
+<h3 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>ir.model.access.csv</code> — Access control for mixin</li>
+</ul>
+<hr />
+<h2 id="journal-restrict-module">Journal Restrict Module<a class="headerlink" href="#journal-restrict-module" title="Permanent link">&para;</a></h2>
+<p><strong>Purpose:</strong> Role-based access control for accounting journals.</p>
+<h3 id="models_6">Models<a class="headerlink" href="#models_6" title="Permanent link">&para;</a></h3>
+<h4 id="1-accountjournal-extension-accountpy">1. <strong>account.journal Extension</strong> (<code>account.py</code>)<a class="headerlink" href="#1-accountjournal-extension-accountpy" title="Permanent link">&para;</a></h4>
+<p><strong>1 field + 3 methods</strong></p>
+<p><strong>Field:</strong>
+- <code>user_ids</code> (Many2many → res.users) — Users allowed to access</p>
+<p><strong>Key Methods:</strong>
+- <code>search()</code> — Override to filter by current user's allowed journals
+- <code>default_get()</code> — Pre-populate user_ids in form
+- <code>_name_search()</code> — Filter search results</p>
+<h4 id="2-resusers-extension-accountpy">2. <strong>res.users Extension</strong> (<code>account.py</code>)<a class="headerlink" href="#2-resusers-extension-accountpy" title="Permanent link">&para;</a></h4>
+<p><strong>1 field + 1 method</strong></p>
+<p><strong>Field:</strong>
+- <code>journal_ids</code> (Many2many → account.journal) — Allowed journals</p>
+<p><strong>Key Method:</strong>
+- <code>default_get()</code> — Set default journals</p>
+<h4 id="3-rescompany-extension-res_config_settingspy">3. <strong>res.company Extension</strong> (<code>res_config_settings.py</code>)<a class="headerlink" href="#3-rescompany-extension-res_config_settingspy" title="Permanent link">&para;</a></h4>
+<p><strong>2 fields</strong> for global config
+- <code>journal_ids</code>, <code>user_ids</code> (Many2many)</p>
+<h4 id="4-resconfigsettings-res_config_settingspy">4. <strong>res.config.settings</strong> (<code>res_config_settings.py</code>)<a class="headerlink" href="#4-resconfigsettings-res_config_settingspy" title="Permanent link">&para;</a></h4>
+<p><strong>2 fields</strong> for settings
+- <code>journal_ids</code>, <code>user_ids</code></p>
+<hr />
+<h3 id="views_3">Views<a class="headerlink" href="#views_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>account_views.xml</code> — Journal form with user field</li>
+<li><code>res_config_settings.xml</code> — Settings form</li>
+</ul>
+<hr />
+<h2 id="biz-accounting-module">BIZ Accounting Module<a class="headerlink" href="#biz-accounting-module" title="Permanent link">&para;</a></h2>
+<p><strong>Purpose:</strong> Collection of 14+ accounting report modules in <strong><code>develop/</code></strong> subdirectory.</p>
+<h3 id="sub-modules-brief-overview">Sub-modules (Brief Overview)<a class="headerlink" href="#sub-modules-brief-overview" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>biz_account_counterpart</strong> — Account counterpart reporting</li>
+<li><strong>biz_account_public_diary</strong> — Public diary/ledger</li>
+<li><strong>biz_account_report_filter_account</strong> — Report filtering</li>
+<li><strong>biz_accounting_balance_sheet</strong> — Balance sheet (BCTC)</li>
+<li><strong>biz_advance_cashflow</strong> — Cash flow analysis</li>
+<li><strong>biz_ams_report_handler</strong> — AMS-specific report handling</li>
+<li><strong>biz_balance_sheet_according_to_circular_no_200</strong> — Compliance reporting</li>
+<li><strong>biz_bank_deposit_book</strong> — Bank reconciliation</li>
+<li><strong>biz_cash_book_money</strong> — Cash book</li>
+<li><strong>biz_cash_flows_report</strong> — Cash flow statements</li>
+<li><strong>biz_details_of_account_books</strong> — Account details</li>
+<li><strong>biz_ledger_according_to_circular_no_200</strong> — Ledger (circular compliance)</li>
+<li><strong>biz_profit_loss_statement</strong> — P&amp;L statement</li>
+<li><strong>biz_purchase_invoices_list</strong> — Purchase invoice list</li>
+<li><strong>biz_sales_invoice_list</strong> — Sales invoice list</li>
+<li><strong>biz_theme_responsive</strong> — UI theme</li>
+<li><strong>report_xlsx</strong> — XLSX report export</li>
+</ol>
+<p>Each provides Vietnamese accounting reports per VN circular 200 standards.</p>
+<hr />
+<h2 id="key-architecture-patterns">Key Architecture Patterns<a class="headerlink" href="#key-architecture-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="1-inheritance-extension">1. <strong>Inheritance &amp; Extension</strong><a class="headerlink" href="#1-inheritance-extension" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Models heavily extend core Odoo models rather than replacing them</li>
+<li>Use <code>_inherit = "target.model"</code> pattern</li>
+<li>Example: <code>account.move</code> has 30+ custom fields across modules</li>
+</ul>
+<h3 id="2-computed-fields-with-dependencies">2. <strong>Computed Fields with Dependencies</strong><a class="headerlink" href="#2-computed-fields-with-dependencies" title="Permanent link">&para;</a></h3>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nd">@api</span><span class="o">.</span><span class="n">depends</span><span class="p">(</span><span class="s1">&#39;contract_id&#39;</span><span class="p">,</span> <span class="s1">&#39;contract_id.mall_id&#39;</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">_compute_mall_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">mall_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contract_id</span><span class="o">.</span><span class="n">mall_id</span>
+</span></code></pre></div>
+- Heavy use of <code>@api.depends()</code> to auto-update fields
+- Reduces manual data entry errors
+- Used for copying related data</p>
+<h3 id="3-onchange-handlers">3. <strong>onchange Handlers</strong><a class="headerlink" href="#3-onchange-handlers" title="Permanent link">&para;</a></h3>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nd">@api</span><span class="o">.</span><span class="n">onchange</span><span class="p">(</span><span class="s1">&#39;contract_id&#39;</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">_onchange_contract</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">deal_code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contract_id</span><span class="o">.</span><span class="n">deal_code</span>
+</span></code></pre></div>
+- UI-level field updates (no save required)</p>
+<h3 id="4-tracking-notifications">4. <strong>Tracking &amp; Notifications</strong><a class="headerlink" href="#4-tracking-notifications" title="Permanent link">&para;</a></h3>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">name</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Char</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">tracking</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></code></pre></div>
+- Mail.thread messages posted on field changes
+- Used in <code>mall_income_config.write()</code> to notify mall on updates</p>
+<h3 id="5-action-methods">5. <strong>Action Methods</strong><a class="headerlink" href="#5-action-methods" title="Permanent link">&para;</a></h3>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">action_post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="c1"># Custom logic before/after posting</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">res</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">action_post</span><span class="p">()</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_action_send_invoice_email</span><span class="p">()</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="k">return</span> <span class="n">res</span>
+</span></code></pre></div>
+- Override standard actions with custom business logic
+- Examples: <code>action_post()</code>, <code>action_confirm_finish()</code>, <code>button_draft()</code></p>
+<h3 id="6-api-key-authentication">6. <strong>API Key Authentication</strong><a class="headerlink" href="#6-api-key-authentication" title="Permanent link">&para;</a></h3>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nd">@http</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/path&#39;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="s1">&#39;api_key&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">endpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="c1"># Custom auth handler in IrHttp</span>
+</span></code></pre></div>
+- Custom <code>api_key</code> authentication for LMS integration
+- API key stored in <code>auth.api.key</code> model</p>
+<h3 id="7-queue-jobs-for-async-sync">7. <strong>Queue Jobs for Async Sync</strong><a class="headerlink" href="#7-queue-jobs-for-async-sync" title="Permanent link">&para;</a></h3>
+<ul>
+<li>OCA <code>queue_job</code> module used for background sync tasks</li>
+<li>Cron jobs trigger sync in batches</li>
+<li>Prevents blocking user operations</li>
+</ul>
+<h3 id="8-sql-queries-for-complex-reports">8. <strong>SQL Queries for Complex Reports</strong><a class="headerlink" href="#8-sql-queries-for-complex-reports" title="Permanent link">&para;</a></h3>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">_cr</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cr</span><span class="o">.</span><span class="n">dictfetchone</span><span class="p">()</span>
+</span></code></pre></div>
+- Raw SQL for complex aging reports
+- Example: <code>account.move.get_deposit_amount()</code> with CTEs</p>
+<h3 id="9-mixin-classes-for-reusability">9. <strong>Mixin Classes for Reusability</strong><a class="headerlink" href="#9-mixin-classes-for-reusability" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>ScidMailNotificationMixin</code> — Shared email logic</li>
+<li><code>SInvoiceBase</code> — Shared S-Invoice fields</li>
+<li>Abstract models inherit by multiple concrete models</li>
+</ul>
+<h3 id="10-context-flags-for-conditional-logic">10. <strong>Context Flags for Conditional Logic</strong><a class="headerlink" href="#10-context-flags-for-conditional-logic" title="Permanent link">&para;</a></h3>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;bypass_sync_to_lms&#39;</span><span class="p">):</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="c1"># Skip sync</span>
+</span></code></pre></div>
+- Control behavior via context dict
+- Used in: <code>bypass_customization</code>, <code>skip_auto_send_invoice_email</code>, <code>generate_sinvoice_payment</code></p>
+<hr />
+<h2 id="model-relationships">Model Relationships<a class="headerlink" href="#model-relationships" title="Permanent link">&para;</a></h2>
+<h3 id="core-domain">Core Domain<a class="headerlink" href="#core-domain" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>mall.mall (1)
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>+- mall.floor (n) — floors in mall                      
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>|  +- leasing.contract (n) — contracts on floor         
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>|     +- res.partner (1) — tenant                       
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>|     +- account.move (n) — invoices for contract       
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>|        +- account.move.line (n)                       
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>|        +- account.payment (n) — partial payments      
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>|        +- account.move (late fees) — late payment fees
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>+- mall.income.config (n) — income types per floor      
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>|  +- income.type (1) — fee type                        
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>|     +- account.account (1) — revenue account          
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>|     +- account.tax (1) — tax to apply                 
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>+- deposit.category (n) — deposit types                 
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>+- account.journal (n) — profit/cost/bank journals      
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>+- res.partner (1) — accountant                         
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>account.move (Invoice/Entry)
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>+- leasing.contract (1) — related contract                              
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>+- mall.mall (1) — via journal/contract                                 
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>+- account.move.line (n)                                                
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>|  +- income.type (1) — fee type for line                               
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>+- account.payment (n) — partial payments                               
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>+- account.move (late_payment_original_move_id) --&gt; late fees (One2many)
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>res.partner (Contact)
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>+- leasing.contract (n) — as tenant    
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>+- account.move (n) — customer/vendor  
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>+- res.partner.bank (n) — bank accounts
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>+- auth.api.key (n) — API keys (LMS)   
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a>
+</span><span id="__span-7-31"><a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a>invoicing.mec (Billing Period)
+</span><span id="__span-7-32"><a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a>+- account.move (n) — invoices in period (via date range)
+</span><span id="__span-7-33"><a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a>
+</span><span id="__span-7-34"><a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a>sinvoice.account (e-Invoice Provider)
+</span><span id="__span-7-35"><a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a>+- sinvoice.template (n) — invoice templates       
+</span><span id="__span-7-36"><a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a>   +- account.journal (n) — journals using template
+</span></code></pre></div>
+<hr />
+<h2 id="data-flow-sync-strategy">Data Flow &amp; Sync Strategy<a class="headerlink" href="#data-flow-sync-strategy" title="Permanent link">&para;</a></h2>
+<h3 id="ams-lms-sync-outbound">AMS → LMS Sync (Outbound)<a class="headerlink" href="#ams-lms-sync-outbound" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>User creates/modifies in AMS
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    v
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>Model&#39;s write() method sets lms_sync_needed = True
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    v
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>Queue Job picks up (or Cron runs)
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    v
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>Sync Helper formats data for LMS API
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    v
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>POST to LMS REST endpoint (/account_move/sync, /partner/sync, etc.)
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    v
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>LMS returns AMS ID &lt;-&gt; LMS ID mapping
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    v
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>Store lms_id in AMS record, last_lms_sync_at = now
+</span></code></pre></div>
+<p><strong>Sync Trigger Points:</strong>
+- <code>income.type.write()</code> / <code>create()</code> → sync via cron
+- <code>deposit.category.write()</code> / <code>create()</code> → sync via cron
+- <code>invoicing.mec.write()</code> / <code>create()</code> / state changes → sync via cron
+- <code>account.move.write()</code> if lms_sync_needed → immediate or queued
+- Deposit entries on <code>account.move.action_post()</code> → sync deposit detail</p>
+<h3 id="lms-ams-sync-inbound">LMS → AMS Sync (Inbound)<a class="headerlink" href="#lms-ams-sync-inbound" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>LMS initiates POST to AMS endpoint
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    v
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Controller validates API key (IrHttp._auth_method_api_key)
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    v
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>Controller validates JSON schema (SchemaHelper)
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    v
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>Data Transformer maps LMS fields --&gt; Odoo fields
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    v
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>Create new records (if lms_id not found)
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    OR
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>Update existing records (if lms_id found)
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>    v
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>Return mapping of {lms_id: ams_id, line_ids: [...]}
+</span></code></pre></div>
+<p><strong>Supported LMS → AMS Endpoints:</strong>
+- <code>/account_move/sync</code> — Invoices
+- <code>/account_move/cancel</code> — Cancel invoices
+- <code>/partner/sync</code> — Partners
+- <code>/contract/sync</code> — Leasing contracts
+- <code>/mall/sync</code> — Malls
+- <code>/floor/sync</code> — Floors
+- <code>/bank/sync</code> — Banks
+- <code>/bank_account/sync</code> — Bank accounts
+- <code>/account_payment/sync</code> — Payments</p>
+<h3 id="e-invoice-s-invoice-flow">E-Invoice (S-Invoice) Flow<a class="headerlink" href="#e-invoice-s-invoice-flow" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>User selects S-Invoice template on account.move
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    v
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>User clicks &quot;Send S-Invoice&quot;
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    v
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>action_send_sinvoice_email()
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    v
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>API call to PC S-Invoice system
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>  - Pass: invoice data, customer email, serial number
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>  - Get: S-Invoice number, issued date, UUID
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>    v
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>Update move with:
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>  sinvoice_no, sinvoice_state, transaction_uuid
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>    v
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>Send email to customer with S-Invoice link
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>    v
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>Cron job periodically checks payment status at PC API
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>    v
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>Update sinvoice_payment_state when paid
+</span></code></pre></div>
+<h3 id="late-payment-fee-calculation">Late Payment Fee Calculation<a class="headerlink" href="#late-payment-fee-calculation" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>InvoicingMEC created (e.g., for period 2026-01-01 to 2026-01-31)
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    v
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>User triggers: get_late_payment_invoice(mec_id)
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    v
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>Query invoices due in period with deffered_interest &gt; 0
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    v
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>For each unpaid invoice:
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>  1. Find all payments made during MEC period
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>  2. Calculate interest on paid amount (days × rate × amount)
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>  3. Calculate interest on unpaid residual
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>  4. Create journal entry with calculated fees
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>    v
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>Store late_payment_created_move_ids link for tracking
+</span></code></pre></div>
+<h3 id="lease-renewal-reminder-flow">Lease Renewal Reminder Flow<a class="headerlink" href="#lease-renewal-reminder-flow" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Cron job runs monthly: _run_reminder()
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    v
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Find contracts expiring in 6 months with is_reminder_sent = False
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    v
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>Group by assignee (user_id)
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    v
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>For each group:
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>  Send mail template to:
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>  - scid_leasing.group_mall_manager
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>  - scid_leasing.group_scid_leasing_team
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>  - Exclude: scid_leasing.group_lms_administrator
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>    v
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>Set is_reminder_sent = True to prevent duplicate
+</span></code></pre></div>
+<hr />
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p><strong>AMS</strong> is a comprehensive leasing &amp; invoicing management system built on Odoo 16 Enterprise with:</p>
+<ol>
+<li><strong>Core Domain Models</strong> — Malls, floors, leasing contracts, tenants, income types</li>
+<li><strong>Advanced Invoicing</strong> — Multi-type invoices, proforma, deposits, late fees, debt aging</li>
+<li><strong>Sync Integration</strong> — Two-way REST API with LMS system (queue_job async)</li>
+<li><strong>E-Invoicing</strong> — S-Invoice (PC) integration for Vietnamese e-invoices</li>
+<li><strong>Email Workflows</strong> — Automated notifications on lease milestones</li>
+<li><strong>Multi-module Architecture</strong> — 9 custom modules + 14 accounting report modules</li>
+<li><strong>Vietnamese Compliance</strong> — VAT, address formats, circular 200 reporting</li>
+</ol>
+<p><strong>Key Technologies:</strong>
+- Odoo 16 Enterprise (models, controllers, wizards)
+- OCA queue_job (async sync)
+- REST API (JSON schema validation)
+- Custom authentication (API keys)
+- SQL queries (complex reports)
+- Mail templates &amp; groups
+- Computed fields &amp; dependencies</p>
+<hr />
+<p><strong>Total Lines of Code:</strong> ~15,000+ across all modules
+<strong>Models Extended:</strong> 30+
+<strong>Controllers:</strong> 8
+<strong>Wizards:</strong> 4
+<strong>Reports:</strong> 17+
+<strong>Cron Jobs:</strong> 5+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Trở lại mục lục
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2026 SCID JSC
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/scid-jsc" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "navigation.instant", "navigation.instant.progress", "navigation.path", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0110\u00e3 sao ch\u00e9p", "clipboard.copy": "Sao ch\u00e9p v\u00e0o b\u1ed9 nh\u1edb t\u1ea1m", "search.result.more.one": "1 t\u1eeb kh\u00e1c trong trang", "search.result.more.other": "# t\u1eeb kh\u00e1c trong trang", "search.result.none": "Kh\u00f4ng t\u00ecm th\u1ea5y t\u00e0i li\u1ec7u li\u00ean quan", "search.result.one": "1 t\u00e0i li\u1ec7u li\u00ean quan", "search.result.other": "# t\u00e0i li\u1ec7u li\u00ean quan", "search.result.placeholder": "Nh\u1eadp \u0111\u1ec3 b\u1eaft \u0111\u1ea7u t\u00ecm ki\u1ebfm", "search.result.term.missing": "Kh\u00f4ng", "select.version": "Ch\u1ecdn phi\u00ean b\u1ea3n"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
