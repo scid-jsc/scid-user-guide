@@ -122,20 +122,20 @@ Dự án MkDocs có cấu trúc như sau:
 
 ```
 scid-user-guide/
-├── docs/                    # Thư mục chứa tất cả các tài liệu Markdown
-│   ├── index.md            # Trang chính
-│   ├── setup/              # Mục hướng dẫn cài đặt
-│   │   └── moi-truong.md   # Trang này
-│   ├── e-office/           # Các hướng dẫn e-office
-│   └── ...
-├── mkdocs.yml              # File cấu hình chính của MkDocs
-├── overrides/              # Thư mục ghi đè template (nếu có)
-│   └── ...
-├── docs/stylesheets/       # Stylesheet tùy chỉnh
-│   └── extra.css
-├── site/                   # Thư mục chứa trang build (được tạo tự động)
-├── .gitignore              # File liệt kê các file không commit
-└── README.md               # File mô tả dự án
++-- docs/                    # Thư mục chứa tất cả các tài liệu Markdown 
+|   +-- index.md            # Trang chính                                
+|   +-- setup/              # Mục hướng dẫn cài đặt                      
+|   |   +-- moi-truong.md   # Trang này                                  
+|   +-- e-office/           # Các hướng dẫn e-office                     
+|   +-- ...                                                              
++-- mkdocs.yml              # File cấu hình chính của MkDocs             
++-- overrides/              # Thư mục ghi đè template (nếu có)           
+|   +-- ...                                                              
++-- docs/stylesheets/       # Stylesheet tùy chỉnh                       
+|   +-- extra.css                                                        
++-- site/                   # Thư mục chứa trang build (được tạo tự động)
++-- .gitignore              # File liệt kê các file không commit         
++-- README.md               # File mô tả dự án                           
 ```
 
 ### Mô tả từng phần:

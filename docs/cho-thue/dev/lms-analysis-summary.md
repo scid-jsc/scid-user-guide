@@ -91,20 +91,20 @@ Custom Kanban-like "plan" view for visual workflow display.
 
 ```
 DRAFT (new deal)
-  ↓
+  v
 IN_DEAL (LAF form created)
-  ↓
+  v
 WAIT_APPROVAL (LAF submitted, awaiting approvals)
-  ↓
+  v
 ON_AGREEMENT (LAF approved, contract negotiation begins)
-  ↓ [Contract created, must be approved and confirmed]
+  v [Contract created, must be approved and confirmed]
 WAIT_TRANSFER (contract signed, waiting for space handover)
-  ↓
+  v
 CONSTRUCTION (handover done, waiting for rental start)
-  ↓
+  v
 LEASING (rental_start_date reached, active lease)
-  ↓ [optional] APPENDIX_APPROVAL (contract amendment)
-  ↓ [or] TERMINATION_WAITING → ... → TERMINATION_DONE
+  v [optional] APPENDIX_APPROVAL (contract amendment)
+  v [or] TERMINATION_WAITING --> ... --> TERMINATION_DONE
 ```
 
 **State Determinism:** Computed by `leasing.deal.get_deal_status()` based on:
@@ -119,36 +119,36 @@ LEASING (rental_start_date reached, active lease)
 
 ```
 LMS Creates Contract
-  ↓
+  v
 create() hook triggers _action_sync_to_ams()
-  ↓
+  v
 Sets ams_sync_needed=False, marks last_ams_sync_at
-  ↓
+  v
 Batches into 50-record chunks
-  ↓
+  v
 with_delay()._sync_contracts() (async job)
-  ↓
+  v
 POST to AMS /contracts/sync with contract data
-  ↓
+  v
 AMS responds with sync status
 
 [Fallback] cron_sync_contracts() runs daily
-  ↓
+  v
 Finds contracts with last_ams_sync_at=NULL or ams_sync_needed=True
-  ↓
+  v
 Re-queues via _action_sync_to_ams()
 ```
 
 **Reverse Flow:** AMS POSTs to LMS endpoints
 ```
 AMS POST /account_move/update_state
-  ↓
+  v
 LMS validates schema
-  ↓
+  v
 Transforms to LMS format via AccountMoveDataTransform
-  ↓
+  v
 Updates with .with_context(bypass_sync=True)
-  ↓ [prevents re-syncing back to AMS]
+  v [prevents re-syncing back to AMS]
 ```
 
 ---
@@ -157,19 +157,19 @@ Updates with .with_context(bypass_sync=True)
 
 ```
 User activates MEC (billing period) via action_active()
-  ↓
+  v
 Only ONE MEC can be 'active' at a time
-  ↓
+  v
 period_start_time, period_end_time computed
-  ↓
+  v
 Cron job: find all contracts active in [start, end]
-  ↓
+  v
 For each contract:
-  - Base rental_income_ids → amount per month
-  - share_income_ids → percentage of revenue
+  - Base rental_income_ids --> amount per month
+  - share_income_ids --> percentage of revenue
   - Create account.move with correct amount
   - Mark as is_proforma_invoice or posted
-  ↓
+  v
 Account entries synced to AMS via scid_ams_sync
 ```
 
