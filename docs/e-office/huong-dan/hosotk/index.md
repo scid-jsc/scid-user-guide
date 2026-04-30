@@ -17,7 +17,7 @@ Hệ thống **HOSOTK** (Hồ sơ Trình ký) theo dõi quy trình phê duyệt 
 ## Luồng quy trình
 
 ```
-New → Gửi Thư ký PTổng → Đợi Phó Tổng → Phó Tổng trả → Gửi Thư ký TGĐ → Đợi TGĐ → TGĐ duyệt → Chờ TT → Đang TT → Đã TT → Hoàn thành
+New --> Gửi Thư ký PTổng --> Đợi Phó Tổng --> Phó Tổng trả --> Gửi Thư ký TGĐ --> Đợi TGĐ --> TGĐ duyệt --> Chờ TT --> Đang TT --> Đã TT --> Hoàn thành
 ```
 
 ## Hướng dẫn cài đặt

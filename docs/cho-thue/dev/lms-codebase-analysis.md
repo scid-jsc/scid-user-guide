@@ -300,23 +300,23 @@ Both share base fields and follow similar state machines.
 ### Deal Lifecycle
 ```
 1. DRAFT (new deal created)
-   ↓
+   v
 2. IN_DEAL (LAF created, still drafting)
-   ↓
+   v
 3. WAIT_APPROVAL (LAF submitted, pending approval)
-   ↓
+   v
 4. ON_AGREEMENT (LAF approved, contract negotiation)
-   ↓
-5. Contract created → WAIT_TRANSFER (handover pending)
-   ↓
+   v
+5. Contract created --> WAIT_TRANSFER (handover pending)
+   v
 6. CONSTRUCTION (handover doc uploaded, before rental start)
-   ↓
+   v
 7. LEASING (rental_start_date reached, active lease)
-   ↓ (optional amendment)
+   v (optional amendment)
 8. APPENDIX_APPROVAL (amendment pending)
-   ↓
-9. TERMINATION_WAITING → TERMINATION_TO_APPROVAL → 
-   TERMINATION_TO_CONFIRM → TERMINATION_DONE (end lease)
+   v
+9. TERMINATION_WAITING --> TERMINATION_TO_APPROVAL --> 
+   TERMINATION_TO_CONFIRM --> TERMINATION_DONE (end lease)
 ```
 
 ### Approval Workflow
@@ -327,31 +327,31 @@ Both share base fields and follow similar state machines.
 
 ### Invoicing Cycle
 ```
-MEC active period defined → contracts in that period
-→ Auto-generate invoices monthly/quarterly/yearly
-→ on invoice_day of month
-→ Link to contract rental_income_ids (base fee) + share_income_ids (%)
-→ Post to account.move (accounting entry)
-→ (Optional) Sync to AMS account.move
+MEC active period defined --> contracts in that period
+--> Auto-generate invoices monthly/quarterly/yearly
+--> on invoice_day of month
+--> Link to contract rental_income_ids (base fee) + share_income_ids (%)
+--> Post to account.move (accounting entry)
+--> (Optional) Sync to AMS account.move
 ```
 
 ### AMS Sync Flow
 ```
 1. LMS User creates leasing.contract
-   → create() hook calls _action_sync_to_ams()
-   → Sets ams_sync_needed = False
-   → Queues batch_queue (50 contracts) → _sync_contracts()
-   → Calls AMS POST /contracts/sync
+   --> create() hook calls _action_sync_to_ams()
+   --> Sets ams_sync_needed = False
+   --> Queues batch_queue (50 contracts) --> _sync_contracts()
+   --> Calls AMS POST /contracts/sync
    
 2. If ams_sync_needed = True or last_ams_sync_at = NULL
-   → cron_sync_contracts() finds records
-   → Calls _action_sync_to_ams()
-   → Same batch queue flow
+   --> cron_sync_contracts() finds records
+   --> Calls _action_sync_to_ams()
+   --> Same batch queue flow
 
 3. AMS can POST to LMS endpoints:
-   → /account_move/update_state (record posted)
-   → /deposit_entry/post (deposit confirmed)
-   → /deposit_entry/get_deposit_contract (query)
+   --> /account_move/update_state (record posted)
+   --> /deposit_entry/post (deposit confirmed)
+   --> /deposit_entry/get_deposit_contract (query)
 ```
 
 ---
@@ -400,44 +400,44 @@ Base class for models that send emails on state changes
 **Directory Structure:**
 ```
 scid_leasing/
-  ├── models/
-  │   ├── base/          (res.partner, res.user extensions)
-  │   ├── leasing/       (deal, contract, appendix, termination, approval, etc.)
-  │   ├── mall/          (mall, floor, location, income models)
-  │   └── accounting/    (account.move, account.payment extensions)
-  ├── wizards/           (12 wizard classes for UI actions)
-  ├── views/             (XML view definitions)
-  ├── security/          (access rules, groups)
-  ├── report/            (PDF reports)
-  └── static/            (JS, SCSS, XML assets)
+  +-- models/                                                                   
+  |   +-- base/          (res.partner, res.user extensions)                     
+  |   +-- leasing/       (deal, contract, appendix, termination, approval, etc.)
+  |   +-- mall/          (mall, floor, location, income models)                 
+  |   +-- accounting/    (account.move, account.payment extensions)             
+  +-- wizards/           (12 wizard classes for UI actions)                     
+  +-- views/             (XML view definitions)                                 
+  +-- security/          (access rules, groups)                                 
+  +-- report/            (PDF reports)                                          
+  +-- static/            (JS, SCSS, XML assets)                                 
 
 scid_ams_sync/
-  ├── models/            (Model overrides with ams_* fields)
-  ├── controllers/       (REST API endpoints)
-  ├── schemas/           (Request validation)
-  ├── utils/
-  │   ├── ams_connector_helper/     (REST client wrappers)
-  │   └── ams_sync_helper/          (Data transformation)
-  └── views/             (Config settings views)
+  +-- models/            (Model overrides with ams_* fields)
+  +-- controllers/       (REST API endpoints)               
+  +-- schemas/           (Request validation)               
+  +-- utils/                                                
+  |   +-- ams_connector_helper/     (REST client wrappers)  
+  |   +-- ams_sync_helper/          (Data transformation)   
+  +-- views/             (Config settings views)            
 
 scid_invoicing/
-  ├── models/
-  │   ├── invoicing_mec.py
-  │   ├── invoicing_tos.py
-  │   ├── invoicing_utility.py
-  │   ├── account_move.py           (Invoice generation logic)
-  │   └── leasing_contract.py        (Invoice schedule integration)
-  ├── wizard/            (Manual invoice creation)
-  └── views/
+  +-- models/                                                      
+  |   +-- invoicing_mec.py                                         
+  |   +-- invoicing_tos.py                                         
+  |   +-- invoicing_utility.py                                     
+  |   +-- account_move.py           (Invoice generation logic)     
+  |   +-- leasing_contract.py        (Invoice schedule integration)
+  +-- wizard/            (Manual invoice creation)                 
+  +-- views/                                                       
 
 scid_leasing_mail_workflow/
-  └── models/            (State change email templates)
+  +-- models/            (State change email templates)
 
 vn_address/
-  └── models/            (District, Ward, Region hierarchies)
+  +-- models/            (District, Ward, Region hierarchies)
 
 web_plan_layout/
-  └── static/src/        (Kanban-like plan display)
+  +-- static/src/        (Kanban-like plan display)
 ```
 
 ---

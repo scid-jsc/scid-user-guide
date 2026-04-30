@@ -990,41 +990,41 @@ if self.env.context.get('bypass_sync_to_lms'):
 
 ```
 mall.mall (1)
-├─ mall.floor (n) — floors in mall
-│  └─ leasing.contract (n) — contracts on floor
-│     ├─ res.partner (1) — tenant
-│     └─ account.move (n) — invoices for contract
-│        ├─ account.move.line (n)
-│        ├─ account.payment (n) — partial payments
-│        └─ account.move (late fees) — late payment fees
-├─ mall.income.config (n) — income types per floor
-│  └─ income.type (1) — fee type
-│     ├─ account.account (1) — revenue account
-│     └─ account.tax (1) — tax to apply
-├─ deposit.category (n) — deposit types
-├─ account.journal (n) — profit/cost/bank journals
-└─ res.partner (1) — accountant
++- mall.floor (n) — floors in mall                      
+|  +- leasing.contract (n) — contracts on floor         
+|     +- res.partner (1) — tenant                       
+|     +- account.move (n) — invoices for contract       
+|        +- account.move.line (n)                       
+|        +- account.payment (n) — partial payments      
+|        +- account.move (late fees) — late payment fees
++- mall.income.config (n) — income types per floor      
+|  +- income.type (1) — fee type                        
+|     +- account.account (1) — revenue account          
+|     +- account.tax (1) — tax to apply                 
++- deposit.category (n) — deposit types                 
++- account.journal (n) — profit/cost/bank journals      
++- res.partner (1) — accountant                         
 
 account.move (Invoice/Entry)
-├─ leasing.contract (1) — related contract
-├─ mall.mall (1) — via journal/contract
-├─ account.move.line (n)
-│  └─ income.type (1) — fee type for line
-├─ account.payment (n) — partial payments
-└─ account.move (late_payment_original_move_id) → late fees (One2many)
++- leasing.contract (1) — related contract                              
++- mall.mall (1) — via journal/contract                                 
++- account.move.line (n)                                                
+|  +- income.type (1) — fee type for line                               
++- account.payment (n) — partial payments                               
++- account.move (late_payment_original_move_id) --> late fees (One2many)
 
 res.partner (Contact)
-├─ leasing.contract (n) — as tenant
-├─ account.move (n) — customer/vendor
-├─ res.partner.bank (n) — bank accounts
-└─ auth.api.key (n) — API keys (LMS)
++- leasing.contract (n) — as tenant    
++- account.move (n) — customer/vendor  
++- res.partner.bank (n) — bank accounts
++- auth.api.key (n) — API keys (LMS)   
 
 invoicing.mec (Billing Period)
-└─ account.move (n) — invoices in period (via date range)
++- account.move (n) — invoices in period (via date range)
 
 sinvoice.account (e-Invoice Provider)
-└─ sinvoice.template (n) — invoice templates
-   └─ account.journal (n) — journals using template
++- sinvoice.template (n) — invoice templates       
+   +- account.journal (n) — journals using template
 ```
 
 ---
@@ -1035,17 +1035,17 @@ sinvoice.account (e-Invoice Provider)
 
 ```
 User creates/modifies in AMS
-    ↓
+    v
 Model's write() method sets lms_sync_needed = True
-    ↓
+    v
 Queue Job picks up (or Cron runs)
-    ↓
+    v
 Sync Helper formats data for LMS API
-    ↓
+    v
 POST to LMS REST endpoint (/account_move/sync, /partner/sync, etc.)
-    ↓
-LMS returns AMS ID ↔ LMS ID mapping
-    ↓
+    v
+LMS returns AMS ID <-> LMS ID mapping
+    v
 Store lms_id in AMS record, last_lms_sync_at = now
 ```
 
@@ -1060,17 +1060,17 @@ Store lms_id in AMS record, last_lms_sync_at = now
 
 ```
 LMS initiates POST to AMS endpoint
-    ↓
+    v
 Controller validates API key (IrHttp._auth_method_api_key)
-    ↓
+    v
 Controller validates JSON schema (SchemaHelper)
-    ↓
-Data Transformer maps LMS fields → Odoo fields
-    ↓
+    v
+Data Transformer maps LMS fields --> Odoo fields
+    v
 Create new records (if lms_id not found)
     OR
 Update existing records (if lms_id found)
-    ↓
+    v
 Return mapping of {lms_id: ams_id, line_ids: [...]}
 ```
 
@@ -1089,22 +1089,22 @@ Return mapping of {lms_id: ams_id, line_ids: [...]}
 
 ```
 User selects S-Invoice template on account.move
-    ↓
+    v
 User clicks "Send S-Invoice"
-    ↓
+    v
 action_send_sinvoice_email()
-    ↓
+    v
 API call to PC S-Invoice system
   - Pass: invoice data, customer email, serial number
   - Get: S-Invoice number, issued date, UUID
-    ↓
+    v
 Update move with:
   sinvoice_no, sinvoice_state, transaction_uuid
-    ↓
+    v
 Send email to customer with S-Invoice link
-    ↓
+    v
 Cron job periodically checks payment status at PC API
-    ↓
+    v
 Update sinvoice_payment_state when paid
 ```
 
@@ -1112,17 +1112,17 @@ Update sinvoice_payment_state when paid
 
 ```
 InvoicingMEC created (e.g., for period 2026-01-01 to 2026-01-31)
-    ↓
+    v
 User triggers: get_late_payment_invoice(mec_id)
-    ↓
+    v
 Query invoices due in period with deffered_interest > 0
-    ↓
+    v
 For each unpaid invoice:
   1. Find all payments made during MEC period
   2. Calculate interest on paid amount (days × rate × amount)
   3. Calculate interest on unpaid residual
   4. Create journal entry with calculated fees
-    ↓
+    v
 Store late_payment_created_move_ids link for tracking
 ```
 
@@ -1130,17 +1130,17 @@ Store late_payment_created_move_ids link for tracking
 
 ```
 Cron job runs monthly: _run_reminder()
-    ↓
+    v
 Find contracts expiring in 6 months with is_reminder_sent = False
-    ↓
+    v
 Group by assignee (user_id)
-    ↓
+    v
 For each group:
   Send mail template to:
   - scid_leasing.group_mall_manager
   - scid_leasing.group_scid_leasing_team
   - Exclude: scid_leasing.group_lms_administrator
-    ↓
+    v
 Set is_reminder_sent = True to prevent duplicate
 ```
 

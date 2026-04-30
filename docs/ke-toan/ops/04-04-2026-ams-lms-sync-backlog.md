@@ -13,8 +13,8 @@ Trường `lms_sync_needed = True` trên `account.move` tích lũy lên **11,970
 ## 2. Kiến trúc sync AMS↔LMS
 
 ```
-LMS → AMS:  POST /account_move/sync          (LMS gọi AMS khi tạo record)
-AMS → LMS:  POST /account_move/update_state  (AMS gọi LMS khi state thay đổi)
+LMS --> AMS:  POST /account_move/sync          (LMS gọi AMS khi tạo record)
+AMS --> LMS:  POST /account_move/update_state  (AMS gọi LMS khi state thay đổi)
 ```
 
 **Flow đúng:**
@@ -84,16 +84,16 @@ WHERE lms_sync_needed = true;
 ## 5. Xác minh
 
 ```bash
-# AMS → LMS connectivity OK
+# AMS --> LMS connectivity OK
 curl -X POST http://10.1.2.5/account_move/update_state \
   -H 'X-Api-Key: <key>' -H 'Origin: https://ams.scid.vn' \
   -H 'Content-Type: application/json' \
   -d '{"account_moves": [{"ams_id": 29678, "lms_id": 947, "state": "posted"}]}'
-# → HTTP 200, account_moves: [] (xác nhận orphan, không phải lỗi auth)
+# --> HTTP 200, account_moves: [] (xác nhận orphan, không phải lỗi auth)
 
 # LMS không có records này
 # psql LMS_Production: SELECT * FROM account_move WHERE ams_id IN (29678, 14558)
-# → 0 rows ✓
+# --> 0 rows ✓
 ```
 
 ---
@@ -133,12 +133,12 @@ sshpass -p 'SC!D2025zuize' ssh root@10.1.2.6 "su - odoo -s /bin/bash -c \
 ```bash
 # Từ AMS server
 curl -X POST http://10.1.2.5/account_move/update_state \
-  -H 'X-Api-Key: <lms_api_key từ AMS Settings → Company>' \
+  -H 'X-Api-Key: <lms_api_key từ AMS Settings --> Company>' \
   -H 'Origin: https://ams.scid.vn' \
   -H 'Content-Type: application/json' \
   -d '{"account_moves": [{"ams_id": 1, "lms_id": 1, "state": "posted"}]}'
-# Nếu trả về 401/403 → kiểm tra API key
-# Nếu Connection refused → LMS down hoặc network issue
+# Nếu trả về 401/403 --> kiểm tra API key
+# Nếu Connection refused --> LMS down hoặc network issue
 ```
 
 ### Nếu cần clear orphan records mới
