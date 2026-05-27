@@ -7,9 +7,15 @@ sidebar_label: Trang chủ
 
 import { ModuleCards } from '@site/src/components/ModuleCards';
 
-# Hướng dẫn Sử dụng Hệ thống SCID
+<div className="scid-hero">
 
-Chào mừng bạn đến với trang hướng dẫn sử dụng hệ thống ERP của **SCID JSC**.
+<div className="scid-hero-eyebrow">v2026.05 · cập nhật hôm nay</div>
+
+# Hệ thống ERP <span className="scid-accent">SCID JSC</span>
+
+Hướng dẫn vận hành cho toàn bộ nhân viên — từ kế toán đến nhân sự, từ helpdesk đến quản lý mặt bằng TTTM.
+
+</div>
 
 <ModuleCards />
 
