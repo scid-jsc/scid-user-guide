@@ -1,26 +1,92 @@
-# Hướng dẫn sử dụng Hệ thống Helpdesk SCID
-
-:::info[Ban hành cho các đơn vị Sense]
-
-Tài liệu này hướng dẫn cán bộ, nhân viên các đơn vị Sense (Sense Cần Thơ, Sense Cà Mau, Sense Phạm Văn Đồng, Sense Bến Tre, Sense Cái Bè) sử dụng Hệ thống Helpdesk tại địa chỉ **[scid.vn/helpdesk](https://scid.vn/helpdesk)** để gửi yêu cầu hỗ trợ về Công nghệ thông tin.
-
-:::
-
-[📄 **Tải file Word bản đầy đủ**](../dist/Huong-dan-su-dung-Helpdesk-SCID-v1.0.docx)
-
 ---
+title: Hướng dẫn sử dụng Hệ thống Helpdesk SCID
+description: Hướng dẫn gửi yêu cầu hỗ trợ CNTT qua scid.vn/helpdesk cho 5 đơn vị Sense.
+hide_title: true
+---
+
+import {
+  HaloPage,
+  Hero,
+  Callout,
+  Tip,
+  Note,
+  FeatureGrid,
+  CtaBanner,
+  Feedback,
+} from '@site/src/components/halo';
+import docxUrl from '../dist/Huong-dan-su-dung-Helpdesk-SCID-v1.0.docx';
+
+<HaloPage>
+
+<Hero
+  title="Hệ thống Helpdesk SCID"
+  intro="Cổng tiếp nhận yêu cầu hỗ trợ Công nghệ thông tin cho cán bộ, nhân viên các đơn vị Sense. Gửi ticket, theo dõi tiến độ và phản hồi đều thực hiện qua một địa chỉ duy nhất."
+  version="v1.0"
+  updated="27/05/2026"
+  readTime="≈ 6 phút đọc"
+/>
+
+<Callout label="Ban hành cho các đơn vị Sense">
+  Tài liệu này hướng dẫn cán bộ, nhân viên các đơn vị Sense (Sense Cần Thơ, Sense Cà Mau, Sense Phạm Văn Đồng, Sense Bến Tre, Sense Cái Bè) sử dụng Hệ thống Helpdesk tại địa chỉ <strong>[scid.vn/helpdesk](https://scid.vn/helpdesk)</strong> để gửi yêu cầu hỗ trợ về Công nghệ thông tin.
+</Callout>
 
 ## Tổng quan
 
-Hệ thống Helpdesk tiếp nhận yêu cầu hỗ trợ về:
+Hệ thống Helpdesk tiếp nhận yêu cầu hỗ trợ thuộc 7 nhóm chính. Bấm vào thẻ để xem dịch vụ chi tiết bên dưới.
 
-- **Hệ thống VTD** — CTKM, PMH, Coupon, Voucher, Sản phẩm, Barcode, Tài khoản ESSXanh/ESSCAM, Kiosk tra cứu
-- **Hệ thống Odoo** — HRMS, eOffice, báo cáo, module
-- **Thiết bị** — Laptop, máy in, POS, ngoại vi
-- **Mạng** — Wi-Fi, Internet, VPN
-- **Microsoft 365** — Email Outlook, Teams, OneDrive
-- **Phần mềm** — Windows/macOS, cài đặt, bản quyền
-- **Bảo mật & Tài khoản** — Quên mật khẩu, MFA, phishing, virus, backup
+<FeatureGrid
+  items={[
+    {
+      icon: '🛒',
+      label: 'Hệ thống VTD',
+      path: 'CTKM · PMH · Coupon',
+      body: 'Khuyến mãi, voucher, sản phẩm, barcode, tài khoản ESSXanh/ESSCAM, kiosk tra cứu.',
+    },
+    {
+      icon: '🧩',
+      label: 'Hệ thống Odoo',
+      path: 'HRMS · eOffice',
+      body: 'HRMS, eOffice, báo cáo, các module nghiệp vụ trên nền Odoo.',
+    },
+    {
+      icon: '💻',
+      label: 'Thiết bị',
+      path: 'Laptop · POS',
+      body: 'Laptop, máy in, POS, các thiết bị ngoại vi tại điểm bán và văn phòng.',
+    },
+    {
+      icon: '🛜',
+      label: 'Mạng',
+      path: 'Wi-Fi · VPN',
+      body: 'Wi-Fi, đường truyền Internet, VPN truy cập nội bộ.',
+    },
+    {
+      icon: '📧',
+      label: 'Microsoft 365',
+      path: 'Outlook · Teams',
+      body: 'Email Outlook, Teams, OneDrive — cấp quyền và sự cố tài khoản.',
+    },
+    {
+      icon: '🧰',
+      label: 'Phần mềm',
+      path: 'Windows · macOS',
+      body: 'Cài đặt, bản quyền, sự cố hệ điều hành Windows / macOS.',
+    },
+    {
+      icon: '🔐',
+      label: 'Bảo mật & Tài khoản',
+      path: 'MFA · phishing',
+      body: 'Quên mật khẩu, MFA, phishing, virus, backup dữ liệu cá nhân.',
+    },
+    {
+      icon: '📄',
+      label: 'Tài liệu Word đầy đủ',
+      path: 'docx · v1.0',
+      body: 'Tải bản tài liệu chính thức có trang bìa, mục lục và phụ lục tra cứu nhanh.',
+      link: { label: 'Tải xuống', href: docxUrl },
+    },
+  ]}
+/>
 
 ## Truy cập
 
@@ -50,11 +116,9 @@ Sau khi điền đầy đủ, Bước 1 sẽ tự kích hoạt Bước 2:
 
 ![Bước 1 — Đã điền mẫu](_assets/03-step1-filled.png)
 
-:::warning[Email công ty]
-
-Phải dùng email công ty (`@scid-jsc.com` hoặc tên miền nội bộ). Email cá nhân (Gmail, Yahoo…) sẽ **không nhận được thông báo** từ hệ thống.
-
-:::
+<Tip kind="warning">
+  <strong>Email công ty bắt buộc.</strong> Phải dùng email công ty (`@scid-jsc.com` hoặc tên miền nội bộ). Email cá nhân (Gmail, Yahoo…) sẽ <strong>không nhận được thông báo</strong> từ hệ thống.
+</Tip>
 
 ### Bước 2 — Yêu cầu hỗ trợ
 
@@ -106,11 +170,9 @@ Các trường hợp khác sẽ không hiện 2 ô này.
 | **Trung bình** | Ảnh hưởng một phần | Một thiết bị/chức năng không hoạt động, có cách workaround. **Mặc định.** |
 | **Cao** | Không thể làm việc | Sự cố diện rộng: mất POS toàn quầy, mất Internet, rò rỉ bảo mật |
 
-:::danger[Chỉ chọn Cao khi thực sự cấp bách]
-
-Lạm dụng mức **Cao** sẽ làm chậm xử lý các yêu cầu khẩn cấp thật sự.
-
-:::
+<Tip kind="danger">
+  <strong>Chỉ chọn Cao khi thực sự cấp bách.</strong> Lạm dụng mức Cao sẽ làm chậm xử lý các yêu cầu khẩn cấp thật sự.
+</Tip>
 
 **c) Đính kèm file/ảnh** (tùy chọn):
 
@@ -128,11 +190,9 @@ Lạm dụng mức **Cao** sẽ làm chậm xử lý các yêu cầu khẩn cấ
 | **Trung bình** | Trong 2 giờ làm việc | Trong 1 ngày làm việc |
 | **Thấp** | Trong 1 ngày làm việc | Trong 3 ngày làm việc |
 
-:::note[Thời gian áp dụng trong giờ làm việc]
-
-8h00 – 17h00, Thứ Hai – Thứ Sáu. Yêu cầu gửi ngoài giờ sẽ tính từ đầu giờ làm việc tiếp theo.
-
-:::
+<Note>
+  Thời gian áp dụng trong giờ làm việc: 8h00 – 17h00, Thứ Hai – Thứ Sáu. Yêu cầu gửi ngoài giờ sẽ tính từ đầu giờ làm việc tiếp theo.
+</Note>
 
 ## Sau khi gửi
 
@@ -149,18 +209,25 @@ Lạm dụng mức **Cao** sẽ làm chậm xử lý các yêu cầu khẩn cấ
 2. Đồng thời gọi điện trực tiếp đến đầu mối phụ trách CNTT đơn vị
 3. Nếu sự cố bảo mật: **NGẮT mạng/tắt máy ngay** rồi báo (tránh lây lan)
 
-:::danger[Tấn công mạng / Virus]
+<Tip kind="danger">
+  <strong>Tấn công mạng / Virus — KHÔNG tự xử lý.</strong>
+  <ul>
+    <li><strong>KHÔNG</strong> tắt máy đột ngột nếu chưa được hướng dẫn</li>
+    <li><strong>KHÔNG</strong> mở thêm file/link đáng ngờ</li>
+    <li>Chụp ảnh màn hình lỗi và báo Ban CNTT ngay</li>
+  </ul>
+</Tip>
 
-- **KHÔNG** cố tự xử lý
-- **KHÔNG** tắt máy đột ngột nếu chưa được hướng dẫn
-- **KHÔNG** mở thêm file/link đáng ngờ
-- Chụp ảnh màn hình lỗi và báo Ban CNTT ngay
+<CtaBanner
+  eyebrow="Gửi yêu cầu trong 2 phút"
+  title="Cần hỗ trợ CNTT? Mở Helpdesk ngay."
+  sub="Mỗi yêu cầu được phân loại tự động và gửi đến đầu mối phù hợp trong vòng 30 phút giờ hành chính."
+  primaryLabel="scid.vn/helpdesk →"
+  primaryHref="https://scid.vn/helpdesk"
+  secondaryLabel="Tải tài liệu Word"
+  secondaryHref={docxUrl}
+/>
 
-:::
+<Feedback />
 
----
-
-## Tài nguyên
-
-- 📄 [**Tải tài liệu Word đầy đủ**](../dist/Huong-dan-su-dung-Helpdesk-SCID-v1.0.docx) — bản chính thức, có trang bìa, mục lục, đầy đủ phụ lục tra cứu nhanh
--  [**Truy cập Helpdesk**](https://scid.vn/helpdesk) — gửi yêu cầu ngay
+</HaloPage>
