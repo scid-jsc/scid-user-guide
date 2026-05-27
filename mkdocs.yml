@@ -89,6 +89,8 @@ nav:
     - Hồ sơ Tiếp khách: e-office/huong-dan/hosotk/index.md
   - Nhân sự:
     - Vận hành HRMS: hrms/huong-dan/van-hanh-hrms.md
+  - Helpdesk:
+    - Sử dụng Helpdesk: helpdesk/huong-dan/su-dung-helpdesk.md
 
 extra_css:
   - stylesheets/custom.css
