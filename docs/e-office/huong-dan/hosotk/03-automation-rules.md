@@ -103,8 +103,11 @@ Domain filter (dán vào ô **Filter** / **Extra Conditions**):
 | **Email Template** | `[HOSOTK] Escalation Quản lý` |
 | **Active** | ✅ |
 
-!!! warning "Quan trọng"
-    Template 4 gửi tới `object.user_ids[0].parent_id.work_email` (quản lý trực tiếp). Đảm bảo HR đã cấu hình **Manager** cho từng nhân viên.
+:::warning[Quan trọng]
+
+Template 4 gửi tới `object.user_ids[0].parent_id.work_email` (quản lý trực tiếp). Đảm bảo HR đã cấu hình **Manager** cho từng nhân viên.
+
+:::
 
 ---
 
@@ -121,8 +124,11 @@ Domain filter (dán vào ô **Filter** / **Extra Conditions**):
 | **Email Template** | `[HOSOTK] Escalation Phó Tổng` |
 | **Active** | ✅ |
 
-!!! warning "Quan trọng"
-    Template 5 gửi tới email Phó TGĐ (cố định). Cập nhật email trong template trước khi activate rule này.
+:::warning[Quan trọng]
+
+Template 5 gửi tới email Phó TGĐ (cố định). Cập nhật email trong template trước khi activate rule này.
+
+:::
 
 ---
 
@@ -167,5 +173,8 @@ Rule này kích hoạt khi task chuyển vào stage "Gửi Thư ký Phó Tổng"
 
 ---
 
-!!! info "Kiểm tra"
-    Xem [Hướng dẫn 04 — Phân quyền & Test](04-phan-quyen-test.md) để test đầy đủ các rules.
+:::info[Kiểm tra]
+
+Xem [Hướng dẫn 04 — Phân quyền & Test](04-phan-quyen-test.md) để test đầy đủ các rules.
+
+:::

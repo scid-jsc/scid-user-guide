@@ -1,9 +1,12 @@
 # Hướng dẫn sử dụng Hệ thống Helpdesk SCID
 
-!!! info "Ban hành cho các đơn vị Sense"
-    Tài liệu này hướng dẫn cán bộ, nhân viên các đơn vị Sense (Sense Cần Thơ, Sense Cà Mau, Sense Phạm Văn Đồng, Sense Bến Tre, Sense Cái Bè) sử dụng Hệ thống Helpdesk tại địa chỉ **[scid.vn/helpdesk](https://scid.vn/helpdesk)** để gửi yêu cầu hỗ trợ về Công nghệ thông tin.
+:::info[Ban hành cho các đơn vị Sense]
 
-[:material-file-word: **Tải file Word bản đầy đủ**](../dist/Huong-dan-su-dung-Helpdesk-SCID-v1.0.docx){ .md-button .md-button--primary }
+Tài liệu này hướng dẫn cán bộ, nhân viên các đơn vị Sense (Sense Cần Thơ, Sense Cà Mau, Sense Phạm Văn Đồng, Sense Bến Tre, Sense Cái Bè) sử dụng Hệ thống Helpdesk tại địa chỉ **[scid.vn/helpdesk](https://scid.vn/helpdesk)** để gửi yêu cầu hỗ trợ về Công nghệ thông tin.
+
+:::
+
+[📄 **Tải file Word bản đầy đủ**](../dist/Huong-dan-su-dung-Helpdesk-SCID-v1.0.docx)
 
 ---
 
@@ -47,8 +50,11 @@ Sau khi điền đầy đủ, Bước 1 sẽ tự kích hoạt Bước 2:
 
 ![Bước 1 — Đã điền mẫu](_assets/03-step1-filled.png)
 
-!!! warning "Email công ty"
-    Phải dùng email công ty (`@scid-jsc.com` hoặc tên miền nội bộ). Email cá nhân (Gmail, Yahoo…) sẽ **không nhận được thông báo** từ hệ thống.
+:::warning[Email công ty]
+
+Phải dùng email công ty (`@scid-jsc.com` hoặc tên miền nội bộ). Email cá nhân (Gmail, Yahoo…) sẽ **không nhận được thông báo** từ hệ thống.
+
+:::
 
 ### Bước 2 — Yêu cầu hỗ trợ
 
@@ -100,8 +106,11 @@ Các trường hợp khác sẽ không hiện 2 ô này.
 | **Trung bình** | Ảnh hưởng một phần | Một thiết bị/chức năng không hoạt động, có cách workaround. **Mặc định.** |
 | **Cao** | Không thể làm việc | Sự cố diện rộng: mất POS toàn quầy, mất Internet, rò rỉ bảo mật |
 
-!!! danger "Chỉ chọn Cao khi thực sự cấp bách"
-    Lạm dụng mức **Cao** sẽ làm chậm xử lý các yêu cầu khẩn cấp thật sự.
+:::danger[Chỉ chọn Cao khi thực sự cấp bách]
+
+Lạm dụng mức **Cao** sẽ làm chậm xử lý các yêu cầu khẩn cấp thật sự.
+
+:::
 
 **c) Đính kèm file/ảnh** (tùy chọn):
 
@@ -119,8 +128,11 @@ Các trường hợp khác sẽ không hiện 2 ô này.
 | **Trung bình** | Trong 2 giờ làm việc | Trong 1 ngày làm việc |
 | **Thấp** | Trong 1 ngày làm việc | Trong 3 ngày làm việc |
 
-!!! note "Thời gian áp dụng trong giờ làm việc"
-    8h00 – 17h00, Thứ Hai – Thứ Sáu. Yêu cầu gửi ngoài giờ sẽ tính từ đầu giờ làm việc tiếp theo.
+:::note[Thời gian áp dụng trong giờ làm việc]
+
+8h00 – 17h00, Thứ Hai – Thứ Sáu. Yêu cầu gửi ngoài giờ sẽ tính từ đầu giờ làm việc tiếp theo.
+
+:::
 
 ## Sau khi gửi
 
@@ -137,15 +149,18 @@ Các trường hợp khác sẽ không hiện 2 ô này.
 2. Đồng thời gọi điện trực tiếp đến đầu mối phụ trách CNTT đơn vị
 3. Nếu sự cố bảo mật: **NGẮT mạng/tắt máy ngay** rồi báo (tránh lây lan)
 
-!!! danger "Tấn công mạng / Virus"
-    - **KHÔNG** cố tự xử lý
-    - **KHÔNG** tắt máy đột ngột nếu chưa được hướng dẫn
-    - **KHÔNG** mở thêm file/link đáng ngờ
-    - Chụp ảnh màn hình lỗi và báo Ban CNTT ngay
+:::danger[Tấn công mạng / Virus]
+
+- **KHÔNG** cố tự xử lý
+- **KHÔNG** tắt máy đột ngột nếu chưa được hướng dẫn
+- **KHÔNG** mở thêm file/link đáng ngờ
+- Chụp ảnh màn hình lỗi và báo Ban CNTT ngay
+
+:::
 
 ---
 
 ## Tài nguyên
 
-- :material-file-word: [**Tải tài liệu Word đầy đủ**](../dist/Huong-dan-su-dung-Helpdesk-SCID-v1.0.docx) — bản chính thức, có trang bìa, mục lục, đầy đủ phụ lục tra cứu nhanh
-- :material-web: [**Truy cập Helpdesk**](https://scid.vn/helpdesk) — gửi yêu cầu ngay
+- 📄 [**Tải tài liệu Word đầy đủ**](../dist/Huong-dan-su-dung-Helpdesk-SCID-v1.0.docx) — bản chính thức, có trang bìa, mục lục, đầy đủ phụ lục tra cứu nhanh
+-  [**Truy cập Helpdesk**](https://scid.vn/helpdesk) — gửi yêu cầu ngay

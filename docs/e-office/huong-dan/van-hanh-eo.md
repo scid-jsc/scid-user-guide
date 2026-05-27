@@ -1,7 +1,10 @@
 # Hướng dẫn Vận hành — Phân hệ E-Office (EO)
 
-!!! info
-    Tài liệu này hướng dẫn nhân viên thao tác hàng ngày trên phân hệ E-Office: quản lý công việc, phê duyệt, lịch họp, công văn và văn phòng phẩm.
+:::info
+
+Tài liệu này hướng dẫn nhân viên thao tác hàng ngày trên phân hệ E-Office: quản lý công việc, phê duyệt, lịch họp, công văn và văn phòng phẩm.
+
+:::
 
 ---
 
@@ -37,8 +40,11 @@ Mở: **Việc cần làm**
 
    ![Screenshot](../assets/SCID_EO_image7.png)
 
-!!! tip "Mẹo"
-    Bạn có thể thêm giai đoạn mới theo nhu cầu bằng cách bấm **+ Thêm giai đoạn** trên kanban.
+:::tip[Mẹo]
+
+Bạn có thể thêm giai đoạn mới theo nhu cầu bằng cách bấm **+ Thêm giai đoạn** trên kanban.
+
+:::
 
 ---
 
@@ -86,8 +92,11 @@ Mở: **Phê duyệt → SCID P03 - Đề nghị cấp xe Ô tô đi công tác 
 - **Refuse** — Từ chối yêu cầu
 - **Log note** — Phản hồi, ghi chú (có thể tag `@` cá nhân cụ thể)
 
-!!! info
-    Khi tất cả người duyệt đã Approve → yêu cầu chuyển sang trạng thái **Đã phê duyệt**.
+:::info
+
+Khi tất cả người duyệt đã Approve → yêu cầu chuyển sang trạng thái **Đã phê duyệt**.
+
+:::
 
 ---
 
@@ -179,8 +188,11 @@ Mở: **Bán hàng → Mới**
 
    ![Screenshot](../assets/SCID_EO_image32.png)
 
-!!! info
-    Xem báo cáo mua/bán VPP qua menu **Báo cáo** trong ứng dụng Bán hàng hoặc Mua hàng.
+:::info
+
+Xem báo cáo mua/bán VPP qua menu **Báo cáo** trong ứng dụng Bán hàng hoặc Mua hàng.
+
+:::
 
 ---
 
@@ -246,6 +258,6 @@ Sau khi có chỉ đạo → Văn Thư giao việc (Activities) cho các phòng 
 
 ## Tài liệu liên quan
 
-- [Hướng dẫn Vận hành Kế toán (AMS)](../ke-toan/van-hanh.md) — Hóa đơn, thanh toán, bút toán
-- [Hướng dẫn Vận hành Cho thuê (LMS)](../cho-thue/van-hanh-lms.md) — Hợp đồng, khách thuê
-- [Hướng dẫn Vận hành Nhân sự (HRMS)](../hrms/van-hanh-hrms.md) — Hợp đồng lao động, bảng lương
+- [Hướng dẫn Vận hành Kế toán (AMS)](../../ke-toan/huong-dan/van-hanh.md) — Hóa đơn, thanh toán, bút toán
+- [Hướng dẫn Vận hành Cho thuê (LMS)](../../cho-thue/huong-dan/van-hanh-lms.md) — Hợp đồng, khách thuê
+- [Hướng dẫn Vận hành Nhân sự (HRMS)](../../hrms/huong-dan/van-hanh-hrms.md) — Hợp đồng lao động, bảng lương

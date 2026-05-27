@@ -1,7 +1,10 @@
 # Hướng dẫn Vận hành Kế toán — Dành cho Người dùng
 
-!!! tip "Mẹo"
-    Tài liệu này hướng dẫn từng bước các thao tác kế toán hàng ngày trên hệ thống Odoo. Nếu bạn cần thiết lập hệ thống (tạo tài khoản, cấu hình sổ nhật ký, kết nối S-Invoice...), vui lòng liên hệ quản trị viên hoặc xem HD-Thiet-Lap-He-Thong.
+:::tip[Mẹo]
+
+Tài liệu này hướng dẫn từng bước các thao tác kế toán hàng ngày trên hệ thống Odoo. Nếu bạn cần thiết lập hệ thống (tạo tài khoản, cấu hình sổ nhật ký, kết nối S-Invoice...), vui lòng liên hệ quản trị viên hoặc xem HD-Thiet-Lap-He-Thong.
+
+:::
 
 ---
 
@@ -27,8 +30,11 @@ Mở: **Cho thuê → Hoạt động khác → Báo cáo điện, nước, gas**
 5. Bấm **Tải lên tập tin của bạn** để upload bản scan/ảnh chụp báo cáo gốc
 6. Bấm **Xác nhận** — hệ thống sẽ ghi nhận kỳ hóa đơn hiện tại
 
-!!! warning "Lưu ý quan trọng"
-    Bạn **phải** upload file trước khi Xác nhận. Nếu quên, hệ thống sẽ báo lỗi.
+:::warning[Lưu ý quan trọng]
+
+Bạn **phải** upload file trước khi Xác nhận. Nếu quên, hệ thống sẽ báo lỗi.
+
+:::
 
 #### Cách tải file cho nhiều báo cáo cùng lúc
 
@@ -359,8 +365,11 @@ Dùng khi cần điều chỉnh **tăng hoặc giảm** giá trị hóa đơn đ
 3. Chọn **Hóa đơn gốc** từ danh sách (hoặc nhập thủ công nếu HĐ gốc nằm ngoài hệ thống)
 4. Bấm **Lập hóa đơn**
 
-!!! warning "Lưu ý quan trọng"
-    Mẫu và Ký hiệu của hóa đơn gốc và hóa đơn điều chỉnh **phải trùng nhau**. Nếu không, hệ thống sẽ báo lỗi.
+:::warning[Lưu ý quan trọng]
+
+Mẫu và Ký hiệu của hóa đơn gốc và hóa đơn điều chỉnh **phải trùng nhau**. Nếu không, hệ thống sẽ báo lỗi.
+
+:::
 
 ### D3. Thay thế hóa đơn điện tử
 
@@ -454,5 +463,5 @@ Nếu muốn đưa hóa đơn về Dự thảo:
 
 ## Tài liệu liên quan
 
-- [Huong-Dan-Bao-Cao-TT200](../ke-toan/bao-cao-tt200.md) — Hướng dẫn xuất báo cáo kế toán theo Thông tư 200
-- [Hướng dẫn Vận hành Cho thuê (LMS)](../cho-thue/van-hanh-lms.md) — Tạo Deal, LAF, OL, Hợp đồng, Thanh lý
+- [Huong-Dan-Bao-Cao-TT200](../../ke-toan/huong-dan/bao-cao-tt200.md) — Hướng dẫn xuất báo cáo kế toán theo Thông tư 200
+- [Hướng dẫn Vận hành Cho thuê (LMS)](../../cho-thue/huong-dan/van-hanh-lms.md) — Tạo Deal, LAF, OL, Hợp đồng, Thanh lý

@@ -88,55 +88,58 @@ Hệ thống sẽ tự động notify đúng người qua các Automation Rules 
 
 ## Phần 4: Record Rules (Tùy chọn — Phase 2)
 
-??? note "Phần 4: Record Rules (Tùy chọn — Phase 2)"
+:::note[Phần 4: Record Rules (Tùy chọn — Phase 2)]
 
-    Phần này chỉ cần thiết nếu cần kiểm soát visibility ở mức row-level chi tiết hơn built-in.
 
-    ### 4.1 Rule: Nhân viên chỉ thấy task của mình
+Phần này chỉ cần thiết nếu cần kiểm soát visibility ở mức row-level chi tiết hơn built-in.
 
-    **Đường dẫn:** Settings > Technical > Security > Record Rules
+### 4.1 Rule: Nhân viên chỉ thấy task của mình
 
-    | Trường | Giá trị |
-    |--------|---------|
-    | **Name** | `HOSOTK: Nhân viên - chỉ task của mình` |
-    | **Model** | `Project Task` (project.task) |
-    | **Groups** | *(Nhóm Nhân viên - xem mục 4.3)* |
-    | **Access** | Read, Write |
+**Đường dẫn:** Settings > Technical > Security > Record Rules
 
-    **Domain Filter:**
-    ```
-    ['|', ('user_ids', 'in', [user.id]), ('create_uid', '=', user.id)]
-    ```
+| Trường | Giá trị |
+|--------|---------|
+| **Name** | `HOSOTK: Nhân viên - chỉ task của mình` |
+| **Model** | `Project Task` (project.task) |
+| **Groups** | *(Nhóm Nhân viên - xem mục 4.3)* |
+| **Access** | Read, Write |
 
-    ### 4.2 Rule: Hạn chế trong project HOSOTK
+**Domain Filter:**
+```
+['|', ('user_ids', 'in', [user.id]), ('create_uid', '=', user.id)]
+```
 
-    Nếu muốn đảm bảo rule chỉ áp dụng cho project này:
+### 4.2 Rule: Hạn chế trong project HOSOTK
 
-    ```
-    [
-      '&',
-      ('project_id.name', '=', 'Hồ sơ trình ký Ban TGĐ'),
-      '|',
-      ('user_ids', 'in', [user.id]),
-      ('create_uid', '=', user.id)
-    ]
-    ```
+Nếu muốn đảm bảo rule chỉ áp dụng cho project này:
 
-    ### 4.3 Tạo Group "Nhân viên HOSOTK"
+```
+[
+  '&',
+  ('project_id.name', '=', 'Hồ sơ trình ký Ban TGĐ'),
+  '|',
+  ('user_ids', 'in', [user.id]),
+  ('create_uid', '=', user.id)
+]
+```
 
-    Nếu dùng Record Rules, cần tạo group:
+### 4.3 Tạo Group "Nhân viên HOSOTK"
 
-    1. Vào **Settings > Users & Companies > Groups**
-    2. Nhấn **New**
+Nếu dùng Record Rules, cần tạo group:
 
-    | Trường | Giá trị |
-    |--------|---------|
-    | **Category** | `Project` |
-    | **Name** | `HOSOTK Nhân viên` |
-    | **Users** | Thêm tất cả nhân viên liên quan |
-    | **Implied** | `Project / User` |
+1. Vào **Settings > Users & Companies > Groups**
+2. Nhấn **New**
 
-    > **Lưu ý Phase 1**: Record Rules là optional. Với team nhỏ và project đặc thù (Ban TGĐ nội bộ), dùng Project Members + Visibility đã đủ. Cân nhắc Record Rules ở Phase 2.
+| Trường | Giá trị |
+|--------|---------|
+| **Category** | `Project` |
+| **Name** | `HOSOTK Nhân viên` |
+| **Users** | Thêm tất cả nhân viên liên quan |
+| **Implied** | `Project / User` |
+
+> **Lưu ý Phase 1**: Record Rules là optional. Với team nhỏ và project đặc thù (Ban TGĐ nội bộ), dùng Project Members + Visibility đã đủ. Cân nhắc Record Rules ở Phase 2.
+
+:::
 
 ---
 

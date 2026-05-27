@@ -1,0 +1,254 @@
+/**
+ * SCID Navy theme — ported from MkDocs Material custom.css.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  /* SCID Navy palette */
+  --scid-navy: #1a365d;
+  --scid-navy-dark: #0f2440;
+  --scid-navy-light: #2b6cb0;
+  --scid-accent: #3182ce;
+
+  /* Infima overrides */
+  --ifm-color-primary: #1a365d;
+  --ifm-color-primary-dark: #163056;
+  --ifm-color-primary-darker: #142c4f;
+  --ifm-color-primary-darkest: #0f2440;
+  --ifm-color-primary-light: #234278;
+  --ifm-color-primary-lighter: #2b6cb0;
+  --ifm-color-primary-lightest: #3182ce;
+
+  --ifm-font-family-base: 'Be Vietnam Pro', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+  --ifm-code-font-size: 92%;
+  --ifm-heading-font-weight: 700;
+  --ifm-h2-font-size: 1.75rem;
+  --ifm-h3-font-size: 1.35rem;
+  --ifm-container-width-xl: 1280px;
+
+  --docusaurus-highlighted-code-line-bg: rgba(26, 54, 93, 0.08);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #4a90e2;
+  --ifm-color-primary-dark: #2b6cb0;
+  --ifm-color-primary-darker: #234278;
+  --ifm-color-primary-darkest: #1a365d;
+  --ifm-color-primary-light: #63a4f4;
+  --ifm-color-primary-lighter: #82baf7;
+  --ifm-color-primary-lightest: #a4ccfa;
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.08);
+}
+
+/* Header — gradient navy like MkDocs original */
+.navbar {
+  background: linear-gradient(135deg, var(--scid-navy) 0%, #2a4a7f 100%);
+  box-shadow: 0 2px 8px rgba(26, 54, 93, 0.15);
+}
+
+.navbar__title,
+.navbar__link,
+.navbar__brand {
+  color: #fff;
+}
+
+.navbar__link:hover {
+  color: #cbd5e0;
+}
+
+.navbar__toggle {
+  color: #fff;
+}
+
+/* Headings — navy with subtle underline on h2 */
+.markdown h1 {
+  color: var(--scid-navy);
+  letter-spacing: -0.02em;
+}
+
+.markdown h2 {
+  color: var(--scid-navy);
+  font-weight: 600;
+  border-bottom: 2px solid #ebf4ff;
+  padding-bottom: 0.4rem;
+  margin-top: 2.4rem;
+}
+
+.markdown h3 {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+[data-theme='dark'] .markdown h1,
+[data-theme='dark'] .markdown h2 {
+  color: #82baf7;
+  border-bottom-color: rgba(74, 144, 226, 0.2);
+}
+
+/* Strong text — navy accent */
+.markdown strong {
+  color: var(--scid-navy);
+}
+
+[data-theme='dark'] .markdown strong {
+  color: #82baf7;
+}
+
+/* Inline code — soft red */
+.markdown :not(pre) > code {
+  background: #edf2f7;
+  color: #c53030;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+  border: none;
+}
+
+[data-theme='dark'] .markdown :not(pre) > code {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fc8181;
+}
+
+/* Tables — clean with subtle shadow */
+.markdown table {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  display: table;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.markdown table thead {
+  background: linear-gradient(180deg, #f7fafc 0%, #edf2f7 100%);
+}
+
+.markdown table th {
+  color: var(--scid-navy);
+  font-weight: 600;
+  padding: 0.8rem 1rem;
+  border-bottom: 2px solid #cbd5e0;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.markdown table td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid #f0f4f8;
+}
+
+.markdown table tr:hover td {
+  background: #f7fafc;
+}
+
+[data-theme='dark'] .markdown table {
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .markdown table thead {
+  background: var(--ifm-color-emphasis-100);
+}
+
+[data-theme='dark'] .markdown table th {
+  color: #82baf7;
+  border-bottom-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .markdown table td {
+  border-bottom-color: var(--ifm-color-emphasis-200);
+}
+
+[data-theme='dark'] .markdown table tr:hover td {
+  background: var(--ifm-color-emphasis-100);
+}
+
+/* Admonitions — rounded with soft shadow */
+.admonition,
+.theme-admonition {
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  border-left-width: 4px;
+  font-size: 0.95rem;
+}
+
+/* Blockquote — callout style */
+.markdown blockquote {
+  background: #ebf8ff;
+  border-left: 4px solid var(--scid-accent);
+  border-radius: 0 8px 8px 0;
+  padding: 0.8rem 1.2rem;
+  color: #2a4365;
+}
+
+[data-theme='dark'] .markdown blockquote {
+  background: rgba(49, 130, 206, 0.08);
+  color: var(--ifm-color-emphasis-800);
+}
+
+.markdown blockquote p {
+  margin: 0;
+}
+
+/* Ordered list — navy markers */
+.markdown ol {
+  padding-left: 1.2rem;
+}
+
+.markdown ol > li {
+  margin-bottom: 0.4rem;
+}
+
+.markdown ol > li::marker {
+  color: var(--scid-navy);
+  font-weight: 700;
+}
+
+/* Keyboard keys */
+kbd {
+  background: #edf2f7;
+  border: 1px solid #cbd5e0;
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.8rem;
+  box-shadow: 0 1px 0 #cbd5e0;
+  font-family: var(--ifm-font-family-monospace);
+}
+
+/* Footer — dark navy */
+.footer--dark {
+  background: var(--scid-navy-dark);
+}
+
+/* Sidebar */
+.menu__link--active {
+  font-weight: 600;
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  background: rgba(26, 54, 93, 0.06);
+}
+
+[data-theme='dark'] .menu__link--active:not(.menu__link--sublist) {
+  background: rgba(74, 144, 226, 0.1);
+}
+
+/* Images in markdown — rounded corners + subtle border */
+.markdown img:not(.no-style) {
+  border-radius: 8px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  max-width: 100%;
+  margin: 0.5rem 0;
+}
+
+/* TOC */
+.table-of-contents__link--active {
+  font-weight: 600;
+  color: var(--scid-navy);
+}
+
+[data-theme='dark'] .table-of-contents__link--active {
+  color: #82baf7;
+}

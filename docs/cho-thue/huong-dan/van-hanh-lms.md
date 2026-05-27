@@ -1,7 +1,10 @@
 # Hướng dẫn Vận hành — Phân hệ Cho thuê (LMS)
 
-!!! info
-    Tài liệu này hướng dẫn nhân viên kinh doanh và quản lý cho thuê thao tác hàng ngày trên hệ thống Odoo. Hướng dẫn kế toán xem [Hướng dẫn Kế toán AMS](../ke-toan/van-hanh.md).
+:::info
+
+Tài liệu này hướng dẫn nhân viên kinh doanh và quản lý cho thuê thao tác hàng ngày trên hệ thống Odoo. Hướng dẫn kế toán xem [Hướng dẫn Kế toán AMS](../../ke-toan/huong-dan/van-hanh.md).
+
+:::
 
 ---
 
@@ -62,8 +65,11 @@ Mở: **Liên hệ → Khách hàng → Mới**
 4. Upload hình đại diện (nếu có)
 5. Bấm **Lưu và Đóng**
 
-!!! tip "Mẹo"
-    Tương tự cho **Đại diện ký hợp đồng** — cần nhập thêm Số ủy quyền, upload Giấy ủy quyền, Ngày hiệu lực (bắt buộc).
+:::tip[Mẹo]
+
+Tương tự cho **Đại diện ký hợp đồng** — cần nhập thêm Số ủy quyền, upload Giấy ủy quyền, Ngày hiệu lực (bắt buộc).
+
+:::
 
 ![Screenshot](../assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image9.png)
 
@@ -83,8 +89,11 @@ Mở: **Liên hệ → Khách hàng → Mới**
 
 Trong danh sách liên hệ của khách hàng → tick checkbox **Người liên hệ chính** cho 1 người.
 
-!!! tip "Mẹo"
-    Chỉ được chọn **1 người** làm liên hệ chính tại 1 thời điểm. Nếu tick 2 người → hệ thống báo lỗi khi lưu.
+:::tip[Mẹo]
+
+Chỉ được chọn **1 người** làm liên hệ chính tại 1 thời điểm. Nếu tick 2 người → hệ thống báo lỗi khi lưu.
+
+:::
 
 ![Screenshot](../assets/lien-he/SCID_FRD01_-_Phân_hệ_liên_hệ_image16.png)
 
@@ -144,8 +153,11 @@ Từ Deal → bấm **Tạo phiếu duyệt thuê** → hệ thống tự tạo 
    - Free rent, Điều kiện thi công
 5. Bấm **Gửi duyệt** → popup chọn người duyệt → **Xác nhận**
 
-!!! info
-    Trạng thái Deal chuyển thành "Chờ duyệt thuê".
+:::info
+
+Trạng thái Deal chuyển thành "Chờ duyệt thuê".
+
+:::
 
 **Nếu bị từ chối:** Bấm nút tạo LAF mới (copy thông tin) → chỉnh sửa → gửi duyệt lại.
 
@@ -384,8 +396,11 @@ Khi cần thay đổi giá thuê, gia hạn, hoặc bổ sung điều khoản:
 4. Được duyệt → Soạn phụ lục bản cứng → gửi khách ký
 5. Upload bản cứng đã ký → bấm **Xác nhận phụ lục**
 
-!!! info
-    Trạng thái Deal: Đang thuê → Chờ duyệt phụ lục → Đang thuê (sau khi xác nhận)
+:::info
+
+Trạng thái Deal: Đang thuê → Chờ duyệt phụ lục → Đang thuê (sau khi xác nhận)
+
+:::
 
 ![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image90.png)
 
@@ -649,7 +664,7 @@ Hệ thống sẽ tự tính tổng tiền thuê/tháng dựa trên mô hình đ
 ---
 
 ## Tài liệu liên quan
-- [Hướng dẫn Kế toán AMS](../ke-toan/van-hanh.md) — Hóa đơn, thanh toán, bút toán
-- [Hướng dẫn Báo cáo TT200](../ke-toan/bao-cao-tt200.md) — Xuất báo cáo kế toán
+- [Hướng dẫn Kế toán AMS](../../ke-toan/huong-dan/van-hanh.md) — Hóa đơn, thanh toán, bút toán
+- [Hướng dẫn Báo cáo TT200](../../ke-toan/huong-dan/bao-cao-tt200.md) — Xuất báo cáo kế toán
 - FRD02-Cho-Thue — Tài liệu kỹ thuật Phân hệ Cho thuê
 - Trang-Thai-Cho-Thue — Bảng tra cứu trạng thái

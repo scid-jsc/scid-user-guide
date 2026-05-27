@@ -1,7 +1,10 @@
 # Theo dõi Hồ sơ Trình ký Ban TGĐ
 
-!!! info "Phạm vi"
-    Tài liệu này dành cho **IT Admin** cấu hình hệ thống theo dõi hồ sơ trình ký trên Odoo 18 (module Project). Không cần viết code.
+:::info[Phạm vi]
+
+Tài liệu này dành cho **IT Admin** cấu hình hệ thống theo dõi hồ sơ trình ký trên Odoo 18 (module Project). Không cần viết code.
+
+:::
 
 ## Tổng quan hệ thống
 

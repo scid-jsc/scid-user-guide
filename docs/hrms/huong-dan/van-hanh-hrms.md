@@ -1,7 +1,10 @@
 # Hướng dẫn Vận hành — Phân hệ Nhân sự (HRMS)
 
-!!! info
-    Tài liệu này hướng dẫn bộ phận Nhân sự thao tác trên Odoo: quản lý hồ sơ nhân viên, hợp đồng, bảng lương, nghỉ phép, chấm công và thi đua khen thưởng.
+:::info
+
+Tài liệu này hướng dẫn bộ phận Nhân sự thao tác trên Odoo: quản lý hồ sơ nhân viên, hợp đồng, bảng lương, nghỉ phép, chấm công và thi đua khen thưởng.
+
+:::
 
 ---
 
@@ -25,8 +28,11 @@ Mở: **Nhân viên (Employees) → Mới**
 
    ![Screenshot](../assets/SCID_HRMS_image22.png)
 
-!!! tip "Mẹo"
-    Trường có **gạch chân đậm** là bắt buộc nhập. Hãy điền đầy đủ trước khi lưu.
+:::tip[Mẹo]
+
+Trường có **gạch chân đậm** là bắt buộc nhập. Hãy điền đầy đủ trước khi lưu.
+
+:::
 
 ### 1.2 Đăng ký thông tin người thân / người phụ thuộc
 
@@ -63,8 +69,11 @@ Mở hồ sơ nhân viên → bấm smart button **Gia đình**
 
    ![Screenshot](../assets/SCID_HRMS_image11.png)
 
-!!! info
-    Số lượng người thân trong hồ sơ nhân viên sẽ tự tăng thêm 1 sau khi lưu.
+:::info
+
+Số lượng người thân trong hồ sơ nhân viên sẽ tự tăng thêm 1 sau khi lưu.
+
+:::
 
 ---
 
@@ -244,8 +253,11 @@ Mở hồ sơ nhân viên → smart button **Hợp đồng** → chọn hợp đ
 
    ![Screenshot](../assets/SCID_HRMS_image61.png)
 
-!!! info
-    Sau khi cấu hình, mục thuế TNCN lũy tiến trung bình sẽ hiển thị trên phiếu lương của nhân viên.
+:::info
+
+Sau khi cấu hình, mục thuế TNCN lũy tiến trung bình sẽ hiển thị trên phiếu lương của nhân viên.
+
+:::
 
 ---
 
@@ -292,8 +304,11 @@ Mở: **Phê duyệt → Cấu hình → Loại Phê duyệt → Mới**
 
    ![Screenshot](../assets/SCID_HRMS_image73.png)
 
-!!! warning "Lưu ý"
-    Chỉ chạy **1 luồng phê duyệt** tại một thời điểm. Thứ tự mặc định: Quản lý trực tiếp → Trưởng phòng → Danh sách Approvers.
+:::warning[Lưu ý]
+
+Chỉ chạy **1 luồng phê duyệt** tại một thời điểm. Thứ tự mặc định: Quản lý trực tiếp → Trưởng phòng → Danh sách Approvers.
+
+:::
 
 ### 5.2 Nhân viên nộp đơn xin phép
 
@@ -626,6 +641,6 @@ Mở hồ sơ nhân viên → bấm **Offboarding**
 
 ## Tài liệu liên quan
 
-- [Hướng dẫn Vận hành Kế toán (AMS)](../ke-toan/van-hanh.md) — Hóa đơn, thanh toán, bút toán
-- [Hướng dẫn Vận hành E-Office (EO)](../e-office/van-hanh-eo.md) — Phê duyệt, lịch họp, công văn
-- [Hướng dẫn Vận hành Cho thuê (LMS)](../cho-thue/van-hanh-lms.md) — Hợp đồng thuê, khách thuê
+- [Hướng dẫn Vận hành Kế toán (AMS)](../../ke-toan/huong-dan/van-hanh.md) — Hóa đơn, thanh toán, bút toán
+- [Hướng dẫn Vận hành E-Office (EO)](../../e-office/huong-dan/van-hanh-eo.md) — Phê duyệt, lịch họp, công văn
+- [Hướng dẫn Vận hành Cho thuê (LMS)](../../cho-thue/huong-dan/van-hanh-lms.md) — Hợp đồng thuê, khách thuê

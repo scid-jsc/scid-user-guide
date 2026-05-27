@@ -24,15 +24,18 @@
 
 ## Quan trọng — Properties Fields
 
-!!! danger "Quan trọng — Properties Fields"
-    Properties fields trong Odoo 18 (`task_properties`) là danh sách dict. Để truy cập trong template, **thêm đoạn này vào đầu phần Body HTML của mỗi template**:
+:::danger[Quan trọng — Properties Fields]
 
-    ```jinja2
-    {% set props = {} %}
-    {% for p in object.task_properties or [] %}{% if p.get('value') is not none %}{% set _ = props.update({p['name']: p['value']}) %}{% endif %}{% endfor %}
-    ```
+Properties fields trong Odoo 18 (`task_properties`) là danh sách dict. Để truy cập trong template, **thêm đoạn này vào đầu phần Body HTML của mỗi template**:
 
-    Sau đó dùng: `{{ props.get('loai_giay_to', '') }}`, `{{ props.get('trich_yeu', '') }}`, v.v.
+```jinja2
+{% set props = {} %}
+{% for p in object.task_properties or [] %}{% if p.get('value') is not none %}{% set _ = props.update({p['name']: p['value']}) %}{% endif %}{% endfor %}
+```
+
+Sau đó dùng: `{{ props.get('loai_giay_to', '') }}`, `{{ props.get('trich_yeu', '') }}`, v.v.
+
+:::
 
 ---
 
@@ -228,8 +231,11 @@ Kính đề nghị Anh/Chị hoàn tất xử lý hồ sơ trong ngày hôm nay.
 HỒ SƠ TRỄ HẠN — {{ object.name }} — Trễ 1 ngày
 ```
 
-!!! warning "Quan trọng — Cấu hình Email To"
-    Template này gửi tới **Quản lý trực tiếp** của người phụ trách. Trong Automation Rule, set **Email To** = `{{ object.user_ids[0].parent_id.work_email if object.user_ids and object.user_ids[0].parent_id else '' }}`
+:::warning[Quan trọng — Cấu hình Email To]
+
+Template này gửi tới **Quản lý trực tiếp** của người phụ trách. Trong Automation Rule, set **Email To** = `{{ object.user_ids[0].parent_id.work_email if object.user_ids and object.user_ids[0].parent_id else '' }}`
+
+:::
 
 **Body HTML:**
 ```html
@@ -312,8 +318,11 @@ Hệ thống xin báo cáo: Hồ sơ dưới đây đã <strong style="color:#cf
 HỒ SƠ TRỄ HẠN NGHIÊM TRỌNG — {{ object.name }} — Trễ 3 ngày
 ```
 
-!!! warning "Quan trọng — Email Phó Tổng cố định"
-    Gửi tới **email Phó Tổng Giám đốc** (cố định). Trong Automation Rule, set **Email To** = địa chỉ email cố định của Phó TGĐ (ví dụ: `pho-tong@scid-jsc.com`).
+:::warning[Quan trọng — Email Phó Tổng cố định]
+
+Gửi tới **email Phó Tổng Giám đốc** (cố định). Trong Automation Rule, set **Email To** = địa chỉ email cố định của Phó TGĐ (ví dụ: `pho-tong@scid-jsc.com`).
+
+:::
 
 **Body HTML:**
 ```html
@@ -537,5 +546,8 @@ Sau khi tạo xong một template, test bằng cách:
 3. Chọn template vừa tạo
 4. Xem preview để kiểm tra các field Jinja2 đã render đúng chưa
 
-!!! info "Kiểm tra Properties Fields"
-    Nếu `props.get(...)` trả về rỗng: Kiểm tra lại tên field trong Properties (phải khớp chính xác với `cap_duyet`, `trich_yeu`, `loai_giay_to`, etc. đã tạo ở Hướng dẫn 01).
+:::info[Kiểm tra Properties Fields]
+
+Nếu `props.get(...)` trả về rỗng: Kiểm tra lại tên field trong Properties (phải khớp chính xác với `cap_duyet`, `trich_yeu`, `loai_giay_to`, etc. đã tạo ở Hướng dẫn 01).
+
+:::

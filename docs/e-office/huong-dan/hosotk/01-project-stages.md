@@ -43,9 +43,12 @@ Nhấp **+ Add a line** hoặc **New** để thêm từng Stage. Điền tên ch
 
 Với Stage **"Hoàn thành"**, hãy:
 
-!!! tip "Quan trọng"
-    - Tích chọn **Fold in kanban** (Gập trong kanban) để ẩn nó trong view kanban mặc định
-    - Nhấp **Save**
+:::tip[Quan trọng]
+
+- Tích chọn **Fold in kanban** (Gập trong kanban) để ẩn nó trong view kanban mặc định
+- Nhấp **Save**
+
+:::
 
 ---
 
@@ -147,14 +150,17 @@ Nhấp **+ Add a line** hoặc **+ New Field** để thêm từng field với c�
 - Chọn **Color** (Màu) để dễ phân biệt
 - Nhấp **Save**
 
-!!! tip "Gợi ý Tags"
-    Bạn có thể tạo các tags sau (tùy nhu cầu):
-    
-    - Urgent (Khẩn cấp)
-    - Follow-up (Cần theo dõi)
-    - Signed (Đã ký)
-    - Pending (Đang chờ)
-    - Approved (Đã duyệt)
+:::tip[Gợi ý Tags]
+
+Bạn có thể tạo các tags sau (tùy nhu cầu):
+
+- Urgent (Khẩn cấp)
+- Follow-up (Cần theo dõi)
+- Signed (Đã ký)
+- Pending (Đang chờ)
+- Approved (Đã duyệt)
+
+:::
 
 ---
 
