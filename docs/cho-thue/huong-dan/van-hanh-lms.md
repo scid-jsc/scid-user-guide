@@ -127,245 +127,222 @@ Chỉ được chọn **1 người** làm liên hệ chính tại 1 thời đi�
 
 ## Phần 2 — Quy trình Cho thuê NLA
 
+NLA (Net Leasable Area) là quy trình cho thuê đầy đủ, gồm **5 bước tuyến tính**. Mỗi bước phải hoàn tất trước khi chuyển sang bước sau.
+
+![Sơ đồ trạng thái — Vị trí → Thỏa thuận → Phiếu duyệt thuê → Thư chào thuê → Hợp đồng](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image10.png)
+
+:::tip[Mã chứng từ]
+
+Toàn bộ chứng từ tự sinh mã theo Mall. Ví dụ:
+
+- Thỏa thuận: `{Mall}/DL{XXXX}` — ví dụ `SCMB1/DL0001`
+- Phiếu duyệt thuê: `{Mall}/LAF{XXXX}`
+- Thư chào thuê: `{Mall}/OL{XXXX}`
+- Hợp đồng: `{Mall}/HD{YY}{XXX}`
+
+:::
+
+---
+
 ### Bước 1: Tạo Thỏa thuận (Deal)
 
 Mở: **Cho thuê → Hợp đồng → Thỏa thuận → Mới**
 
 1. Chọn **Mall** → Mã Mall tự điền
-2. Chọn **Tầng** (theo Mall) → chọn **Vị trí** (theo Tầng) → Loại vị trí, Diện tích tự điền
+2. Chọn **Tầng** → chọn **Vị trí** → Loại vị trí, Diện tích tự điền
 3. Chọn **Khách hàng** → chọn **Thương hiệu** → Ngành hàng tự điền
-4. Nhập **Thời hạn thuê**, **Ngày bắt đầu** → Ngày kết thúc tự tính
+4. Nhập **Thời hạn HĐT đề xuất**, **Ngày bắt đầu** → Ngày kết thúc tự tính
 5. Bấm **Lưu** → hệ thống tạo mã `{Mall}/DL{XXXX}`
 
-### Bước 2: Tạo Phiếu duyệt thuê (LAF)
+![Form Thỏa thuận trên wireframe — các trường bắt buộc trong khung đỏ là Thời hạn HĐ và Ngày bắt đầu tính tiền thuê](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image2.png)
 
-Từ Deal → bấm **Tạo phiếu duyệt thuê** → hệ thống tự tạo LAF với thông tin từ Deal.
+UI Odoo thật của form Thỏa thuận — cùng layout với wireframe nhưng có thêm status flow `MỚI → CHÀO THUÊ → CHỜ DUYỆT THUÊ → ĐANG THỎA THUẬN → ĐANG THUÊ` ở trên đầu và 5 nút smart button (Phiếu Duyệt Thuê, Thư Chào Thuê, Hợp Đồng, Phụ Lục, Thanh Lý):
 
-1. Kiểm tra thông tin khung chính (Mall, Vị trí, KH — readonly, lấy từ Deal)
-2. Nhập **Loại hình kinh doanh** (bắt buộc)
-3. Điền **Tab Điều kiện tiền thuê:**
-   - Chọn Mô hình tính phí (5 case — xem hướng dẫn bên dưới)
-   - Nhập đơn giá tiền thuê, phí dịch vụ, QC&KM, vệ sinh theo từng năm
-   - Hệ thống tự tính tổng tiền thuê/tháng
-4. Điền **Tab Điều kiện & Điều khoản:**
-   - Thời hạn HĐ, Chu kỳ hóa đơn (Tháng/Quý/Năm)
-   - Tiền cọc (chọn Loại cọc + nhập số tiền + ngày TT)
-   - Free rent, Điều kiện thi công
-5. Bấm **Gửi duyệt** → popup chọn người duyệt → **Xác nhận**
+![Form Thỏa thuận trên Odoo (dữ liệu đã làm mờ) — thông tin được chia 2 cột: bên trái là vị trí thuê (Mall, Tầng, Vị trí, Diện tích), bên phải là thông tin khách hàng và HĐT đề xuất](../assets/cho-thue-odoo/01-deal-form.png)
 
-:::info
+Sau khi lưu, Deal hiện trong danh sách Thỏa thuận với trạng thái **Mới**:
 
-Trạng thái Deal chuyển thành "Chờ duyệt thuê".
+![Danh sách Thỏa thuận trên Odoo (dữ liệu đã làm mờ) — có thể chọn nhiều dòng để Xuất, Lưu trữ, hoặc Dừng thỏa thuận hàng loạt. Cột Tình trạng dùng màu để phân biệt nhanh: xanh = Đang thuê, đỏ = Đã thanh lý, vàng = Chờ xác nhận thanh lý / Đang thỏa thuận](../assets/cho-thue-odoo/08-thoa-thuan-list.png)
+
+:::info[Quy tắc nghiệp vụ]
+
+Một **Vị trí** chỉ được thuộc về **một Deal** đang hoạt động. Khi Deal đã có HĐ ở trạng thái Đang thuê → vị trí khoá, không tạo Deal mới được. Khi Deal bị Dừng/Hủy → vị trí mở lại.
 
 :::
 
-**Nếu bị từ chối:** Bấm nút tạo LAF mới (copy thông tin) → chỉnh sửa → gửi duyệt lại.
+---
+
+### Bước 2: Tạo Phiếu duyệt thuê (LAF)
+
+Từ form Deal → bấm **TẠO PHIẾU DUYỆT THUÊ** → hệ thống tự tạo LAF với thông tin kéo từ Deal.
+
+![Header LAF — nút GỬI DUYỆT để gửi đi phê duyệt](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image11.png)
+
+#### 2.1. Kiểm tra thông tin chính
+
+Mall, Vị trí, Khách hàng là **readonly** (lấy từ Deal — không sửa được trên LAF). Cần nhập thêm **Loại hình kinh doanh** (bắt buộc).
+
+![Form LAF trên Odoo (dữ liệu đã làm mờ) — phần đầu hiển thị 2 nhóm thông tin: THÔNG TIN CƠ BẢN (Thỏa thuận, NV kinh doanh, Kế hoạch) + THÔNG TIN BÊN THUÊ (Bên thuê, Mã KH, Loại hình KD, Thương hiệu, MST). Status flow MỚI → CHỜ DUYỆT → ĐÃ DUYỆT → TỪ CHỐI DUYỆT → HUỶ](../assets/cho-thue-odoo/02-laf-overview.png)
+
+#### 2.2. Tab "Điều kiện tiền thuê"
+
+Tab này gồm 2 phần: **Điều kiện hợp đồng** + **Khoản đặt cọc**.
+
+![Tab Điều kiện tiền thuê — thông tin HĐT, Mục đích sử dụng, Quyền chọn gia hạn, Khoản đặt cọc với 5 loại phí](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image30.png)
+
+5 loại cọc thường gặp:
+
+| Loại | Ghi chú | Tương đương |
+|------|--------|-------------|
+| Phí giữ chỗ | Cọc giữ vị trí trước khi ký HĐ | 2 tháng tiền thuê |
+| Tiền đặt cọc HĐ | Cọc đảm bảo HĐ | 2 tháng tiền thuê |
+| Tiền đặt cọc phí tiện ích | Cọc dịch vụ | Theo thỏa thuận |
+| Tiền thuê trả trước | Trả trước 1 kỳ | Theo chu kỳ hóa đơn |
+| Tiền đặt cọc thi công | Cọc thi công trang trí | Theo dự toán |
+
+#### 2.3. Tab "Cấu trúc tiền thuê" — Mô hình tính phí
+
+Đây là phần phức tạp nhất. Hệ thống hỗ trợ **5 mô hình tính phí** (xem [Phần 8](#phần-8--5-mô-hình-tính-phí-thuê)):
+
+![Tab Cấu trúc tiền thuê trên wireframe — chọn mô hình Trường hợp 3, nhập đơn giá Tiền thuê cơ bản / Phí dịch vụ / Phí QC&KM, hệ thống tự tính Tổng tiền/tháng](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image50.png)
+
+Cùng tab này trên Odoo thật — chọn **Mô hình tính phí** ở trên (Trường hợp 1: Tiền thuê cơ bản cộng Phí), sau đó nhập **CHI PHÍ THUÊ** dưới dạng bảng nhiều dòng theo từng giai đoạn (Diện tích thuê × Đơn giá × Khoảng thời gian áp dụng → Tổng tiền/tháng tự tính):
+
+![Tab Cấu trúc tiền thuê trên Odoo (đơn giá đã làm mờ) — bảng CHI PHÍ THUÊ chia thành các dòng Tiền Thuê Cơ Bản (năm 1, 2, 3 với đơn giá tăng dần), Phí Dịch Vụ, Phí QC&KM. Mỗi dòng có Từ ngày / Đến ngày để hệ thống biết áp dụng giai đoạn nào](../assets/cho-thue-odoo/03-laf-cau-truc-tien-thue.png)
+
+:::tip[Mẹo nhập bảng Chi phí thuê]
+
+Nhập **3 dòng Tiền Thuê Cơ Bản** với đơn giá tăng dần qua các năm thay vì 1 dòng — hệ thống tự áp dụng đơn giá đúng theo Từ ngày / Đến ngày, không cần tạo Phụ lục tăng giá hằng năm.
+
+:::
+
+Em xem **Tab Điều kiện & Điều khoản** (sau Cấu trúc tiền thuê) — nơi nhập Thời hạn HĐ, Ngày bàn giao mặt bằng, Mục đích sử dụng, Quyền chọn gia hạn, etc.:
+
+![Tab Điều kiện & Điều khoản trên Odoo (giá trị đã làm mờ) — gồm Thời hạn HĐT đề xuất, HĐT hiện hữu (nếu có), Ngày bắt đầu tính tiền thuê, Ngày kết thúc HĐ, Mục đích sử dụng (mô tả cách KH sử dụng mặt bằng), Quyền chọn gia hạn](../assets/cho-thue-odoo/04-laf-dieu-kien-dieu-khoan.png)
+
+#### 2.4. Tab "Thông tin liên hệ" — Đại diện ký & Ủy quyền
+
+Bắt buộc đầy đủ thông tin Đại diện pháp luật **và** Người được ủy quyền ký HĐ (nếu khác):
+
+![Tab Thông tin liên hệ trên wireframe — họ tên, CCCD, ngày cấp, SĐT của đại diện + thông tin ủy quyền (số ủy quyền, hiệu lực) + thông tin ngân hàng nhận tiền hoàn cọc](../assets/cho-thue-blur/image75.png)
+
+Cùng tab này trên Odoo thật — chia 3 nhóm thông tin: **ĐẠI DIỆN PHÁP LUẬT** (Tên, Chức vụ, CCCD, SĐT của người đại diện công ty), **THÔNG TIN ỦY QUYỀN** (chỉ nhập khi người ký HĐ khác đại diện pháp luật — cần Số ủy quyền + Hiệu lực ủy quyền), **THÔNG TIN NGÂN HÀNG** (tên ngân hàng, số TK, chi nhánh — phục vụ hoàn cọc khi thanh lý):
+
+![Tab Thông tin liên hệ trên Odoo (PII đã làm mờ) — 3 nhóm: ĐẠI DIỆN PHÁP LUẬT, THÔNG TIN ỦY QUYỀN, THÔNG TIN NGÂN HÀNG. Tất cả giá trị tên/CCCD/SĐT/email đều bắt buộc nếu muốn xuất phụ lục ủy quyền và hoàn cọc tự động](../assets/cho-thue-odoo/05-laf-thong-tin-lien-he.png)
+
+:::warning[Bắt buộc]
+
+Nếu thiếu thông tin ngân hàng — sau này không hoàn cọc được. Nếu thiếu thông tin ủy quyền — không in được phụ lục ủy quyền kèm HĐ.
+
+:::
+
+#### 2.5. Gửi duyệt
+
+Bấm **GỬI DUYỆT** → popup chọn người duyệt (Approver Sequence):
+
+![Wizard Danh sách phê duyệt — chọn thứ tự người duyệt 1, 2, ... bấm Thêm dòng mới nếu cần thêm cấp duyệt](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image16.png)
+
+Bấm **Xác nhận** → trạng thái Deal chuyển thành **"Chờ duyệt thuê"**.
+
+:::info[Nếu bị từ chối duyệt]
+
+LAF bị từ chối không sửa được trực tiếp. Bấm nút **Tạo lại LAF** → hệ thống sao chép thông tin sang LAF mới → chỉnh sửa → gửi duyệt lại.
+
+:::
+
+---
 
 ### Bước 3: Thư chào thuê (OL) — Chỉ NLA
 
-Khi LAF được duyệt → hệ thống **tự động tạo OL**.
+Khi LAF được duyệt → hệ thống **tự động tạo Thư chào thuê (OL)** với trạng thái **Mới**.
 
-1. Soạn OL bản cứng → gửi khách hàng ký
-2. Khách đồng ý → **Upload OL đã ký** → trạng thái "Đã ký"
-3. Khách không đồng ý → **Hủy OL** → quay lại sửa LAF
+![Danh sách Thư chào thuê — mỗi OL tham chiếu về Thỏa thuận tương ứng + trạng thái Mới/Đã ký/Hủy](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image60.png)
+
+**Luồng xử lý OL:**
+
+1. Mở OL → in bản cứng → gửi khách hàng ký
+2. Khách đồng ý ký → bấm **TẢI BẢN ĐÃ KÝ**:
+
+   ![Modal upload OL đã ký — bấm vào icon upload, chọn file PDF/ảnh OL đã có chữ ký, bấm XÁC NHẬN](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image56.png)
+
+3. Sau khi upload → trạng thái OL chuyển **"Đã ký"**, các nút thao tác kế tiếp xuất hiện:
+
+   ![Header OL sau khi upload — các nút XÁC NHẬN ĐÃ KÝ / TẠO ĐỀ NGHỊ THANH TOÁN / HỦY / TẢI BẢN ĐÃ KÝ](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image55.png)
+
+4. Khách không đồng ý → bấm **HỦY** → quay lại sửa LAF (tạo LAF mới)
+
+---
 
 ### Bước 4: Tạo Hợp đồng (LA)
 
-Khi OL đã ký + kế toán xác nhận đã nhận cọc lần 1 → hệ thống **tự động tạo HĐ nháp**.
+Điều kiện kích hoạt:
+- OL đã ký xong **VÀ**
+- Kế toán xác nhận đã nhận đủ **cọc lần 1** (Phí giữ chỗ + Tiền đặt cọc HĐ)
 
-1. Kiểm tra thông tin HĐ (lấy từ LAF/OL)
-2. Chỉnh sửa Tab Điều kiện tiền thuê và Tab Điều kiện & Điều khoản (nếu cần)
-3. Bấm **Gửi duyệt** → chọn người duyệt
+Khi đủ 2 điều kiện trên → hệ thống **tự tạo HĐ nháp** từ OL + LAF.
 
-   > Nếu chưa nhận đủ cọc bắt buộc → popup cảnh báo "Chưa nhận đủ cọc, bạn có muốn tiếp tục không?"
+![Sơ đồ trạng thái mở rộng — từ Phiếu duyệt thuê → Thư chào thuê → Hợp đồng](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image46.png)
 
-4. Được duyệt → Soạn LA bản cứng → gửi khách ký
-5. Khách ký → **Upload LA đã ký** → bấm **Xác nhận**
+#### 4.1. Kiểm tra HĐ nháp
 
-   > Nếu khách muốn sửa → Tạo yêu cầu cập nhật LA → gửi duyệt thay đổi (Commercial)
+![Form Hợp đồng trên wireframe — Thông tin cơ bản (Cơ hội, NV kinh doanh, Vị trí thuê) + Thông tin bên thuê (Mã KH, MST, đại diện)](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image68.png)
 
-### Bước 5: Bàn giao mặt bằng
+Form Hợp đồng trên Odoo thật — kế thừa toàn bộ data từ Thỏa thuận và LAF + thêm **Ngày hiệu lực hợp đồng** và 4 smart button (Phụ Lục, Thanh Lý, Báo Cáo Điện Nước, Báo Cáo Doanh Thu):
 
-1. Kế toán xác nhận đã nhận đủ cọc
-2. Bấm **Xác nhận cho thuê**
-3. **Upload biên bản BGMB** (Bàn giao mặt bằng)
-4. Đến ngày tính tiền thuê → trạng thái Deal chuyển thành **"Đang thuê"**
+![Form Hợp đồng trên Odoo (dữ liệu đã làm mờ) — mã HĐ format SMCB1/HD26001, status MỚI → CHỜ DUYỆT → CHỜ XÁC NHẬN → ĐÃ XÁC NHẬN → TỪ CHỐI DUYỆT → HUỶ. Các nút thao tác: GỬI DUYỆT, TẠO ĐỀ NGHỊ THANH TOÁN, HỦY](../assets/cho-thue-odoo/07-hop-dong.png)
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image2.png)
+Có thể chỉnh sửa 2 tab Điều kiện tiền thuê và Điều kiện & Điều khoản nếu thực tế khác so với OL.
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image3.png)
+#### 4.2. Gửi duyệt & Xử lý cảnh báo
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image4.png)
+Bấm **GỬI DUYỆT** → chọn người duyệt như LAF.
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image5.png)
+:::warning[Cảnh báo phân quyền]
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image6.png)
+Người không có quyền duyệt sẽ thấy popup khi mở HĐ:
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image7.png)
+![Modal cảnh báo KHÔNG CÓ QUYỀN DUYỆT — Bạn không có quyền duyệt hợp đồng này. Vui lòng xem thông tin ở tab phê duyệt](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image84.png)
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image8.png)
+:::
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image9.png)
+:::info[Cảnh báo chưa đủ cọc]
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image10.png)
+Nếu chưa nhận đủ cọc bắt buộc → popup xác nhận *"Chưa nhận đủ cọc, bạn có muốn tiếp tục không?"*. Có thể tiếp tục nhưng phải có lý do.
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image11.png)
+:::
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image12.png)
+#### 4.3. Ký HĐ bản cứng
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image13.png)
+Được duyệt → soạn HĐ bản cứng → khách ký → bấm **TẢI BẢN ĐÃ KÝ** → upload → bấm **XÁC NHẬN**.
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image14.png)
+![Header HĐ — các nút TẢI BẢN ĐÃ KÝ / TẠO ĐỀ NGHỊ ĐẶT CỌC sau khi HĐ được duyệt](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image88.png)
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image15.png)
+:::tip[Nếu khách muốn sửa HĐ sau khi ký]
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image16.png)
+Tạo **yêu cầu cập nhật LA** → gửi duyệt lại bộ phận Commercial → sau khi được duyệt mới sửa được trên hệ thống.
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image17.png)
+:::
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image18.png)
+---
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image19.png)
+### Bước 5: Bàn giao mặt bằng (BGMB)
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image20.png)
+Điều kiện kích hoạt: HĐ đã ký + kế toán xác nhận **nhận đủ tất cả các khoản cọc**.
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image21.png)
+1. Trên HĐ → bấm **XÁC NHẬN CHO THUÊ**
+2. Soạn Biên bản BGMB bản cứng → 2 bên ký
+3. Bấm **TẢI BẢN ĐÃ KÝ** → upload BBBG đã ký:
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image22.png)
+   ![Modal upload BBBG — bấm Bấm để tải lên cả Bản cứng đã ký HĐ và Biên bản bàn giao mặt bằng, sau đó XÁC NHẬN](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image89.png)
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image23.png)
+4. Bấm **XÁC NHẬN** trên modal
+5. Đến ngày tính tiền thuê (đã khai báo ở LAF) → Deal tự chuyển trạng thái **"Đang thuê"**, hệ thống bắt đầu xuất hóa đơn theo chu kỳ.
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image24.png)
+:::info[Sau khi vào "Đang thuê"]
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image25.png)
+Mọi thay đổi giá thuê / gia hạn / điều khoản sau bước 5 đều phải đi qua **Phụ lục HĐ** (xem [Phần 4](#phần-4--phụ-lục-hợp-đồng)). Không sửa trực tiếp trên HĐ chính.
 
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image26.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image27.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image28.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image29.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image30.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image31.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image32.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image33.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image34.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image35.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image36.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image37.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image38.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image39.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image40.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image41.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image42.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image43.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image44.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image45.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image46.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image47.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image48.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image49.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image50.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image51.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image52.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image53.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image54.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image55.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image56.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image57.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image58.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image59.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image60.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image61.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image62.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image63.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image64.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image65.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image66.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image67.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image68.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image69.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image70.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image71.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image72.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image73.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image74.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image75.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image76.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image77.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image78.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image79.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image80.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image81.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image82.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image83.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image84.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image85.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image86.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image87.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image88.png)
-
-![Screenshot](../assets/cho-thue/SCID_FRD02_-_Phân_hệ_Cho_thuê_image89.png)
+:::
 
 ---
 
