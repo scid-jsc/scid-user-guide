@@ -10,18 +10,21 @@ Tài liệu hệ thống ERP của SCID JSC — bao gồm hướng dẫn sử d�
 
 ```
 docs/
-+-- ke-toan/        Kế toán — AMS (Odoo 16, ams.scid.vn)                      
-+-- cho-thue/       Cho thuê — LMS (Odoo 16, lms.scid.vn)                     
++-- ke-toan/        Kế toán — AMS (Odoo 16, ams.scid.vn)
++-- cho-thue/       Cho thuê — LMS (Odoo 16, lms.scid.vn)
 +-- e-office/       Văn phòng điện tử — eOffice (Odoo 18, hrmseoffice.scid.vn)
-+-- hrms/           Nhân sự — HRMS (Odoo 18, hrmseoffice.scid.vn)             
++-- hrms/           Nhân sự — HRMS (Odoo 18, hrmseoffice.scid.vn)
++-- helpdesk/       Helpdesk — gửi yêu cầu hỗ trợ IT (scid.vn/helpdesk)
 ```
 
-Mỗi folder có 2 subfolder không publish:
+Mỗi module có thể có các subfolder không publish:
 
 | Folder | Nội dung |
 |--------|----------|
 | `_dev/` | Codebase analysis, code patterns — dành cho developer |
 | `_ops/` | Incident reports, runbooks — dành cho vận hành |
+| `_build/` | Tooling tự động regenerate tài liệu (VD: helpdesk dùng Puppeteer + docx-js) |
+| `dist/` | Artifact phát hành (VD: file Word tải xuống) |
 
 ---
 
