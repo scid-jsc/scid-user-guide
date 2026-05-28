@@ -613,3 +613,42 @@
   border-radius: var(--hd-radius);
   border-left-width: 3px;
 }
+
+/* ─────────────────────────────────────────────────────────────────────
+   TOC meta box (right rail, below "ON THIS PAGE")
+   Lives OUTSIDE .hd-page (it's Docusaurus chrome), so it carries explicit
+   Pulse colors. Rendered by the swizzled DocItem/TOC/Desktop only when the
+   doc declares halo_* frontmatter — i.e. only on Pulse pages.
+   ───────────────────────────────────────────────────────────────────── */
+.hd-toc-meta {
+  margin-top: 20px;
+  padding-top: 16px;
+  padding-left: 12px;
+  padding-right: 8px;
+  border-top: 1px solid var(--ifm-toc-border-color, #eaebf2);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.hd-toc-meta-line {
+  font-family: 'JetBrains Mono', 'Geist Mono', monospace;
+  font-size: 0.78rem;
+  color: #5b6478;
+  letter-spacing: -0.01em;
+}
+.hd-toc-meta-ask {
+  align-self: flex-start;
+  color: #6e47ff;
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+  transition: border-bottom-style 0.12s, opacity 0.12s;
+}
+.hd-toc-meta-ask:hover {
+  color: #6e47ff;
+  border-bottom-style: solid;
+  opacity: 0.85;
+}
+
+[data-theme='dark'] .hd-toc-meta-line { color: #8a8fa1; }
