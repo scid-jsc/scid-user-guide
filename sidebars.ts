@@ -26,18 +26,6 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       items: [
         'e-office/huong-dan/van-hanh-eo',
-        {
-          type: 'category',
-          label: 'Hồ sơ Tiếp khách',
-          collapsed: true,
-          items: [
-            'e-office/huong-dan/hosotk/index',
-            'e-office/huong-dan/hosotk/project-stages',
-            'e-office/huong-dan/hosotk/email-templates',
-            'e-office/huong-dan/hosotk/automation-rules',
-            'e-office/huong-dan/hosotk/phan-quyen-test',
-          ],
-        },
       ],
     },
     {
