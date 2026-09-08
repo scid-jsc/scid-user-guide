@@ -5,6 +5,14 @@ const sidebars: SidebarsConfig = {
     { type: 'doc', id: 'index', label: 'Trang chủ' },
     {
       type: 'category',
+      label: 'Bán lẻ (SMS)',
+      collapsed: false,
+      items: [
+        'ban-le/huong-dan/co-gi-moi',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Kế toán',
       collapsed: false,
       items: [
